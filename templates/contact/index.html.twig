@@ -1,0 +1,109 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contactez moi{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(function () {
+            $('#contact_form').on('submit', function (e) {
+                e.preventDefault();
+                $('.thank-you').remove();
+                $('.comments').empty();
+                var postdata = $('#contact_form').serialize();
+                console.log(postdata);
+                $.ajax({
+                    type: 'POST',
+                    url: '{{ path(app.request.attributes.get('_route')) }}',
+                    data: postdata,
+                    dataType: 'json',
+                    success: function (json) {                        
+                         if(json.isSuccess){
+                         $('#contact_form').append("<p class='thank-you'>Votre message a bien été envoyé. Merci de m'avoir contacté :)</p>");
+                         $('#contact_form')[0].reset();
+                         }
+                         else{
+                         $('#prenom + .comments').html(json.iprenom_erreur);
+                         $('#nom + .comments').html(json.inom_erreur);
+                         $('#mail + .comments').html(json.imail_erreur);
+                         $('#tel + .comments').html(json.itel_erreur);
+                         $('#message + .comments').html(json.imess_erreur);
+                         } 
+                    }
+                });
+            });
+
+        });
+
+    </script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{asset('styles/contact.css')}}" rel="stylesheet" type="text/css"/>
+
+{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+
+        <div class="divider"></div>
+
+        <div class="heading">
+            <h2>Contactez-moi</h2>
+        </div>
+
+        <div class="row justify-content-lg-center">
+            <div class="col-lg-10">
+
+                <form id="contact_form" method="post" action="{{ path(app.request.attributes.get('_route')) }}" role="form">
+                    <div class="row">
+
+                        <div class="form-group col-md-6">
+                            <label for="prenom">Prénom<span class="blue"> *</span></label>
+                            <input type="text" class="form-control" name="prenom" id="prenom" placeholder="Severus" value="">
+                            <p class="comments"></p> 
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="nom">Nom<span class="blue"> *</span></label>
+                            <input type="text" class="form-control" name="nom" id="nom" placeholder="Snape" value="">
+                            <p class="comments"></p> 
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="mail">Email<span class="blue"> *</span></label>
+                            <input type="text" class="form-control" name="mail" id="mail" placeholder="serverus.snape@gmail.com" value="">
+                            <p class="comments"></p> 
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="tel">Téléphone<span class="blue"> *</span></label>
+                            <input type="tel" pattern="[0-9]{10}" maxlength="10" class="form-control" name="tel" id="tel" placeholder="0602030405" value="">
+                            <p class="comments"></p> 
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <label for="message">Message<span class="blue"> *</span></label>
+                            <textarea type="textarea" id="message" name="message" rows="5" cols="10" class="form-control" placeholder="Votre message" ></textarea>
+                            <p class="comments"></p> 
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <p class="blue"><strong>* Ces informations sont requises</strong></p>                             
+                        </div>
+
+                    </div>
+
+                    <button type="submit" class="boutton1">Envoyer</button>
+
+
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
