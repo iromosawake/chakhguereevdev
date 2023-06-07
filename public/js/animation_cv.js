@@ -6,7 +6,7 @@
 
 
 $(function(){
-    init = function() {
+    /*init = function() {
         $('#photo_persso').hide();
         $('#symfony_progress').animate({width:"65%"},5500);
         $('#jee_progress').animate({width:"35%"},5500);
@@ -18,7 +18,9 @@ $(function(){
         $('#photo_persso').fadeIn(5000); 
         
     };
-    init();
+    init();*/
     /* $("#carre").animate({left:'50px', opacity:'1'},500);*/
+
+    
     
 });
