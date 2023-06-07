@@ -25,9 +25,10 @@ img{
     height: auto;
 }
 
-section .heading{
+section .heading{    
     text-align: center;
     padding-bottom: 40px;
+    
 }
 
 ul li {
@@ -36,6 +37,7 @@ ul li {
 
 section{
     padding: 45px 0px 80px 0px;
+    min-height: 800px;
 }
 
 section h2{
@@ -104,6 +106,7 @@ body > nav{
 #about_desc{
     background-color:white;
     border:solid #4b567a;
+    border-radius: 10px;
 }
 
 .profile-picture{
