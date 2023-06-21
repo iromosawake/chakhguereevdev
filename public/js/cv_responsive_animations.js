@@ -25,6 +25,7 @@ function initial_view() {
   $("#portfolio").hide();
   $("#about").fadeIn();
   $("#about_butt").addClass('active');
+  
 };
 
 
@@ -102,26 +103,21 @@ $(document).ready(function () {
 
 });
 
-
+if (localStorage.getItem('darkula')) {
+  console.log('existe');
+  document.querySelector('body').classList.toggle('dark');
+}
 //darcula
-
-
-
 function darkulaMode() {
   const darkula = document.querySelector('#darkula_mode');
-  //console.log(darkula.getAttribute("class"));
-  if(darkula.getAttribute("class") === 'bi bi-brightness-low-fill'){
+  if (darkula.getAttribute("class") === 'bi bi-brightness-low-fill') {
+    darkula.setAttribute("class", 'bi bi-brightness-low');
     document.querySelector('body').classList.toggle('dark');
-    /*document.body.style.backgroundColor = 'black';
-    document.body.style.
-    darkula.classList.remove("bi-brightness-low-fill");
-    darkula.classList.add("bi-brightness-low");*/
-
-  }else{
-    document.querySelector('body').classList.toggle('');
-    /*document.body.style.backgroundColor = 'white';
-    darkula.classList.remove("bi-brightness-low");
-    darkula.classList.add("bi-brightness-low-fill");*/
+    localStorage.setItem("darkula", "actif");
+  } else {
+    localStorage.removeItem("darkula");
+    darkula.setAttribute("class", 'bi bi-brightness-low-fill');
+    document.querySelector('body').classList.remove('dark');
   }
 }
 

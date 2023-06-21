@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class NutritionController extends AbstractController
 {
     #[Route('/nutrition', name: 'app_nutrition')]
-    public function index(): Response
+    public function index()
     {
         return $this->render('nutrition/index.html.twig', [
             'controller_name' => 'NutritionController',

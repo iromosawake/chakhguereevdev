@@ -9,9 +9,7 @@ and open the template in the editor.
 */
 
 /* GENERAL */
-
-
-
+/*variables pour le mode darkula*/
 body {
     font-family: 'Lato', sans-serif;
     position: relative;
@@ -222,6 +220,10 @@ body>nav {
     font-size: 20px;
     color: #566671;
     font-weight: bold
+}
+
+.timeline{
+    color: black;
 }
 
 .white-divider {
