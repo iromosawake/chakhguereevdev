@@ -1,11 +1,12 @@
 <?php
-
+declare(strict_types=1);
 namespace App\Controller;
 
 use Auth0\SDK\API\Management;
 use Auth0\SDK\Configuration\SdkConfiguration;
-
+use Auth0\SDK\Exception\ArgumentException;
 use Auth0\SDK\Exception\ConfigurationException;
+use Auth0\SDK\Exception\NetworkException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,6 +16,10 @@ use Symfony\Component\Routing\Annotation\Route;
 final class CreateUserController extends AbstractController
 {
     private SdkConfiguration $configuration;
+
+    /**
+     * @throws ConfigurationException
+     */
     public function __construct(
         string $auth0Domain,
         string $auth0ClientId,
@@ -36,6 +41,11 @@ final class CreateUserController extends AbstractController
 
     }
 
+    /**
+     * @throws NetworkException
+     * @throws ArgumentException
+     * @throws ConfigurationException
+     */
     #[Route('/create-auth0-user', name: 'create-auth0-user')]
     public function __invoke(): Response
     {
@@ -47,9 +57,7 @@ final class CreateUserController extends AbstractController
                 'email' => 's.alletti@gmail.com',
                 'password' => 'Toto1234=:!',
                 'verify_email' => true,
-                "app_metadata" => [
-                    "invitedToMyApp" => true,
-                ]
+                "app_metadata" => ["invitedToMyApp" => true]
             ]
         );
 
