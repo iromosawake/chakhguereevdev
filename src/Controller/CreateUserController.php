@@ -1,15 +1,14 @@
 <?php
 
-declare(strict_types=1);
-
 namespace App\Controller;
 
+use Auth0\SDK\API\Management;
+use Auth0\SDK\Configuration\SdkConfiguration;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-use Auth0\SDK\API\Management;
-use Auth0\SDK\Configuration\SdkConfiguration;
+
 
 final class CreateUserController extends AbstractController
 {
@@ -25,7 +24,7 @@ final class CreateUserController extends AbstractController
         string $cookieSecret,
         string $loginCallback
     ) {
-        $this->configuration = new SdkConfigura(
+        $this->configuration = new SdkConfiguration(
             domain: $auth0Domain,
             clientId: $auth0ClientId,
             redirectUri: $loginCallback,
