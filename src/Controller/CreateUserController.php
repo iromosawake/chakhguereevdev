@@ -5,6 +5,7 @@ namespace App\Controller;
 use Auth0\SDK\API\Management;
 use Auth0\SDK\Configuration\SdkConfiguration;
 
+use Auth0\SDK\Exception\ConfigurationException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -25,15 +26,19 @@ final class CreateUserController extends AbstractController
         string $cookieSecret,
         string $loginCallback
     ) {
-        $this->configuration = new SdkConfiguration(
-            domain: $auth0Domain,
-            clientId: $auth0ClientId,
-            redirectUri: $loginCallback,
-            clientSecret: $auth0ClientSecret,
-            audience: [$auth0Audience],
-            cookieSecret: $cookieSecret,
-            managementToken: $auth0ManagementToken
-        );
+        try {
+            $this->configuration = new SdkConfiguration(
+                domain: $auth0Domain,
+                clientId: $auth0ClientId,
+                redirectUri: $loginCallback,
+                clientSecret: $auth0ClientSecret,
+                audience: [$auth0Audience],
+                cookieSecret: $cookieSecret,
+                managementToken: $auth0ManagementToken
+            );
+        } catch (ConfigurationException $e) {
+            echo($e->getMessage());
+        }
     }
 
     #[Route('/create-auth0-user', name: 'create-auth0-user')]
