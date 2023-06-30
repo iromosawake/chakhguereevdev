@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Auth0\SDK\API\Management;
 use Auth0\SDK\Configuration\SdkConfiguration;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
