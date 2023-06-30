@@ -15,7 +15,6 @@ class ExerciceController extends AbstractController
     public function addExercice(ManagerRegistry $doctrine): Response
     {
         $em = $doctrine->getManager();
-        
         $pattern = $em->getRepository(PatternMuscle::class)->find(1);
 
         $exercice = new Exercice();
@@ -26,7 +25,6 @@ class ExerciceController extends AbstractController
         $exercice->setPatternMuscle($pattern);
         $em->persist($exercice);        
         $em->flush();
-        die("ajout fait");
         return $this->render('exercice/index.html.twig', [
             'controller_name' => 'ExerciceController',
         ]);
