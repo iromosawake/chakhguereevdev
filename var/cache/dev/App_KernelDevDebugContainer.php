@@ -16,6 +16,6 @@ if (!\class_exists(App_KernelDevDebugContainer::class, false)) {
 
 return new \ContainerHeDJmex\App_KernelDevDebugContainer([
     'container.build_hash' => 'HeDJmex',
-    'container.build_id' => '6db60c4c',
-    'container.build_time' => 1688143425,
+    'container.build_id' => '65e8db77',
+    'container.build_time' => 1688143781,
 ], __DIR__.\DIRECTORY_SEPARATOR.'ContainerHeDJmex');

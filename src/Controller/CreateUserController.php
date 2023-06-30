@@ -14,9 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 final class CreateUserController extends AbstractController
 {
-
     private SdkConfiguration $configuration;
-
     public function __construct(
         string $auth0Domain,
         string $auth0ClientId,
@@ -26,7 +24,6 @@ final class CreateUserController extends AbstractController
         string $cookieSecret,
         string $loginCallback
     ) {
-        try {
             $this->configuration = new SdkConfiguration(
                 domain: $auth0Domain,
                 clientId: $auth0ClientId,
@@ -36,9 +33,7 @@ final class CreateUserController extends AbstractController
                 cookieSecret: $cookieSecret,
                 managementToken: $auth0ManagementToken
             );
-        } catch (ConfigurationException $e) {
-            echo($e->getMessage());
-        }
+
     }
 
     #[Route('/create-auth0-user', name: 'create-auth0-user')]

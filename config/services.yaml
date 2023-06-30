@@ -16,7 +16,7 @@ services:
             $auth0ClientId: '%env(AUTH0_CLIENT_ID)%'
             $auth0ClientSecret: '%env(AUTH0_CLIENT_SECRET)%'
             $auth0Audience: '%env(AUTH0_AUDIENCE)%'
-            $cookieSecret: '%env(COOKIE_SECRET)%'
+            $cookieSecret: '%env(AUTH0_COOKIE_SECRET)%'
             $loginCallback: '%env(LOGIN_REDIRECT_URI)%'
 
     # makes classes in src/ available to be used as services
