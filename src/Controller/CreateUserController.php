@@ -4,9 +4,7 @@ namespace App\Controller;
 
 use Auth0\SDK\API\Management;
 use Auth0\SDK\Configuration\SdkConfiguration;
-use Auth0\SDK\Exception\ArgumentException;
-use Auth0\SDK\Exception\ConfigurationException;
-use Auth0\SDK\Exception\NetworkException;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,9 +15,7 @@ final class CreateUserController extends AbstractController
 {
     private SdkConfiguration $configuration;
 
-    /**
-     * @throws ConfigurationException
-     */
+
     public function __construct(
         string $auth0Domain,
         string $auth0ClientId,
@@ -41,11 +37,7 @@ final class CreateUserController extends AbstractController
 
     }
 
-    /**
-     * @throws NetworkException
-     * @throws ArgumentException
-     * @throws ConfigurationException
-     */
+
     #[Route('/create-auth0-user', name: 'create-auth0-user')]
     public function __invoke(): Response
     {
