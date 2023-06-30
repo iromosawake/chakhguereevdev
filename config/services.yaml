@@ -10,6 +10,14 @@ services:
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+        bind:
+            $auth0Domain: '%env(AUTH0_DOMAIN)%'
+            $auth0ManagementToken: '%env(AUTH0_MANAGEMENT_TOKEN)%'
+            $auth0ClientId: '%env(AUTH0_CLIENT_ID)%'
+            $auth0ClientSecret: '%env(AUTH0_CLIENT_SECRET)%'
+            $auth0Audience: '%env(AUTH0_AUDIENCE)%'
+            $cookieSecret: '%env(COOKIE_SECRET)%'
+            $loginCallback: '%env(LOGIN_REDIRECT_URI)%'
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
