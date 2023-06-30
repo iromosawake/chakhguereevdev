@@ -6,13 +6,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class ChakhguereevCVController extends AbstractController
+class HommeUltimeController extends AbstractController
 {
-    #[Route('/chakhguereev/c/v', name: 'app_chakhguereev_c_v')]
+    #[Route('/homme/ultime', name: 'app_homme_ultime')]
     public function index(): Response
     {
-        return $this->render('chakhguereev_cv/index.html.twig', [
-            'controller_name' => 'ChakhguereevCVController',
+        return $this->render('homme_ultime/index.html.twig', [
+            'controller_name' => 'HommeUltimeController',
         ]);
     }
 }
