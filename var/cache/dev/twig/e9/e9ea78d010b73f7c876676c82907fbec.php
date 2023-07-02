@@ -95,7 +95,10 @@ class __TwigTemplate_d82196514ae444b9cc41d46a9b0b463f extends Template
         // line 12
         echo twig_escape_filter($this->env, (isset($context["controller_name"]) || array_key_exists("controller_name", $context) ? $context["controller_name"] : (function () { throw new RuntimeError('Variable "controller_name" does not exist.', 12, $this->source); })()), "html", null, true);
         echo "! ✅</h1>
-
+    ";
+        // line 13
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\DumpExtension']->dump($this->env, $context, (isset($context["exercice_cree"]) || array_key_exists("exercice_cree", $context) ? $context["exercice_cree"] : (function () { throw new RuntimeError('Variable "exercice_cree" does not exist.', 13, $this->source); })()));
+        echo "
     This friendly message is coming from:
     <ul>
         <li>Your controller at <code><a href=\"";
@@ -129,7 +132,7 @@ class __TwigTemplate_d82196514ae444b9cc41d46a9b0b463f extends Template
 
     public function getDebugInfo()
     {
-        return array (  107 => 17,  103 => 16,  96 => 12,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
+        return array (  110 => 17,  106 => 16,  100 => 13,  96 => 12,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -146,7 +149,7 @@ class __TwigTemplate_d82196514ae444b9cc41d46a9b0b463f extends Template
 
 <div class=\"example-wrapper\">
     <h1>Hello {{ controller_name }}! ✅</h1>
-
+    {{ dump(exercice_cree) }}
     This friendly message is coming from:
     <ul>
         <li>Your controller at <code><a href=\"{{ 'X:/Programmes/xampp/htdocs/chakhguereevdev/src/Controller/ExerciceController.php'|file_link(0) }}\">src/Controller/ExerciceController.php</a></code></li>

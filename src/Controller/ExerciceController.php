@@ -9,12 +9,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+#[Route("/exercice")]
 class ExerciceController extends AbstractController
 {
-    #[Route('/exercice', name: 'app_exercice')]
-    public function addExercice(ManagerRegistry $doctrine): Response
+    #[Route('/create', name: 'exercice_create')]
+    public function createExercice(ManagerRegistry $doctrine): Response
     {
         $em = $doctrine->getManager();
+
         $pattern = $em->getRepository(PatternMuscle::class)->find(1);
 
         $exercice = new Exercice();
@@ -25,8 +27,10 @@ class ExerciceController extends AbstractController
         $exercice->setPatternMuscle($pattern);
         $em->persist($exercice);        
         $em->flush();
+
         return $this->render('exercice/index.html.twig', [
             'controller_name' => 'ExerciceController',
+            'exercice_cree'=>$exercice
         ]);
     }
 }

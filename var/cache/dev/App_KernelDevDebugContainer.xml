@@ -19,6 +19,7 @@
       <parameter key="SecurityBundle">Symfony\Bundle\SecurityBundle\SecurityBundle</parameter>
       <parameter key="MonologBundle">Symfony\Bundle\MonologBundle\MonologBundle</parameter>
       <parameter key="MakerBundle">Symfony\Bundle\MakerBundle\MakerBundle</parameter>
+      <parameter key="DoctrineFixturesBundle">Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle</parameter>
     </parameter>
     <parameter key="kernel.bundles_metadata" type="collection">
       <parameter key="FrameworkBundle" type="collection">
@@ -60,6 +61,10 @@
       <parameter key="MakerBundle" type="collection">
         <parameter key="path">X:\Programmes\xampp\htdocs\chakhguereevdev\vendor\symfony\maker-bundle\src</parameter>
         <parameter key="namespace">Symfony\Bundle\MakerBundle</parameter>
+      </parameter>
+      <parameter key="DoctrineFixturesBundle" type="collection">
+        <parameter key="path">X:\Programmes\xampp\htdocs\chakhguereevdev\vendor\doctrine\doctrine-fixtures-bundle</parameter>
+        <parameter key="namespace">Doctrine\Bundle\FixturesBundle</parameter>
       </parameter>
     </parameter>
     <parameter key="kernel.charset">UTF-8</parameter>
@@ -380,6 +385,12 @@
       <call method="setContainer">
         <argument type="service" id=".service_locator.wwLu14F.App\Controller\PratiquesDevController"/>
       </call>
+    </service>
+    <service id="App\DataFixtures\AppFixtures" class="App\DataFixtures\AppFixtures" autowire="true" autoconfigure="true">
+      <tag name="doctrine.fixture.orm"/>
+    </service>
+    <service id="App\DataFixtures\Exercice" class="App\DataFixtures\Exercice" autowire="true" autoconfigure="true">
+      <tag name="doctrine.fixture.orm"/>
     </service>
     <service id="App\Repository\ExerciceRepository" class="App\Repository\ExerciceRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
@@ -2076,6 +2087,7 @@
           <argument>X:\Programmes\xampp\htdocs\chakhguereevdev\vendor\symfony\security-bundle/translations</argument>
           <argument>X:\Programmes\xampp\htdocs\chakhguereevdev\vendor\symfony\monolog-bundle/translations</argument>
           <argument>X:\Programmes\xampp\htdocs\chakhguereevdev\vendor\symfony\maker-bundle\src/translations</argument>
+          <argument>X:\Programmes\xampp\htdocs\chakhguereevdev\vendor\doctrine\doctrine-fixtures-bundle/translations</argument>
         </argument>
         <argument key="cache_vary" type="collection">
           <argument key="scanned_directories" type="collection">
@@ -2093,6 +2105,7 @@
             <argument>X:\Programmes\xampp\htdocs\chakhguereevdev\vendor\symfony\security-bundle/translations</argument>
             <argument>X:\Programmes\xampp\htdocs\chakhguereevdev\vendor\symfony\monolog-bundle/translations</argument>
             <argument>X:\Programmes\xampp\htdocs\chakhguereevdev\vendor\symfony\maker-bundle\src/translations</argument>
+            <argument>X:\Programmes\xampp\htdocs\chakhguereevdev\vendor\doctrine\doctrine-fixtures-bundle/translations</argument>
           </argument>
         </argument>
       </argument>
@@ -6485,6 +6498,36 @@
       <argument type="service" id="maker.security_config_updater"/>
       <argument type="service" id="maker.security_controller_builder"/>
     </service>
+    <service id="doctrine.fixtures_load_command" class="Doctrine\Bundle\FixturesBundle\Command\LoadDataFixturesDoctrineCommand">
+      <tag name="console.command" command="doctrine:fixtures:load"/>
+      <tag name="container.no_preload"/>
+      <argument type="service" id="doctrine.fixtures.loader"/>
+      <argument type="service" id="doctrine"/>
+      <argument type="collection">
+        <argument key="default" type="service" id="doctrine.fixtures.purger.orm_purger_factory"/>
+      </argument>
+      <call method="setName">
+        <argument>doctrine:fixtures:load</argument>
+      </call>
+    </service>
+    <service id="doctrine.fixtures.loader" class="Doctrine\Bundle\FixturesBundle\Loader\SymfonyFixturesLoader">
+      <argument type="service" id="service_container"/>
+      <call method="addFixtures">
+        <argument type="collection">
+          <argument type="collection">
+            <argument key="fixture" type="service" id="App\DataFixtures\AppFixtures"/>
+            <argument key="groups" type="collection"/>
+          </argument>
+          <argument type="collection">
+            <argument key="fixture" type="service" id="App\DataFixtures\Exercice"/>
+            <argument key="groups" type="collection"/>
+          </argument>
+        </argument>
+      </call>
+    </service>
+    <service id="doctrine.fixtures.purger.orm_purger_factory" class="Doctrine\Bundle\FixturesBundle\Purger\ORMPurgerFactory">
+      <tag name="doctrine.fixtures.purger_factory" alias="default"/>
+    </service>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\ContactController" class="App\Controller\ContactController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\ContactController" class="App\Controller\ContactController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\ContactController" class="App\Controller\ContactController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -6503,6 +6546,10 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\PratiquesDevController" class="App\Controller\PratiquesDevController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\PratiquesDevController" class="App\Controller\PratiquesDevController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\PratiquesDevController" class="App\Controller\PratiquesDevController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\FixturesBundle\ORMFixtureInterface.0.App\DataFixtures\AppFixtures" class="App\DataFixtures\AppFixtures" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\DataFixtures\AppFixtures" class="App\DataFixtures\AppFixtures" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\FixturesBundle\ORMFixtureInterface.0.App\DataFixtures\Exercice" class="App\DataFixtures\Exercice" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\DataFixtures\Exercice" class="App\DataFixtures\Exercice" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ExerciceRepository" class="App\Repository\ExerciceRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\ExerciceRepository" class="App\Repository\ExerciceRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\PatternMuscleRepository" class="App\Repository\PatternMuscleRepository" autowire="true" abstract="true"/>
@@ -8405,7 +8452,7 @@
     </service>
     <service id="console.command_loader" class="Symfony\Component\Console\CommandLoader\ContainerCommandLoader" public="true">
       <tag name="container.no_preload"/>
-      <argument type="service" id=".service_locator.J_0PK.8"/>
+      <argument type="service" id=".service_locator.xdKe5OC"/>
       <argument type="collection">
         <argument key="about">console.command.about</argument>
         <argument key="assets:install">console.command.assets_install</argument>
@@ -8487,6 +8534,7 @@
         <argument key="lint:twig">twig.command.lint</argument>
         <argument key="debug:firewall">security.command.debug_firewall</argument>
         <argument key="security:hash-password">security.command.user_password_hash</argument>
+        <argument key="doctrine:fixtures:load">doctrine.fixtures_load_command</argument>
         <argument key="make:auth">maker.auto_command.make_auth</argument>
         <argument key="make:command">maker.auto_command.make_command</argument>
         <argument key="make:twig-component">maker.auto_command.make_twig_component</argument>
@@ -8515,7 +8563,7 @@
         <argument key="make:security:form-login">maker.auto_command.make_security_form_login</argument>
       </argument>
     </service>
-    <service id=".service_locator.J_0PK.8" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.xdKe5OC" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="console.command.about" type="service_closure" id=".console.command.about.lazy"/>
@@ -8598,6 +8646,7 @@
         <argument key="twig.command.lint" type="service_closure" id=".twig.command.lint.lazy"/>
         <argument key="security.command.debug_firewall" type="service_closure" id=".security.command.debug_firewall.lazy"/>
         <argument key="security.command.user_password_hash" type="service_closure" id=".security.command.user_password_hash.lazy"/>
+        <argument key="doctrine.fixtures_load_command" type="service_closure" id="doctrine.fixtures_load_command"/>
         <argument key="maker.auto_command.make_auth" type="service_closure" id=".maker.auto_command.make_auth.lazy"/>
         <argument key="maker.auto_command.make_command" type="service_closure" id=".maker.auto_command.make_command.lazy"/>
         <argument key="maker.auto_command.make_twig_component" type="service_closure" id=".maker.auto_command.make_twig_component.lazy"/>
@@ -8899,7 +8948,7 @@
     <service id=".service_locator.Za9MpXe" alias=".service_locator.y4dplYt"/>
     <service id=".service_locator.jij13qc" alias=".service_locator.PBToVFE"/>
     <service id=".service_locator.O24_MAy" alias=".service_locator.yY.p4P7"/>
-    <service id=".service_locator.890jQ8G" alias=".service_locator.wwLu14F"/>
+    <service id=".service_locator.mZLrIGM" alias=".service_locator.wwLu14F"/>
     <service id="validator" alias="debug.validator"/>
     <service id="http_client" alias=".debug.http_client"/>
     <service id=".debug.http_client.inner" alias="http_client.uri_template"/>
@@ -8918,7 +8967,7 @@
     <service id="security.event_dispatcher.main" alias="debug.security.event_dispatcher.main"/>
     <service id=".service_locator.gFlme_s" alias=".service_locator.y4_Zrx."/>
     <service id=".service_locator.eQ296SW" alias=".service_locator.o6sN0hZ"/>
-    <service id=".service_locator.oH8jCBk" alias=".service_locator.wwLu14F"/>
+    <service id=".service_locator.0Js9NEy" alias=".service_locator.wwLu14F"/>
     <service id=".service_locator.dGUCsbe" alias=".service_locator.oR77BOj"/>
     <service id=".service_locator.u6DWx23" alias=".service_locator.cXsfP3P"/>
     <service id=".service_locator.hnz5ZNh" alias=".service_locator.0TACwl3"/>
