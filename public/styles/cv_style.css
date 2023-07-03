@@ -13,12 +13,12 @@ and open the template in the editor.
 body {
     font-family: 'Lato', sans-serif;
     position: relative;
-    --bg-color: #6798c4;
-    --bg-light: #173754;
-    --text-primary: #111;
-    --text-secondary: #020202;
-    --href-color: #647097;
-    --href-color-h: #3460ee;
+    --bg-color: #173754;
+    --bg-light: #6798C4;
+    --text-primary: #FFFFFF;
+    --text-secondary: #FFFFFF;
+    --href-color: #FF5757;
+    --href-color-h: #5271FF;
 }
 
 body.dark {
@@ -344,14 +344,17 @@ body>nav {
 #education {
     padding-top: 100px;
     background: var(--bg-color);
+
 }
 
-#education .table {
+
+.table>:not(caption)>*>*{
+    background: var(--bg-color);
     color: var(--text-secondary);
 }
 
 #education .heading h2 {
-    color: var(--text-primary);
+    color: var(--text-secondary);
 }
 
 
