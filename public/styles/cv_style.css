@@ -280,7 +280,7 @@ body>nav {
     top: 16px;
     left: 50%;
     margin-left: -25px;
-    background-color: #ddd;
+    background-color: var(--bg-color);
     border-radius: 50%;
 }
 

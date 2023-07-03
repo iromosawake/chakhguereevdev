@@ -4,9 +4,9 @@ namespace App\Entity;
 
 use App\Repository\ExerciceRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ExerciceRepository::class)]
-
 class Exercice
 {
     #[ORM\Id]
@@ -14,9 +14,17 @@ class Exercice
     #[ORM\Column]
     private ?int $id = null;
 
+
     #[ORM\Column(length: 50)]
+    #[Assert\Length(
+        min: 4,
+        max: 50,
+        minMessage: 'Le nom de l\'exercice doit dépasser {{ limit }} charactères',
+        maxMessage: 'Your first name cannot be longer than {{ limit }} characters',
+    )]
     private ?string $nom = null;
 
+//    #[Assert\NotBlank(message: "Saisissez un nom pour l'exercice")]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $consigne = null;
 
@@ -29,6 +37,9 @@ class Exercice
     #[ORM\ManyToOne(inversedBy: 'exercice')]
     #[ORM\JoinColumn(nullable: false)]
     private ?PatternMuscle $patternMuscle = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $image = null;
 
     public function getId(): ?int
     {
@@ -91,6 +102,18 @@ class Exercice
     public function setPatternMuscle(?PatternMuscle $patternMuscle): self
     {
         $this->patternMuscle = $patternMuscle;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): static
+    {
+        $this->image = $image;
 
         return $this;
     }

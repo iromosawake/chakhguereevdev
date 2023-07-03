@@ -1,63 +1,69 @@
 <?php declare(strict_types= 1);?>
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>
-			{% block title %}CHAKHGUEREEV
-			{% endblock %}
-		</title>
-		{% block stylesheets %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+            CHAKHGUEREEV
+        {% endblock %}
+    </title>
+    {% block stylesheets %}
 
-			<link rel="stylesheet" href="{{ asset('styles/bootstrap.css') }}" type="text/css">
-			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-			<link rel="preconnect" href="https://fonts.gstatic.com">
-			<link href="https://fonts.googleapis.com/css2?family=Jomhuria&display=swap" rel="stylesheet">
-			<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-			<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap" rel="stylesheet">
-		{% endblock %}
+        <link rel="stylesheet" href="{{ asset('./node_modules/bootstrap/dist/css/bootstrap.min.css') }}" type="text/css">
+        <link href="{{ asset('./node_modules/select2/dist/css/select2.min.css') }}" rel="stylesheet"/>
 
-		{% block javascripts %}
-			<script src="{{ asset('js/jquery-3.5.1.js') }}" type="text/javascript"></script>
-			<script src="{{ asset('js/bootstrap.bundle.js') }}" type="text/javascript"></script>
-			<script src="https://kit.fontawesome.com/7be078bdeb.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Jomhuria&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap" rel="stylesheet">
+    {% endblock %}
 
 
-		{% endblock %}
-	</head>
-	<body data-spy="scroll" data-target=".navbar" data-offset="60">
-		{% block body %}
-			<nav class="navbar navbar-expand-lg bg-dark fixed-top">
-				<div class="container">
-					<button class="navbar-toggler ml-auto custom-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-						<span class="navbar-toggler-icon"></span>
-					</button>
-					<div class="collapse navbar-collapse" id="navbarNav">
-						<ul class="nav nav-pills mx-auto">
-							<li class="nav-item ">
-								<a class="nav-link" href="#about" id="about_butt">À propos de moi</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="#skills" id="skills_butt">Compétences</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="#experience" id="experience_butt">Expérience</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="#education" id="education_butt">Formation</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="#portfolio" id="portfolio_butt">Projets</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="#"  onclick="darkulaMode();"><i id="darkula_mode" class="bi bi-brightness-low-fill"></i></a>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</nav>
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="60">
+{% block body %}
+    <nav class="navbar navbar-expand-lg bg-dark fixed-top">
+        <div class="container">
+            <button class="navbar-toggler ml-auto custom-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="nav nav-pills mx-auto">
+                    <li class="nav-item ">
+                        <a class="nav-link" href="#about" id="about_butt">À propos de moi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#skills" id="skills_butt">Compétences</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#experience" id="experience_butt">Expérience</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#education" id="education_butt">Formation</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#portfolio" id="portfolio_butt">Projets</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="darkulaMode();"><i id="darkula_mode"
+                                                                                 class="bi bi-brightness-low-fill"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-		{% endblock %}
-	</body>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('./node_modules/jquery/dist/jquery.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('./node_modules/select2/dist/js/select2.full.min.js') }}" type="text/javascript"></script>
+    <script src="https://kit.fontawesome.com/7be078bdeb.js" crossorigin="anonymous"></script>
+{% endblock %}
+</body>
 </html>
