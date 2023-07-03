@@ -138,10 +138,6 @@ class ComposerStaticInitfb7105943bf1e95d5fc84e462b488a3c
         array (
             'GuzzleHttp\\Psr7\\' => 16,
         ),
-        'F' => 
-        array (
-            'Faker\\' => 6,
-        ),
         'E' => 
         array (
             'Egulias\\EmailValidator\\' => 23,
@@ -543,10 +539,6 @@ class ComposerStaticInitfb7105943bf1e95d5fc84e462b488a3c
         'GuzzleHttp\\Psr7\\' => 
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/psr7/src',
-        ),
-        'Faker\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker',
         ),
         'Egulias\\EmailValidator\\' => 
         array (
