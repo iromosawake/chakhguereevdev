@@ -22,7 +22,7 @@ class Seance
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
-    private ?zone $zone = null;
+    private ?Zone $zone = null;
 
     public function getId(): ?int
     {

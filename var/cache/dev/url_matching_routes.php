@@ -38,7 +38,10 @@ return [
                         .'|(*:159)'
                     .')'
                 .')'
-                .'|/exercice/edit\\-exercice(?:/([^/]++))?(*:207)'
+                .'|/e(?'
+                    .'|xercice/edit\\-exercice(?:/([^/]++))?(*:210)'
+                    .'|dit\\-programme(?:/([^/]++))?(*:246)'
+                .')'
             .')/?$}sDu',
     ],
     [ // $dynamicRoutes
@@ -49,8 +52,9 @@ return [
         136 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception_panel::body'], ['token'], null, null, false, false, null]],
         149 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception_panel::stylesheet'], ['token'], null, null, false, false, null]],
         159 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
-        207 => [
-            [['_route' => 'exercice_edit', 'id' => '0', '_controller' => 'App\\Controller\\ExerciceController::addExercice'], ['id'], null, null, false, true, null],
+        210 => [[['_route' => 'exercice_edit', 'id' => '0', '_controller' => 'App\\Controller\\ExerciceController::addExercice'], ['id'], null, null, false, true, null]],
+        246 => [
+            [['_route' => 'app_programme', 'id' => '0', '_controller' => 'App\\Controller\\ProgrammeController::index'], ['id'], null, null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],
     ],

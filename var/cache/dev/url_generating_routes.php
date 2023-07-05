@@ -23,4 +23,5 @@ return [
     'app_home' => [[], ['_controller' => 'App\\Controller\\HomeController::index'], [], [['text', '/']], [], [], []],
     'app_homme_ultime' => [[], ['_controller' => 'App\\Controller\\HommeUltimeController::index'], [], [['text', '/homme/ultime']], [], [], []],
     'app_pratiques_dev' => [[], ['_controller' => 'App\\Controller\\PratiquesDevController::index'], [], [['text', '/pratiques/dev']], [], [], []],
+    'app_programme' => [['id'], ['id' => '0', '_controller' => 'App\\Controller\\ProgrammeController::index'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/edit-programme']], [], [], []],
 ];

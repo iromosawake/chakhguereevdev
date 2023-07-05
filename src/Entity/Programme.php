@@ -34,12 +34,12 @@ class Programme
     #[ORM\Column(type: Types::SMALLINT, nullable: true)]
     private ?int $rpe = null;
 
-    #[ORM\ManyToMany(targetEntity: exercice::class)]
+    #[ORM\ManyToMany(targetEntity: Exercice::class)]
     private Collection $exercices;
 
     #[ORM\OneToOne(inversedBy: 'programme', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
-    private ?seance $seance = null;
+    private ?Seance $seance = null;
 
     public function __construct()
     {
