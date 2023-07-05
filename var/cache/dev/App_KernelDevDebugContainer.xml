@@ -407,6 +407,9 @@
     <service id="App\Form\ProgrammeType" class="App\Form\ProgrammeType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
+    <service id="App\Form\SeanceType" class="App\Form\SeanceType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
     <service id="App\Repository\ExerciceRepository" class="App\Repository\ExerciceRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
@@ -1316,6 +1319,7 @@
       <argument type="collection">
         <argument>App\Form\ExerciceType</argument>
         <argument>App\Form\ProgrammeType</argument>
+        <argument>App\Form\SeanceType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\FormType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\ChoiceType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\FileType</argument>
@@ -3473,7 +3477,7 @@
       <argument type="service" id="form.registry"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension">
-      <argument type="service" id=".service_locator._qJa2l1"/>
+      <argument type="service" id=".service_locator.m5RY44i"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -6575,6 +6579,8 @@
     <service id=".abstract.instanceof.App\Form\ExerciceType" class="App\Form\ExerciceType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\ProgrammeType" class="App\Form\ProgrammeType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\ProgrammeType" class="App\Form\ProgrammeType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\SeanceType" class="App\Form\SeanceType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\SeanceType" class="App\Form\SeanceType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ExerciceRepository" class="App\Repository\ExerciceRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\ExerciceRepository" class="App\Repository\ExerciceRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\PatternMuscleRepository" class="App\Repository\PatternMuscleRepository" autowire="true" abstract="true"/>
@@ -7148,11 +7154,12 @@
       <argument type="service" id="argument_resolver.query_parameter_value_resolver"/>
       <argument type="service" id="debug.stopwatch"/>
     </service>
-    <service id=".service_locator._qJa2l1" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.m5RY44i" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Form\ExerciceType" type="service_closure" id="App\Form\ExerciceType"/>
         <argument key="App\Form\ProgrammeType" type="service_closure" id="App\Form\ProgrammeType"/>
+        <argument key="App\Form\SeanceType" type="service_closure" id="App\Form\SeanceType"/>
         <argument key="Symfony\Bridge\Doctrine\Form\Type\EntityType" type="service_closure" id="form.type.entity"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\ChoiceType" type="service_closure" id="form.type.choice"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\ColorType" type="service_closure" id="form.type.color"/>
@@ -8996,7 +9003,7 @@
     <service id=".service_locator.1BV0b7P" alias=".service_locator.328mzw8"/>
     <service id=".service_locator._mrl8yV" alias=".service_locator.FxujAcz"/>
     <service id=".service_locator.BFrsqsn" alias=".service_locator.F9PKc.7"/>
-    <service id=".service_locator.yay17pC" alias=".service_locator._qJa2l1"/>
+    <service id=".service_locator.9yEfbUd" alias=".service_locator.m5RY44i"/>
     <service id=".service_locator.jij13qc" alias=".service_locator.PBToVFE"/>
     <service id=".service_locator.O24_MAy" alias=".service_locator.yY.p4P7"/>
     <service id=".service_locator.GL7yIWY" alias=".service_locator.wwLu14F"/>
