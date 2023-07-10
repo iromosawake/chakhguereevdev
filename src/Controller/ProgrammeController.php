@@ -34,6 +34,7 @@ class ProgrammeController extends AbstractController
         if ($form->isSubmitted()) {
             $em->persist($programme);
             $em->flush();
+
             $this->addFlash('succes', ' a été edité avec succès !');
             $this->redirectToRoute('app_programme');
         }

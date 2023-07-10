@@ -14,7 +14,6 @@ class Exercice
     #[ORM\Column]
     private ?int $id = null;
 
-
     #[ORM\Column(length: 50)]
     #[Assert\Length(
         min: 4,
@@ -28,9 +27,6 @@ class Exercice
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $consigne = null;
 
-    #[ORM\Column(length: 80, nullable: true)]
-    private ?string $video = null;
-
     #[ORM\Column(nullable: true)]
     private ?bool $principal = null;
 
@@ -40,6 +36,9 @@ class Exercice
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $image = null;
+
+    #[ORM\Column(length: 80, nullable: true)]
+    private ?string $video = null;
 
     public function getId(): ?int
     {

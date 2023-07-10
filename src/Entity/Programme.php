@@ -34,16 +34,17 @@ class Programme
     #[ORM\Column(type: Types::SMALLINT, nullable: true)]
     private ?int $rpe = null;
 
-    #[ORM\ManyToMany(targetEntity: Exercice::class)]
-    private Collection $exercices;
+    #[ORM\ManyToOne(targetEntity: Exercice::class)]
+    private Exercice $exercice;
 
-    #[ORM\OneToOne(inversedBy: 'programme', cascade: ['persist', 'remove'])]
+
+    #[ORM\OneToMany(mappedBy: 'programmes', targetEntity: Seance::class)]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Seance $seance = null;
+    private Collection $seances;
 
     public function __construct()
     {
-        $this->exercices = new ArrayCollection();
+        $this->seances = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -124,38 +125,56 @@ class Programme
     }
 
     /**
-     * @return Collection<int, exercice>
+     * @return Exercice
      */
-    public function getExercices(): Collection
+    public function getExercice(): Exercice
     {
-        return $this->exercices;
+        return $this->exercice;
     }
 
-    public function addExercice(exercice $exercice): self
+    public function setExercice(Exercice $exercice): self
     {
-        if (!$this->exercices->contains($exercice)) {
-            $this->exercices->add($exercice);
+        $this->exercice = $exercice;
+        return $this;
+    }
+
+
+//    public function getSeance(): ?seance
+//    {
+//        return $this->seance;
+//    }
+//
+//    public function setSeance(seance $seance): self
+//    {
+//        $this->seance = $seance;
+//
+//        return $this;
+//    }
+
+    /**
+     * @return Collection<int, Seance>
+     */
+    public function getSeances(): Collection
+    {
+        return $this->seances;
+    }
+
+    public function addSeance(Seance $Seance): self
+    {
+        if (!$this->seances->contains($Seance)) {
+            $this->seances->add($Seance);
         }
-
         return $this;
     }
 
-    public function removeExercice(exercice $exercice): self
+    public function removeSeance(Seance $Seance): self
     {
-        $this->exercices->removeElement($exercice);
-
+        $this->seances->removeElement($Seance);
         return $this;
     }
 
-    public function getSeance(): ?seance
+    public function __toString(): string
     {
-        return $this->seance;
-    }
-
-    public function setSeance(seance $seance): self
-    {
-        $this->seance = $seance;
-
-        return $this;
+       return $this->id.' '.$this->exercice->getNom().' '.$this->getOrdre();
     }
 }

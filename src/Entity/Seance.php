@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\SeanceRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -17,12 +19,18 @@ class Seance
     #[ORM\Column(type: Types::SMALLINT)]
     private ?int $semaine = null;
 
-    #[ORM\OneToOne(mappedBy: 'seance', cascade: ['persist', 'remove'])]
-    private ?Programme $programme = null;
+    #[ORM\ManyToMany(targetEntity: Programme::class)]
+    #[ORM\JoinColumn(nullable: false)]
+    private Collection $programmes;
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
     private ?Zone $zone = null;
+
+    public function __construct()
+    {
+        $this->programmes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -41,20 +49,42 @@ class Seance
         return $this;
     }
 
-    public function getProgramme(): ?Programme
+//    public function getProgramme(): ?Programme
+//    {
+//        return $this->programme;
+//    }
+//
+//    public function setProgramme(Programme $programme): self
+//    {
+//        // set the owning side of the relation if necessary
+//        if ($programme->getSeance() !== $this) {
+//            $programme->setSeance($this);
+//        }
+//
+//        $this->programme = $programme;
+//
+//        return $this;
+//    }
+
+    /**
+     * @return Collection<int, Programme>
+     */
+    public function getProgrammes(): Collection
     {
-        return $this->programme;
+        return $this->programmes;
     }
 
-    public function setProgramme(Programme $programme): self
+    public function addProgramme(Programme $programme): self
     {
-        // set the owning side of the relation if necessary
-        if ($programme->getSeance() !== $this) {
-            $programme->setSeance($this);
+        if (!$this->programmes->contains($programme)) {
+            $this->exercices->add($programme);
         }
+        return $this;
+    }
 
-        $this->programme = $programme;
-
+    public function removeProgramme(Programme $programme): self
+    {
+        $this->programmes->removeElement($programme);
         return $this;
     }
 

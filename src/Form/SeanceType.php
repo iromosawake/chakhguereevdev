@@ -15,6 +15,7 @@ class SeanceType extends AbstractType
         $builder
             ->add('semaine')
             ->add('zone')
+            ->add('programmes')
             ->add('Creer', SubmitType::class)
         ;
     }
