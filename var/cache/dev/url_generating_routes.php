@@ -19,9 +19,9 @@ return [
     'app_contact' => [[], ['_controller' => 'App\\Controller\\ContactController::index'], [], [['text', '/contact']], [], [], []],
     'create-auth0-user' => [[], ['_controller' => 'App\\Controller\\CreateUserController'], [], [['text', '/create-auth0-user']], [], [], []],
     'exercice_create' => [[], ['_controller' => 'App\\Controller\\ExerciceController::createExercice'], [], [['text', '/exercice/create']], [], [], []],
-    'exercice_edit' => [['id'], ['id' => '0', '_controller' => 'App\\Controller\\ExerciceController::addExercice'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/exercice/edit-exercice']], [], [], []],
+    'exercice_edit' => [['id'], ['id' => '0', '_controller' => 'App\\Controller\\ExerciceController::addExercice'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/exercice/edit']], [], [], []],
     'app_home' => [[], ['_controller' => 'App\\Controller\\HomeController::index'], [], [['text', '/']], [], [], []],
-    'app_homme_ultime' => [[], ['_controller' => 'App\\Controller\\HommeUltimeController::index'], [], [['text', '/homme/ultime']], [], [], []],
     'app_pratiques_dev' => [[], ['_controller' => 'App\\Controller\\PratiquesDevController::index'], [], [['text', '/pratiques/dev']], [], [], []],
-    'app_programme' => [['id'], ['id' => '0', '_controller' => 'App\\Controller\\ProgrammeController::index'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/edit-programme']], [], [], []],
+    'programme.edit' => [['id'], ['id' => '0', '_controller' => 'App\\Controller\\ProgrammeController::index'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/programme/edit']], [], [], []],
+    'programme.show' => [[], ['_controller' => 'App\\Controller\\ProgrammeController::show_programmes'], [], [['text', '/programme/show']], [], [], []],
 ];

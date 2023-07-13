@@ -1,44 +1,52 @@
-{% extends 'base.html.twig' %}
+{% extends 'hommeultime.html.twig' %}
 
 {% block title %}Edition programme{% endblock %}
 
-{% block body %}
-    {% for message in app.session.flashBag.get('info') %}
-        <div class="alert alert-info">
-            {{ message }}
-        </div>
-    {% endfor %}
-    {% for message in app.session.flashBag.get('success') %}
-        <div class="alert alert-success">
-            {{ message }}
-        </div>
-    {% endfor %}
-    {% for message in app.session.flashBag.get('error') %}
-        <div class="alert alert-danger">
-            {{ message }}
-        </div>
-    {% endfor %}
+{% block conntent %}
+
     <div class="container px-4">
-        {{ form(seanceForm) }}
-        {{ form_end(seanceForm) }}
+        <hr>
+        <div class="row">
+            <div class="col">
+                <h5>Création séance</h5>
+                {{ form(seanceForm) }}
+                {{ form_end(seanceForm) }}
+            </div>
+            <div class="col">
+                <div class="row">
+                    <h5>Création zone</h5>
+                    {{ form(zoneForm) }}
+                    {{ form_end(zoneForm) }}
+                </div>
+                                <div class="row">
+                                    <h5>Création Pattern Muscle</h5>
+                                    {{ form(patternMuscleForm) }}
+                                    {{ form_end(patternMuscleForm) }}
+                                </div>
 
+            </div>
+        </div>
+
+
+        <hr>
+        <h5>Création programme</h5>
         {{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
-{#        <div class="row">#}
-{#            <div class="col">#}
-{#                {{ form_row(form.patternMuscle) }}#}
-{#            </div>#}
-{#        </div>#}
-{#        <div class="row">#}
-{#            <div class="col">#}
-{#                {{ form_row(form.image) }}#}
-{#            </div>#}
-{#            <div class="col">#}
-{#                {{ dump(form.image) }}#}
-{#                #}{#                <img src="{{ asset('uploads/images/'~.image) }}"> #}
-{#            </div>#}
-{#        </div>#}
+        {#        <div class="row"> #}
+        {#            <div class="col"> #}
+        {#                {{ form_row(form.patternMuscle) }} #}
+        {#            </div> #}
+        {#        </div> #}
+        {#        <div class="row"> #}
+        {#            <div class="col"> #}
+        {#                {{ form_row(form.image) }} #}
+        {#            </div> #}
+        {#            <div class="col"> #}
+        {#                {{ dump(form.image) }} #}
+        {#                #}{#                <img src="{{ asset('uploads/images/'~.image) }}"> #}
+        {#            </div> #}
+        {#        </div> #}
 
-{#        {{ form_rest(form) }}#}
+        {#        {{ form_rest(form) }} #}
 
         {{ form_end(form) }}
     </div>

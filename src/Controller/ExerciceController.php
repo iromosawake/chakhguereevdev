@@ -28,30 +28,30 @@ class ExerciceController extends AbstractController
         $exercice->setVideo("http://blablabla.com");
         $exercice->setPrincipal(0);
         $exercice->setPatternMuscle($pattern);
-        $em->persist($exercice);        
+        $em->persist($exercice);
         $em->flush();
 
         return $this->render('exercice/index.html.twig', [
             'controller_name' => 'ExerciceController',
-            'exercice_cree'=>$exercice
+            'exercice_cree' => $exercice
         ]);
     }
 
-    #[Route('/edit-exercice/{id?0}', name: 'exercice_edit')]
-    public function addExercice(Exercice $exercice= null,ManagerRegistry $doctrine, Request $request,SluggerInterface $slugger): Response
+    #[Route('/edit/{id?0}', name: 'exercice_edit')]
+    public function addExercice(Exercice $exercice = null, ManagerRegistry $doctrine, Request $request, SluggerInterface $slugger): Response
     {
         //si exercice n'existe pas
-        if(!$exercice){
+        if (!$exercice) {
             $exercice = new Exercice();
         }
 
-        $form = $this->createForm(ExerciceType::class,$exercice);
+        $form = $this->createForm(ExerciceType::class, $exercice);
         //mon formulaire va traiter la requête
         $form->handleRequest($request);
 
         //dump($request);
 
-        if($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
             $em = $doctrine->getManager();
 
             $image = $form->get('image')->getData();
@@ -63,7 +63,7 @@ class ExerciceController extends AbstractController
                 $originalFilename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
                 // this is needed to safely include the file name as part of the URL
                 $safeFilename = $slugger->slug($originalFilename);
-                $newFilename = $safeFilename.'-'.uniqid().'.'.$image->guessExtension();
+                $newFilename = $safeFilename . '-' . uniqid() . '.' . $image->guessExtension();
 
                 // Move the file to the directory where brochures are stored
                 try {
@@ -71,25 +71,23 @@ class ExerciceController extends AbstractController
                         $this->getParameter('exercice_directory'),
                         $newFilename
                     );
+                    $exercice->setImage($newFilename);
                 } catch (FileException $e) {
                     // ... handle exception if something happens during file upload
+                    dd($e);
                 }
-
-                // updates the 'brochureFilename' property to store the PDF file name
-                // instead of its contents
-                $exercice->setImage($newFilename);
             }
 
             $em->persist($exercice);
             $em->flush();
-            $this->addFlash('succes',$exercice->getNom().' a été edité avec succès !');
+            $this->addFlash('succes', $exercice->getNom() . ' a été edité avec succès !');
             $this->redirectToRoute('exercice_edit');
 
         }
-            return $this->render('exercice/add-exercice.html.twig', [
-                'controller_name' => 'ExerciceController',
-                'form'=>$form->createView()
-            ]);
+        return $this->render('exercice/add-exercice.html.twig', [
+            'controller_name' => 'ExerciceController',
+            'form' => $form->createView()
+        ]);
 
     }
 }

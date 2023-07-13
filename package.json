@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@fancyapps/fancybox": "^3.5.7",
     "bootstrap": "^5.3.0",
     "bootstrap-icons": "^1.10.5",
     "select2": "^4.1.0-rc.0"

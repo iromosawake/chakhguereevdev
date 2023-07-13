@@ -30,7 +30,6 @@ function initial_view() {
 
 
 $(document).ready(function () {
-  //console.log($(window).width());
   if (window.matchMedia("(min-width: 1281px)").matches) {
 
     initial_view();
@@ -106,8 +105,10 @@ $(document).ready(function () {
 if (localStorage.getItem('darkula')) {
   console.log('existe');
   document.querySelector('body').classList.toggle('dark');
+}else{
+
 }
-//darcula
+
 function darkulaMode() {
   const darkula = document.querySelector('#darkula_mode');
   if (darkula.getAttribute("class") === 'bi bi-brightness-low-fill') {

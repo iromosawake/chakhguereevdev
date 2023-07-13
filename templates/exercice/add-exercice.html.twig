@@ -1,15 +1,16 @@
-{% extends 'base.html.twig' %}
+{% extends 'hommeultime.html.twig' %}
 
 {% block title %}
     Création exercice
 {% endblock %}
 
 
-{% block body %}
+{% block conntent %}
 
     {#    {{ form(form) }} #}
     <div class="container px-4">
-
+        <hr>
+        <h5>Création Exercice</h5>
         {{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
         <div class="row">
             <div class="col">
@@ -21,7 +22,7 @@
                 {{ form_row(form.image) }}
             </div>
             <div class="col">
-                {{ dump(form.image) }}
+                {#                {{ dump(form.image) }} #}
                 {#                <img src="{{ asset('uploads/images/'~.image) }}"> #}
             </div>
         </div>

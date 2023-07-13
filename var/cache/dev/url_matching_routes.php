@@ -18,8 +18,8 @@ return [
         '/create-auth0-user' => [[['_route' => 'create-auth0-user', '_controller' => 'App\\Controller\\CreateUserController'], null, null, null, false, false, null]],
         '/exercice/create' => [[['_route' => 'exercice_create', '_controller' => 'App\\Controller\\ExerciceController::createExercice'], null, null, null, false, false, null]],
         '/' => [[['_route' => 'app_home', '_controller' => 'App\\Controller\\HomeController::index'], null, null, null, false, false, null]],
-        '/homme/ultime' => [[['_route' => 'app_homme_ultime', '_controller' => 'App\\Controller\\HommeUltimeController::index'], null, null, null, false, false, null]],
         '/pratiques/dev' => [[['_route' => 'app_pratiques_dev', '_controller' => 'App\\Controller\\PratiquesDevController::index'], null, null, null, false, false, null]],
+        '/programme/show' => [[['_route' => 'programme.show', '_controller' => 'App\\Controller\\ProgrammeController::show_programmes'], null, null, null, false, false, null]],
     ],
     [ // $regexpList
         0 => '{^(?'
@@ -38,10 +38,8 @@ return [
                         .'|(*:159)'
                     .')'
                 .')'
-                .'|/e(?'
-                    .'|xercice/edit\\-exercice(?:/([^/]++))?(*:210)'
-                    .'|dit\\-programme(?:/([^/]++))?(*:246)'
-                .')'
+                .'|/exercice/edit(?:/([^/]++))?(*:197)'
+                .'|/programme/edit(?:/([^/]++))?(*:234)'
             .')/?$}sDu',
     ],
     [ // $dynamicRoutes
@@ -52,9 +50,9 @@ return [
         136 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception_panel::body'], ['token'], null, null, false, false, null]],
         149 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception_panel::stylesheet'], ['token'], null, null, false, false, null]],
         159 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
-        210 => [[['_route' => 'exercice_edit', 'id' => '0', '_controller' => 'App\\Controller\\ExerciceController::addExercice'], ['id'], null, null, false, true, null]],
-        246 => [
-            [['_route' => 'app_programme', 'id' => '0', '_controller' => 'App\\Controller\\ProgrammeController::index'], ['id'], null, null, false, true, null],
+        197 => [[['_route' => 'exercice_edit', 'id' => '0', '_controller' => 'App\\Controller\\ExerciceController::addExercice'], ['id'], null, null, false, true, null]],
+        234 => [
+            [['_route' => 'programme.edit', 'id' => '0', '_controller' => 'App\\Controller\\ProgrammeController::index'], ['id'], null, null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],
     ],

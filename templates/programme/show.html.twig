@@ -1,0 +1,55 @@
+{% extends 'hommeultime.html.twig' %}
+
+{% block title %}Edition programme{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block conntent %}
+    <div class="container px-4">
+        <hr>
+        <table class="table table-dark">
+            <thead>
+            <tr>
+                <th scope="col">Ordre</th>
+                <th scope="col">Paterne/Muscle</th>
+                <th scope="col">Exercices</th>
+                <th scope="col">Séries</th>
+                <th scope="col">Reps</th>
+                <th scope="col">Charge</th>
+                <th scope="col">RPE</th>
+                <th scope="col">Repos</th>
+                <th scope="col">Consignes</th>
+                <th scope="col">Vidéo</th>
+                <th scope="col">Image</th>
+            </tr>
+            </thead>
+
+            <tbody>
+
+            {% for  programme in programmes %}
+                <tr class="table">
+                    <th scope="row">{{ programme.ordre }}</th>
+                    <td>{{ programme.exercice.patternMuscle }}</td>
+                    <td>{{ programme.exercice.nom }}</td>
+                    <td>{{ programme.series }}</td>
+                    <td>{{ programme.reps }}</td>
+                    <td>{{ programme.charge }}</td>
+                    <td>{{ programme.rpe }}</td>
+                    <td>{{ programme.repos }}</td>
+                    <td>{{ programme.exercice.consigne }}</td>
+                    <td>
+                        <iframe src="{{ programme.exercice.video }}" class="responsive-iframe" allowfullscreen></iframe>
+                    </td>
+                    <td><img src="{{ asset('uploads/images/') ~ programme.exercice.image }}" class="img-fluid"
+                             alt="{{ programme.exercice.nom }}"></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+{% endblock %}
+
+
