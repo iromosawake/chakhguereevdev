@@ -426,7 +426,10 @@ class __TwigTemplate_bfb04ccc8b74fb41c37eabc3f05f1cd7 extends Template
 
                     </div>
                     <div class=\"col-sm-4\">
-                        <a href=\"#\" target=\"_blank\">
+                        <a href=\"";
+        // line 278
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("programme.show");
+        echo "\" target=\"_blank\">
                             <img class=\"img-thumbnail\" src=\"";
         // line 279
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("images/hola_muscu.png"), "html", null, true);
@@ -473,7 +476,7 @@ class __TwigTemplate_bfb04ccc8b74fb41c37eabc3f05f1cd7 extends Template
 
     public function getDebugInfo()
     {
-        return array (  432 => 279,  423 => 273,  415 => 268,  379 => 235,  369 => 228,  224 => 86,  164 => 29,  155 => 23,  145 => 17,  135 => 16,  123 => 13,  118 => 12,  108 => 11,  96 => 8,  91 => 7,  81 => 6,  61 => 3,  38 => 1,);
+        return array (  435 => 279,  431 => 278,  423 => 273,  415 => 268,  379 => 235,  369 => 228,  224 => 86,  164 => 29,  155 => 23,  145 => 17,  135 => 16,  123 => 13,  118 => 12,  108 => 11,  96 => 8,  91 => 7,  81 => 6,  61 => 3,  38 => 1,);
     }
 
     public function getSourceContext()
@@ -755,7 +758,7 @@ class __TwigTemplate_bfb04ccc8b74fb41c37eabc3f05f1cd7 extends Template
 
                     </div>
                     <div class=\"col-sm-4\">
-                        <a href=\"#\" target=\"_blank\">
+                        <a href=\"{{ path('programme.show') }}\" target=\"_blank\">
                             <img class=\"img-thumbnail\" src=\"{{ asset('images/hola_muscu.png') }}\" alt=\"alt\"/>
                         </a>
                     </div>

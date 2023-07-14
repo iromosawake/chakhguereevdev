@@ -15,28 +15,6 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 #[Route("/exercice")]
 class ExerciceController extends AbstractController
 {
-    #[Route('/create', name: 'exercice_create')]
-    public function createExercice(ManagerRegistry $doctrine): Response
-    {
-        $em = $doctrine->getManager();
-
-        $pattern = $em->getRepository(PatternMuscle::class)->find(1);
-
-        $exercice = new Exercice();
-        $exercice->setNom("Squat");
-        $exercice->setConsigne("Travaille dur");
-        $exercice->setVideo("http://blablabla.com");
-        $exercice->setPrincipal(0);
-        $exercice->setPatternMuscle($pattern);
-        $em->persist($exercice);
-        $em->flush();
-
-        return $this->render('exercice/index.html.twig', [
-            'controller_name' => 'ExerciceController',
-            'exercice_cree' => $exercice
-        ]);
-    }
-
     #[Route('/edit/{id?0}', name: 'exercice_edit')]
     public function addExercice(Exercice $exercice = null, ManagerRegistry $doctrine, Request $request, SluggerInterface $slugger): Response
     {
@@ -49,13 +27,9 @@ class ExerciceController extends AbstractController
         //mon formulaire va traiter la requête
         $form->handleRequest($request);
 
-        //dump($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $doctrine->getManager();
-
             $image = $form->get('image')->getData();
-
             // this condition is needed because the 'photo' field is not required
             // so the image file must be processed only when a file is uploaded
             if ($image) {
@@ -77,10 +51,9 @@ class ExerciceController extends AbstractController
                     dd($e);
                 }
             }
-
             $em->persist($exercice);
             $em->flush();
-            $this->addFlash('succes', $exercice->getNom() . ' a été edité avec succès !');
+            $this->addFlash('success', $exercice->getNom() . ' a été edité avec succès !');
             $this->redirectToRoute('exercice_edit');
 
         }

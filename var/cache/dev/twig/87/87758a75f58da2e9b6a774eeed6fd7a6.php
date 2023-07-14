@@ -91,7 +91,7 @@ class __TwigTemplate_1962a61dce427dc4c3aab9095a881ad7 extends Template
         echo "
     ";
         // line 11
-        echo "    <div class=\"container px-4\">
+        echo "
         <hr>
         <h5>Création Exercice</h5>
         ";
@@ -130,7 +130,7 @@ class __TwigTemplate_1962a61dce427dc4c3aab9095a881ad7 extends Template
         // line 32
         echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 32, $this->source); })()), 'form_end');
         echo "
-    </div>
+
 ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -195,7 +195,7 @@ class __TwigTemplate_1962a61dce427dc4c3aab9095a881ad7 extends Template
 {% block conntent %}
 
     {#    {{ form(form) }} #}
-    <div class=\"container px-4\">
+
         <hr>
         <h5>Création Exercice</h5>
         {{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
@@ -217,7 +217,7 @@ class __TwigTemplate_1962a61dce427dc4c3aab9095a881ad7 extends Template
         {{ form_rest(form) }}
 
         {{ form_end(form) }}
-    </div>
+
 {% endblock %}
 
 {% block javascripts %}

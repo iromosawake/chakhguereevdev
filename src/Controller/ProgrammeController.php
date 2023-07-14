@@ -31,6 +31,7 @@ class ProgrammeController extends AbstractController
         $patternMuscle = new PatternMuscle();
 
 
+
         $form = $this->createForm(ProgrammeType::class, $programme);
         $formSeance = $this->createForm(SeanceType::class, $seance);
         $formZone = $this->createForm(ZoneType::class, $zone);
@@ -46,21 +47,21 @@ class ProgrammeController extends AbstractController
         if ($form->isSubmitted()) {
             $em->persist($programme);
             $em->flush();
-            $this->addFlash('succes', ' a été edité avec succès !');
+            $this->addFlash('success', 'Programme a été edité avec succès !');
             $this->redirectToRoute('programme.edit');
         }
 
         if ($formSeance->isSubmitted()) {
             $em->persist($seance);
             $em->flush();
-            $this->addFlash('succes', 'Nouvelle zone a été crée avec succès !');
+            $this->addFlash('success', 'Seance a été crée avec succès !');
             $this->redirectToRoute('programme.edit');
         }
 
         if ($formZone->isSubmitted()) {
             $em->persist($zone);
             $em->flush();
-            $this->addFlash('succes', 'Nouvelle seance a été crée avec succès !');
+            $this->addFlash('success', 'Nouvelle zone a été crée avec succès !');
             $this->redirectToRoute('programme.edit');
 
         }
@@ -68,8 +69,8 @@ class ProgrammeController extends AbstractController
         if ($formPatternMuscle->isSubmitted()) {
             $em->persist($patternMuscle);
             $em->flush();
-            $this->addFlash('succes', 'Nouvelle pattern muscle a été crée avec succès !');
-            $this->redirectToRoute('app_programme');
+            $this->addFlash('success', 'Nouvelle pattern muscle a été crée avec succès !');
+            $this->redirectToRoute('programme.edit');
 
         }
 
@@ -82,15 +83,25 @@ class ProgrammeController extends AbstractController
         ]);
     }
 
-    #[Route('/show', name: 'programme.show')]
-    public function show_programmes(ManagerRegistry $doctrine): Response
+    #[Route('/show/{page?1}/{nombre?6}', name: 'programme.show')]
+    public function show_programmes(ManagerRegistry $doctrine,$page,$nombre): Response
     {
+        $isPaginated = true;
         $repository = $doctrine->getRepository(Programme::class);
-        $programmes = $repository->findAll();
+
+        $nbElements = $repository->count([]);
+        //nombre des occurences / nombre d'affichée par page, ceil arrondi au supérieur
+        $nbPAges = ceil($nbElements / $nombre);
+
+        $programmes = $repository->findBy([],[],$nombre, ($page-1)*$nombre);
 
         return $this->render('programme/show.html.twig', [
             'controller_name' => 'ProgrammeController',
-            'programmes' => $programmes
+            'programmes' => $programmes,
+            'isPaginated' =>$isPaginated,
+            'nbPages'=>$nbPAges,
+            'page'=>$page,
+            'elements'=>$nombre
         ]);
     }
 }

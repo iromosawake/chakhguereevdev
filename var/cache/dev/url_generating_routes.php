@@ -18,10 +18,9 @@ return [
     '_profiler_exception_css' => [['token'], ['_controller' => 'web_profiler.controller.exception_panel::stylesheet'], [], [['text', '/exception.css'], ['variable', '/', '[^/]++', 'token', true], ['text', '/_profiler']], [], [], []],
     'app_contact' => [[], ['_controller' => 'App\\Controller\\ContactController::index'], [], [['text', '/contact']], [], [], []],
     'create-auth0-user' => [[], ['_controller' => 'App\\Controller\\CreateUserController'], [], [['text', '/create-auth0-user']], [], [], []],
-    'exercice_create' => [[], ['_controller' => 'App\\Controller\\ExerciceController::createExercice'], [], [['text', '/exercice/create']], [], [], []],
     'exercice_edit' => [['id'], ['id' => '0', '_controller' => 'App\\Controller\\ExerciceController::addExercice'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/exercice/edit']], [], [], []],
     'app_home' => [[], ['_controller' => 'App\\Controller\\HomeController::index'], [], [['text', '/']], [], [], []],
     'app_pratiques_dev' => [[], ['_controller' => 'App\\Controller\\PratiquesDevController::index'], [], [['text', '/pratiques/dev']], [], [], []],
     'programme.edit' => [['id'], ['id' => '0', '_controller' => 'App\\Controller\\ProgrammeController::index'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/programme/edit']], [], [], []],
-    'programme.show' => [[], ['_controller' => 'App\\Controller\\ProgrammeController::show_programmes'], [], [['text', '/programme/show']], [], [], []],
+    'programme.show' => [['page', 'nombre'], ['page' => '1', 'nombre' => '6', '_controller' => 'App\\Controller\\ProgrammeController::show_programmes'], [], [['variable', '/', '[^/]++', 'nombre', true], ['variable', '/', '[^/]++', 'page', true], ['text', '/programme/show']], [], [], []],
 ];

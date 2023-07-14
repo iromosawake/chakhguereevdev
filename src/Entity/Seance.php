@@ -7,6 +7,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\InverseJoinColumn;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\JoinTable;
 
 #[ORM\Entity(repositoryClass: SeanceRepository::class)]
 class Seance
@@ -19,8 +22,15 @@ class Seance
     #[ORM\Column(type: Types::SMALLINT)]
     private ?int $semaine = null;
 
+
+    /**
+     * Many Seances have Many programmes.
+     * @var Collection<int, Programme>
+     */
+    #[JoinTable(name: 'seance_programme')]
+    #[JoinColumn(name: 'seance_id', referencedColumnName: 'id')]
+    #[InverseJoinColumn(name: 'programme_id', referencedColumnName: 'id', unique: true)]
     #[ORM\ManyToMany(targetEntity: Programme::class)]
-    #[ORM\JoinColumn(nullable: false)]
     private Collection $programmes;
 
     #[ORM\ManyToOne]
@@ -102,6 +112,6 @@ class Seance
 
     public function __toString(): string
     {
-       return $this->id;
+       return "Semaine : $this->semaine seance $this->id";
     }
 }

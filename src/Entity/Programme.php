@@ -7,6 +7,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\JoinTable;
+use Doctrine\ORM\Mapping\ManyToOne;
 
 #[ORM\Entity(repositoryClass: ProgrammeRepository::class)]
 class Programme
@@ -38,9 +41,13 @@ class Programme
     private Exercice $exercice;
 
 
-    #[ORM\OneToMany(mappedBy: 'programmes', targetEntity: Seance::class)]
-    #[ORM\JoinColumn(nullable: false)]
-    private Collection $seances;
+//    #[ORM\ManyToMany(mappedBy: 'programmes', targetEntity: Seance::class)]
+//    #[ORM\JoinColumn(nullable: false)]
+
+    #[ManyToOne(targetEntity: Seance::class)]
+    #[JoinTable(name: 'seance_programme')]
+    #[JoinColumn(name: 'seance_id', referencedColumnName: 'id')]
+    private Seance $seance;
 
     public function __construct()
     {
@@ -139,39 +146,39 @@ class Programme
     }
 
 
-//    public function getSeance(): ?seance
+    public function getSeance(): ?seance
+    {
+        return $this->seance;
+    }
+
+    public function setSeance(seance $seance): self
+    {
+        $this->seance = $seance;
+
+        return $this;
+    }
+
+//    /**
+//     * @return Collection<int, Seance>
+//     */
+//    public function getSeances(): Collection
 //    {
-//        return $this->seance;
+//        return $this->seances;
 //    }
 //
-//    public function setSeance(seance $seance): self
+//    public function addSeance(Seance $Seance): self
 //    {
-//        $this->seance = $seance;
-//
+//        if (!$this->seances->contains($Seance)) {
+//            $this->seances->add($Seance);
+//        }
 //        return $this;
 //    }
-
-    /**
-     * @return Collection<int, Seance>
-     */
-    public function getSeances(): Collection
-    {
-        return $this->seances;
-    }
-
-    public function addSeance(Seance $Seance): self
-    {
-        if (!$this->seances->contains($Seance)) {
-            $this->seances->add($Seance);
-        }
-        return $this;
-    }
-
-    public function removeSeance(Seance $Seance): self
-    {
-        $this->seances->removeElement($Seance);
-        return $this;
-    }
+//
+//    public function removeSeance(Seance $Seance): self
+//    {
+//        $this->seances->removeElement($Seance);
+//        return $this;
+//    }
 
     public function __toString(): string
     {

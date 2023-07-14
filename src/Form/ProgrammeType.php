@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Exercice;
 use App\Entity\Programme;
+use App\Entity\Seance;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -21,15 +22,22 @@ class ProgrammeType extends AbstractType
             ->add('charge')
             ->add('repos')
             ->add('rpe')
-            ->add('exercice',EntityType::class,[
+            ->add('exercice', EntityType::class, [
 //                    'required' => false,
 //                    'choice_label' => 'nom',
 //                    'mapped' => false,
-                    'class' => Exercice::class,])
-//                    'attr' => [
-//                        'class' => 'select2'
-//                    ]])
-            ->add('seances')
+                'class' => Exercice::class,
+                    'attr' => [
+                        'class' => 'select2'
+                    ]])
+            ->add('seance', EntityType::class, [
+//                    'required' => false,
+//                    'choice_label' => 'nom',
+//                    'mapped' => false,
+                'class' => Seance::class,
+                    'attr' => [
+                        'class' => 'select2'
+                    ]])
             ->add('Creer', SubmitType::class);
     }
 

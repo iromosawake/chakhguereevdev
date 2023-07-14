@@ -72,61 +72,12 @@ class __TwigTemplate_37d9585e3c3718ec6cbc3c241038c32a extends Template
         // line 30
         echo "
 </head>
+
+
 ";
-        // line 32
-        $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable(twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 32, $this->source); })()), "session", [], "any", false, false, false, 32), "flashBag", [], "any", false, false, false, 32), "get", [0 => "info"], "method", false, false, false, 32));
-        foreach ($context['_seq'] as $context["_key"] => $context["message"]) {
-            // line 33
-            echo "    <div class=\"alert alert-info\">
-        ";
-            // line 34
-            echo twig_escape_filter($this->env, $context["message"], "html", null, true);
-            echo "
-    </div>
-";
-        }
-        $_parent = $context['_parent'];
-        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['message'], $context['_parent'], $context['loop']);
-        $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 37
-        $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable(twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 37, $this->source); })()), "session", [], "any", false, false, false, 37), "flashBag", [], "any", false, false, false, 37), "get", [0 => "success"], "method", false, false, false, 37));
-        foreach ($context['_seq'] as $context["_key"] => $context["message"]) {
-            // line 38
-            echo "    <div class=\"alert alert-success\">
-        ";
-            // line 39
-            echo twig_escape_filter($this->env, $context["message"], "html", null, true);
-            echo "
-    </div>
-";
-        }
-        $_parent = $context['_parent'];
-        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['message'], $context['_parent'], $context['loop']);
-        $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 42
-        $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable(twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 42, $this->source); })()), "session", [], "any", false, false, false, 42), "flashBag", [], "any", false, false, false, 42), "get", [0 => "error"], "method", false, false, false, 42));
-        foreach ($context['_seq'] as $context["_key"] => $context["message"]) {
-            // line 43
-            echo "    <div class=\"alert alert-danger\">
-        ";
-            // line 44
-            echo twig_escape_filter($this->env, $context["message"], "html", null, true);
-            echo "
-    </div>
-";
-        }
-        $_parent = $context['_parent'];
-        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['message'], $context['_parent'], $context['loop']);
-        $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 47
-        echo "
-";
-        // line 48
+        // line 34
         $this->displayBlock('body', $context, $blocks);
-        // line 84
+        // line 70
         echo "</html>
 ";
         
@@ -224,7 +175,7 @@ class __TwigTemplate_37d9585e3c3718ec6cbc3c241038c32a extends Template
 
     }
 
-    // line 48
+    // line 34
     public function block_body($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -234,7 +185,7 @@ class __TwigTemplate_37d9585e3c3718ec6cbc3c241038c32a extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
-        // line 49
+        // line 35
         echo "    <body data-spy=\"scroll\" data-target=\".navbar\" data-offset=\"60\">
     <nav class=\"navbar navbar-expand-lg bg-dark fixed-top\">
         <div class=\"container\">
@@ -290,7 +241,7 @@ class __TwigTemplate_37d9585e3c3718ec6cbc3c241038c32a extends Template
 
     public function getDebugInfo()
     {
-        return array (  238 => 49,  228 => 48,  215 => 27,  210 => 25,  206 => 24,  201 => 23,  191 => 22,  177 => 17,  172 => 16,  162 => 15,  151 => 9,  141 => 8,  130 => 84,  128 => 48,  125 => 47,  116 => 44,  113 => 43,  109 => 42,  100 => 39,  97 => 38,  93 => 37,  84 => 34,  81 => 33,  77 => 32,  73 => 30,  71 => 22,  68 => 21,  66 => 15,  60 => 12,  57 => 11,  55 => 8,  47 => 2,);
+        return array (  189 => 35,  179 => 34,  166 => 27,  161 => 25,  157 => 24,  152 => 23,  142 => 22,  128 => 17,  123 => 16,  113 => 15,  102 => 9,  92 => 8,  81 => 70,  79 => 34,  73 => 30,  71 => 22,  68 => 21,  66 => 15,  60 => 12,  57 => 11,  55 => 8,  47 => 2,);
     }
 
     public function getSourceContext()
@@ -326,21 +277,7 @@ class __TwigTemplate_37d9585e3c3718ec6cbc3c241038c32a extends Template
 {% endblock %}
 
 </head>
-{% for message in app.session.flashBag.get('info') %}
-    <div class=\"alert alert-info\">
-        {{ message }}
-    </div>
-{% endfor %}
-{% for message in app.session.flashBag.get('success') %}
-    <div class=\"alert alert-success\">
-        {{ message }}
-    </div>
-{% endfor %}
-{% for message in app.session.flashBag.get('error') %}
-    <div class=\"alert alert-danger\">
-        {{ message }}
-    </div>
-{% endfor %}
+
 
 {% block body %}
     <body data-spy=\"scroll\" data-target=\".navbar\" data-offset=\"60\">
