@@ -29,7 +29,7 @@
         <tbody>
 
         {% for  programme in programmes %}
-            <tr class="table{{ (programme.exercice.principal)? "-danger" : "" }} clickable-row data-href={{ url('programme.action',{id: programme.id}) }}">
+            <tr class="table{{ (programme.exercice.principal)? "-danger" : "" }}  clickable-row data-href={{ url('programme.action',{id: programme.id}) }}">
                 <td>{{ programme.ordre }}</td>
                 <td>{{ programme.exercice.patternMuscle }}</td>
                 <td>{{ programme.exercice.nom }}</td>
