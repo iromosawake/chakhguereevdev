@@ -31,6 +31,7 @@ $(function() {
     var selector = $('#frame');
     $('#activate').click(
         function(){
+            navigator.vibrate(200);
             vibrateIndex = setInterval(vibrate, interval);
             setTimeout(stopVibration, duration);
         });
