@@ -8,35 +8,36 @@
 
 {% block conntent %}
 
-    <div class="container mt-4">
+    <div class="container mt-4 border border-dark rounded p-3">
         <div class="row">
 
-{#            {{ (programme.exercice.principal)? "-danger" : "" }}#}
+            {#            {{ (programme.exercice.principal)? "-danger" : "" }} #}
             <div class="col-3">
                 <div class="row">
-                    <h4>{{ programme.exercice.nom }}</h4>
-                    <h6>Ordre : {{ programme.ordre }}</h6>
-                    <p> {{ programme.exercice.patternMuscle }}</p>
-                    <div class="col">
 
+                    <h5> {{ programme.exercice.nom }}</h5>
+                    <p>Numéro {{ programme.ordre }}</p>
+                    <p>Muscle visée : {{ programme.exercice.patternMuscle }}</p>
+                    <div class="col">
                         <img src="{{ asset('uploads/images/') ~ programme.exercice.image }}" class="img-fluid
                         img-thumbnail"
                              alt="{{ programme.exercice.nom }}">
                     </div>
-                    <div class="col">
-                        <iframe src="{{ programme.exercice.video }}" class="responsive-iframe" allowfullscreen></iframe>
-                    </div>
+
                 </div>
             </div>
 
-            <div class="col-8">
-                <p>{{ programme.series }} x {{ programme.reps }} répétitions</p>
-                <p>Charge : {{ programme.charge }}</p>
-                <p>RPE :{{ programme.rpe }}</p>
-                <p>{{ programme.exercice.consigne }}</p>
-                <p>Repos {{ programme.repos }}</p>
-            </div>
+            <div class="col-5">
+                <iframe src="{{ programme.exercice.video }}" width="465" height="315" class="responsive-iframe border border-info" allowfullscreen ></iframe>
 
+            </div>
+            <div class="col-4">
+                <h3{{ programme.series }} x {{ programme.reps }} répétitions</h3>
+            <p>Charge : {{ programme.charge }}</p>
+            <p>RPE :{{ programme.rpe }}</p>
+            <p>{{ programme.exercice.consigne }}</p>
+            <p>Repos {{ programme.repos }}</p>
+            </div>
         </div>
     </div>
 

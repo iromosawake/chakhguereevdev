@@ -30,7 +30,7 @@
         <tbody>
 
         {% for  programme in programmes %}
-            <tr class="table{{ (programme.exercice.principal)? "-danger" : "" }}  clickable-row data-href={{ url('programme.action',{id: programme.id}) }}">
+            <tr class="table{{ (programme.exercice.principal)? "-danger" : "" }}  clickable-row" data-href="{{ path('programme.action',{id: programme.id}) }}">
                 <td>{{ programme.ordre }}</td>
                 <td>{{ programme.exercice.patternMuscle }}</td>
                 <td>{{ programme.exercice.nom }}</td>
@@ -46,7 +46,7 @@
                 <td><img src="{{ asset('uploads/images/') ~ programme.exercice.image }}"
                          class="img-fluid img-thumbnail"
                          alt="{{ programme.exercice.nom }}"></td>
-                <td><a href="{{ url('programme.action',{id: programme.id}) }}"><i class="bi bi-eye"></i></a></td>
+                <td><a href="{{ path('programme.action',{id: programme.id}) }}"><i class="bi bi-eye"></i></a></td>
             </tr>
 
         {% endfor %}
