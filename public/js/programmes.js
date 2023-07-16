@@ -3,14 +3,14 @@ jQuery(document).ready(function ($) {
         window.location = $(this).data("href");
     });
 
-    $("#rest").click(function () {
+    $("#rest").on('click', function  () {
         $("#rest").addClass("d-none");
         $('.timer').startTimer({
             onComplete: function (element) {
                 // $("#next").removeClass("d-none");
                 $('html, body').addClass('bodyTimeoutBackground');
             }
-        }).click(function () {
+        }).on('click', function  () {
             $( ".jst-hours" ).remove();
             $( ".jst-minutes" ).remove();
             $( ".jst-seconds" ).remove();
