@@ -4,7 +4,7 @@ jQuery(document).ready(function ($) {
     });
 
     $("#rest").on('click', function () {
-        alert("my message to you");
+        // alert("my message to you");
         $("#rest").addClass("d-none");
         $('.timer').startTimer({
             onComplete: function (element) {
@@ -31,7 +31,7 @@ $(function() {
     var selector = $('#frame');
     $('#activate').click(
         function(){
-            navigator.vibrate(200);
+            // navigator.vibrate(200);
             vibrateIndex = setInterval(vibrate, interval);
             setTimeout(stopVibration, duration);
         });

@@ -1,0 +1,56 @@
+{% extends 'hommeultime.html.twig' %}
+
+{% block title %}S.A.V.E.R.S{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    <table class="table table-striped table-dark">
+        <thead>
+        <tr>
+            <th scope="col">S</th>
+            <th scope="col">A</th>
+            <th scope="col">V</th>
+            <th scope="col">R</th>
+            <th scope="col">R</th>
+            <th scope="col">S</th>
+            <th scope="col">Date</th>
+        </tr>
+        </thead>
+
+        <tbody>
+
+        {% for  saver in saverses %}
+            <tr class="table">
+                <td>{{ (saver.silence)?"👌🏻 ":"🙄 " }}</td>
+                <td>{{ (saver.affirmations)?"👌🏻 ":"🙄 " }}</td>
+                <td>{{ (saver.visualisation)?"👌🏻 ":"🙄 " }}</td>
+                <td>{{ (saver.exercice)?"👌🏻 ":"🙄 " }}</td>
+                <td>{{ (saver.reading)?"👌🏻 ":"🙄 " }}</td>
+                <td>{{ (saver.scribing)?"👌🏻 ":"🙄 " }}</td>
+                <td>{{ saver.createdAt | date('d-m-Y') }}<br>
+                    {{ saver.createdAt | date('H:i') }}
+                </td>
+            </tr>
+        {% endfor %}
+        <tr class="table-primary">
+            {{ form_start(form) }}
+            <td> {{ form_row(form.silence) }} </td>
+            <td> {{ form_row(form.affirmations) }}</td>
+            <td> {{ form_row(form.visualisation) }}</td>
+            <td> {{ form_row(form.exercice) }}</td>
+            <td> {{ form_row(form.reading) }}</td>
+            <td>{{ form_row(form.scribing) }}</td>
+            <td> {{ form_rest(form) }}</td>
+            {{ form_end(form) }}
+        </tr>
+        </tbody>
+    </table>
+
+{% endblock %}
