@@ -13,34 +13,29 @@
 
 {% block conntent %}
 
-    <div class="container mt-4 border border-dark rounded p-3" height="315">
+    <div class="container border border-dark rounded p-3 {{ (programme.exercice.principal)? "bg-danger" : "" }}">
         <div class="row">
 
-            {#            {{ (programme.exercice.principal)? "-danger" : "" }} #}
             <div class="col-md-3 col-sm-12">
-                <div class="row">
-
                     <h5> {{ programme.exercice.nom }}</h5>
-                    <p>Numéro {{ programme.ordre }}</p>
-                    <p>Muscle visée : {{ programme.exercice.patternMuscle }}</p>
+                    <h6>Numéro {{ programme.ordre }}</h6>
+                    <h6>Muscle visée : {{ programme.exercice.patternMuscle }}</h6>
                     <div class="col">
                         <img src="{{ asset('uploads/images/') ~ programme.exercice.image }}" class="img-fluid
                         img-thumbnail"
                              alt="{{ programme.exercice.nom }}">
                     </div>
-
-                </div>
             </div>
 
             <div class="col-md-5 col-sm-12">
                 <iframe src="{{ programme.exercice.video }}"
-                        class="youtube-video border border-info" allowfullscreen></iframe>
+                        class="youtube-video border border-info" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             <div class="col-md-4 col-sm-12">
-                <h3>👊  Séries : {{ programme.series }} x {{ programme.reps }} répétitions</h3>
-                <h3>🏋️  Charge : {{ programme.charge }} </h3>
-                <h3>💪 RPE :{{ programme.rpe }}</h3>
-                <h3> 🥵  Repos {{ programme.repos }}</h3>
+                <h4>👊  Séries : {{ programme.series }} x {{ programme.reps }} répétitions</h4>
+                <h4>🏋️  Charge : {{ programme.charge }} </h4>
+                <h4>💪 RPE :{{ programme.rpe }}</h4>
+                <h4> 🥵  Repos {{ programme.repos }}</h4>
                 <h6>🧾  Consigne :{{ programme.exercice.consigne }}</h6>
             </div>
         </div>
