@@ -15,11 +15,11 @@
 
 {% block conntent %}
     <div class="container border border-dark rounded p-3 {{ (programme.exercice.principal)? "bg-danger" : "" }}">
-        <div class="row">
+        <div id="frame" class="row">
             <div class="col-md-3 col-sm-12">
                 <h5> #{{ programme.ordre }} {{ programme.exercice.nom }} - {{ programme.exercice.patternMuscle }}</h5>
                 <div class="col">
-                    <img src="{{ asset('uploads/images/') ~ programme.exercice.image }}" class="img-fluid
+                    <img id="activate"  src="{{ asset('uploads/images/') ~ programme.exercice.image }}" class="img-fluid
                         img-thumbnail " alt="{{ programme.exercice.nom }}">
                 </div>
             </div>
