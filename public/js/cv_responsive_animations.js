@@ -1,14 +1,15 @@
-$(document).ready(function () {
-    function initial_view() {
-        $("#about").hide();
-        $("#skills").hide();
-        $("#experience").hide();
-        $("#education").hide();
-        $("#portfolio").hide();
-        $("#about").fadeIn();
-        $("#about_butt").addClass('active');
 
-    };
+function initial_view() {
+    $("#about").hide();
+    $("#skills").hide();
+    $("#experience").hide();
+    $("#education").hide();
+    $("#portfolio").hide();
+    $("#about").fadeIn();
+    $("#about_butt").addClass('active');
+};
+$(document).ready(function () {
+
 
     if (window.matchMedia("(min-width: 1281px)").matches) {
         initial_view();
