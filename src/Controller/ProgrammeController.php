@@ -104,4 +104,14 @@ class ProgrammeController extends AbstractController
             'elements'=>$nombre
         ]);
     }
+
+    #[Route('/action/{id?0}', name: 'programme.action')]
+    public function show_programme(Programme $programme = null): Response
+    {
+        return $this->render('programme/action.html.twig', [
+            'controller_name' => 'ProgrammeController',
+            'programme' => $programme,
+        ]);
+    }
+
 }
