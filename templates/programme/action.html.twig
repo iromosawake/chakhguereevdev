@@ -17,26 +17,24 @@
         <div class="row">
 
             <div class="col-md-3 col-sm-12">
-                    <h5> {{ programme.exercice.nom }}</h5>
-                    <h6>Numéro {{ programme.ordre }}</h6>
-                    <h6>Muscle visée : {{ programme.exercice.patternMuscle }}</h6>
+                    <h5> #{{ programme.ordre }} {{ programme.exercice.nom }} - {{ programme.exercice.patternMuscle }}</h5>
                     <div class="col">
                         <img src="{{ asset('uploads/images/') ~ programme.exercice.image }}" class="img-fluid
-                        img-thumbnail"
-                             alt="{{ programme.exercice.nom }}">
+                        img-thumbnail " alt="{{ programme.exercice.nom }}">
                     </div>
             </div>
 
-            <div class="col-md-5 col-sm-12">
+            <div class="col-md-5 col-sm-12 mt-1">
                 <iframe src="{{ programme.exercice.video }}"
-                        class="youtube-video border border-info" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        class="youtube-video img-thumbnail" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             <div class="col-md-4 col-sm-12">
                 <h4>👊  Séries : {{ programme.series }} x {{ programme.reps }} répétitions</h4>
                 <h4>🏋️  Charge : {{ programme.charge }} </h4>
                 <h4>💪 RPE :{{ programme.rpe }}</h4>
-                <h4> 🥵  Repos {{ programme.repos }}</h4>
-                <h6>🧾  Consigne :{{ programme.exercice.consigne }}</h6>
+                <h4> 🥵  Repos <span >{{ programme.repos }}</span></h4>
+                <h6>ℹ️ Consigne :</h6>
+                <p>{{ programme.exercice.consigne }}</p>
             </div>
         </div>
     </div>

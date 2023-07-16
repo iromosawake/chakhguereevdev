@@ -26,6 +26,4 @@ $(document).ready(function () {
         '<br>Un chiffre, "a", "z" ou "-" : ' + chaine.match(masque7) +
         '<br>Un chiffre, "[" ou "]" : ' + chaine.match(masque8);*/
 
-        var a = b =5;
-        console.log(b);
 });
