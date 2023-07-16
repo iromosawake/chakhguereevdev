@@ -23,6 +23,7 @@
             <th scope="col">Consignes</th>
             <th scope="col">Vidéo</th>
             <th scope="col">Image</th>
+            <th scope="col"></th>
         </tr>
         </thead>
 
@@ -45,6 +46,7 @@
                 <td><img src="{{ asset('uploads/images/') ~ programme.exercice.image }}"
                          class="img-fluid img-thumbnail"
                          alt="{{ programme.exercice.nom }}"></td>
+                <td><a href="{{ url('programme.action',{id: programme.id}) }}"><i class="bi bi-eye"></i></a></td>
             </tr>
 
         {% endfor %}
