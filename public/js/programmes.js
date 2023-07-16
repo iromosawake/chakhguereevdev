@@ -4,6 +4,7 @@ jQuery(document).ready(function ($) {
     });
 
     $("#rest").on('click', function  () {
+        alert("my message to you");
         $("#rest").addClass("d-none");
         $('.timer').startTimer({
             onComplete: function (element) {
