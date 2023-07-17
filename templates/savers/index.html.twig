@@ -12,7 +12,7 @@
     <script src="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table.min.js"></script>
     <script src="https://unpkg.com/bootstrap-table@1.22.1/dist/extensions/mobile/bootstrap-table-mobile.min.js"></script>
     <script>
-        $(function() {
+        $(function () {
             $('#table').bootstrapTable()
         })
     </script>
@@ -20,21 +20,21 @@
 
 {% block content %}
 
-        <table
-                class="table table-striped table-dark"
-                id="table"
-                data-show-columns="true"
-                data-mobile-responsive="true"
-                data-check-on-init="true">
+    <table
+            class="table table-striped table-dark"
+            id="table"
+            data-show-columns="true"
+            data-mobile-responsive="true"
+            data-check-on-init="true">
         <thead>
         <tr>
-            <th scope="col" data-field="s" >S</th>
-            <th scope="col" data-field="a" >A</th>
-            <th scope="col" data-field="v" >V</th>
-            <th scope="col" data-field="e" >R</th>
-            <th scope="col" data-field="r" >R</th>
-            <th scope="col" data-field="s" >S</th>
-            <th scope="col" data-field="date" >Date</th>
+            <th scope="col" data-field="s">S</th>
+            <th scope="col" data-field="a">A</th>
+            <th scope="col" data-field="v">V</th>
+            <th scope="col" data-field="e">R</th>
+            <th scope="col" data-field="r">R</th>
+            <th scope="col" data-field="sc">S</th>
+            <th scope="col" data-field="date">Date</th>
         </tr>
         </thead>
 
@@ -53,18 +53,20 @@
                 </td>
             </tr>
         {% endfor %}
-        <tr class="table-primary">
-            {{ form_start(form) }}
-            <td> {{ form_row(form.silence) }} </td>
-            <td> {{ form_row(form.affirmations) }}</td>
-            <td> {{ form_row(form.visualisation) }}</td>
-            <td> {{ form_row(form.exercice) }}</td>
-            <td> {{ form_row(form.reading) }}</td>
-            <td>{{ form_row(form.scribing) }}</td>
-            <td> {{ form_rest(form) }}</td>
-            {{ form_end(form) }}
-        </tr>
         </tbody>
     </table>
+
+    <div class="col">
+
+        {{ form_start(form) }}
+        {{ form_row(form.silence) }}
+        {{ form_row(form.affirmations) }}
+        {{ form_row(form.visualisation) }}
+        {{ form_row(form.exercice) }}
+        {{ form_row(form.reading) }}
+        {{ form_row(form.scribing) }}
+        {{ form_rest(form) }}
+        {{ form_end(form) }}
+    </div>
 
 {% endblock %}

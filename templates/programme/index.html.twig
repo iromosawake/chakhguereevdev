@@ -2,6 +2,19 @@
 
 {% block title %}Edition programme{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function () {
+            $('.select2').select2();
+        });
+    </script>
+{% endblock %}
+
 {% block conntent %}
     <hr>
     <div class="row">
@@ -49,11 +62,4 @@
     {{ form_end(form) }}
 {% endblock %}
 
-{% block javascripts %}
-    {{ parent() }}
-    <script>
-        $(document).ready(function () {
-            $('.select2').select2();
-        });
-    </script>
-{% endblock %}
+
