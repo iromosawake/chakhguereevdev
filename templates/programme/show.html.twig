@@ -5,6 +5,7 @@
 {% block stylesheets %}
     {{ parent() }}
     <link href="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table.min.css" rel="stylesheet">
+    <link href="{{ asset('./styles/programme.css') }}" rel="stylesheet">
 {% endblock %}
 
 {% block javascripts %}
@@ -12,11 +13,6 @@
     <script src="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table.min.js"></script>
     <script src="https://unpkg.com/bootstrap-table@1.22.1/dist/extensions/mobile/bootstrap-table-mobile.min.js"></script>
     <script src="{{ asset('js/programmes.js') }}" type="text/javascript"></script>
-    <script>
-        $(function () {
-            $('#table').bootstrapTable()
-        })
-    </script>
 {% endblock %}
 
 
@@ -40,6 +36,7 @@
             <th scope="col" data-field="consigne" ata-sortable="true">Consignes</th>
             <th scope="col" data-field="video" data-sortable="true">Vidéo</th>
             <th scope="col" data-field="image" data-sortable="true">Image</th>
+            <th></th>
         </tr>
         </thead>
 
@@ -62,6 +59,7 @@
                 <td><img src="{{ asset('uploads/images/') ~ programme.exercice.image }}"
                          class="img-fluid img-thumbnail"
                          alt="{{ programme.exercice.nom }}"></td>
+                <td><a class="link-info" href="{{ path('programme.action',{id: programme.id}) }}"><i class="see bi bi-eye-fill"></i></a> </td>
             </tr>
 
         {% endfor %}

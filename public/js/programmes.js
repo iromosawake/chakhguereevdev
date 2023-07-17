@@ -3,6 +3,10 @@ jQuery(document).ready(function ($) {
         window.location = $(this).data("href");
     });
 
+    $(function () {
+        $('#table').bootstrapTable()
+    })
+
     $("#rest").on('click', function () {
         // alert("my message to you");
         $("#rest").addClass("d-none");
