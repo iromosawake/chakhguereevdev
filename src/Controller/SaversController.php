@@ -23,13 +23,15 @@ class SaversController extends AbstractController
         $saverses = $em->getRepository(Savers::class)->findAll();
 
         $form = $this->createForm(SaversType::class, $savers);
+
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
             $savers->setCreatedAt(new \DateTime());
             $em->persist($savers);
             $em->flush();
             $this->addFlash('success', 'SAVERS a été edité saisi !');
-            $this->redirectToRoute('programme.edit');
+            $savers = new Savers();
+            $this->redirectToRoute('savers.insert');
         }
 
 

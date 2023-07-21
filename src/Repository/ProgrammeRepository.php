@@ -39,20 +39,19 @@ class ProgrammeRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Programme[] Returns an array of Programme objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('p.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    /**
+     * @return Programme[] Returns an array of Programme objects
+     */
+    public function findBySeance($value): array
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.seance = :val')
+            ->setParameter('val', $value)
+            ->orderBy('p.id', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 
 //    public function findOneBySomeField($value): ?Programme
 //    {

@@ -1,0 +1,77 @@
+{% extends 'hommeultime.html.twig' %}
+
+{% block title %}Séances{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+{% endblock %}
+
+{% block content %}
+    {% for  seance in seances %}
+        {% if loop.first %}
+            <h4>Semaine : {{ seance.semaine }}</h4>
+        {% endif %}
+        <h4>Séance : {{ seance.id }}</h4>
+        <hr>
+        <div class="row">
+            <h5>  {{ seance.zone }}</h5>
+            {% for  programme in seance.programmes %}
+                <div class="col-3 d-flex align-items-stretch mb-2">
+                    <div class="card text-center border border-primary shadow-2">
+                        <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                            <img src="{{ asset('uploads/images/') ~ programme.exercice.image }}" height="200px" class="card-img-top" alt="Card Image" />
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ programme.exercice.nom }}</h5>
+                            <p class="card-text">
+                            </p>
+
+                            <button type="button" class="btn btn-primary">Voir</button>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+
+    {#    <div class="container border border-dark rounded p-3 {{ (programme.exercice.principal)? "bg-danger" : "" }}"> #}
+    {#        <div id="frame" class="row"> #}
+    {#            <div class="col-md-3 col-sm-12"> #}
+    {#                <h5> #{{ programme.ordre }} {{ programme.exercice.nom }} - {{ programme.exercice.patternMuscle }}</h5> #}
+    {#                <div class="col"> #}
+    {#                    <img id="activate"  src="{{ asset('uploads/images/') ~ programme.exercice.image }}" class="img-fluid #}
+    {#                        img-thumbnail " alt="{{ programme.exercice.nom }}"> #}
+    {#                </div> #}
+    {#            </div> #}
+
+    {#            <div class="col-md-4 col-sm-12 mt-1"> #}
+    {#                <iframe src="{{ programme.exercice.video }}" #}
+    {#                        class="youtube-video img-thumbnail" #}
+    {#                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" #}
+    {#                        allowfullscreen></iframe> #}
+    {#            </div> #}
+    {#            <div class="col-md-5 col-sm-12"> #}
+    {#                <div class="row"> #}
+    {#                    <div class="col"> #}
+    {#                        <h4>👊  Séries : {{ programme.series }} x {{ programme.reps }}</h4> #}
+    {#                        <h4>🏋️  Charge : {{ programme.charge }} </h4> #}
+    {#                        <h4>💪 RPE :{{ programme.rpe }}</h4> #}
+    {#                    </div> #}
+    {#                    <div class="col"> #}
+    {#                        <h6>ℹ️ Consigne :</h6> #}
+    {#                        <p>{{ programme.exercice.consigne }}</p> #}
+    {#                        <h4 id="rest"> 🥵  Repos : {{ programme.repos }}sec</h4> #}
+    {#                        <h4 class='timer' data-seconds-left={{ programme.repos }}></h4> #}
+    {#                        <a href="#"><h4 id="next" class="d-none">Suivant !</h4></a> #}
+    {#                    </div> #}
+    {#                </div> #}
+
+    {#            </div> #}
+    {#        </div> #}
+    {#    </div> #}
+{% endblock %}

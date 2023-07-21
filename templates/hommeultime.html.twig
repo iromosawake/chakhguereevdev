@@ -7,17 +7,16 @@
 
 {% block stylesheets %}
     {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('./node_modules/select2/dist/css/select2.min.css') }}" type="text/css"/>
+    <link rel="stylesheet" href="{{ asset('./node_modules/select2-bootstrap-5-theme/dist/select2-bootstrap-5-theme.rtl.min.css') }}" type="text/css"/>
     <link href="{{ asset('./styles/styles.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ asset('./node_modules/@fancyapps/fancybox/dist/jquery.fancybox.css') }}" rel="stylesheet"
-          type="text/css"/>
-    <link href="{{ asset('./styles/fonts.css.css') }}" rel="stylesheet" type="text/css"/>
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
+    <script src="{{ asset('./node_modules/select2/dist/js/select2.full.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('./js/scripts.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('./node_modules/@fancyapps/fancybox/dist/jquery.fancybox.js') }}"
-            type="text/javascript"></script>
+
 {% endblock %}
 
 {% block body %}
@@ -67,6 +66,10 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Création programme
                         </a>
+                        <a class="nav-link" href="{{ path('seances.edit') }}">
+                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            Création seance
+                        </a>
 
 
                         <div class="sb-sidenav-menu-heading">Interface</div>
@@ -81,7 +84,7 @@
                              data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" href="{{ path('savers.insert') }}">S.A.V.E.R.S</a>
-                                <a class="nav-link" href="layout-sidenav-light.html">Iromos Routine</a>
+
                             </nav>
                         </div>
 
@@ -105,21 +108,21 @@
                                 <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne"
                                      data-bs-parent="#sidenavAccordionPages">
                                     <nav class="sb-sidenav-menu-nested nav">
-                                        <a class="nav-link" href="login.html">Jeune intermittent</a>
-                                        <a class="nav-link" href="register.html">Nutrition</a>
-                                        <a class="nav-link" href="password.html">Sommeil</a>
+                                        <a class="nav-link" href="#">Jeune intermittent</a>
+                                        <a class="nav-link" href="#">Nutrition</a>
+                                        <a class="nav-link" href="#">Sommeil</a>
                                     </nav>
                                 </div>
                             </nav>
                         </div>
                         <div class="sb-sidenav-menu-heading">Musculation</div>
-                        <a class="nav-link" href="charts.html">
+                        <a class="nav-link" href="{{ path('seances.all') }}">
                             <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                            Suivi
+                            Séances
                         </a>
                         <a class="nav-link" href="{{ path('programme.show') }}">
                             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                            Programme
+                            Programmes
                         </a>
                     </div>
                 </div>
@@ -135,27 +138,26 @@
 
     </div>
     <!--- message_session ---->
-    <div class="container mt-3 px-4">
-        {% for message in app.session.flashBag.get('info') %}
 
-            <div class="mt-4 alert alert-info">
-                {{ message }}
-            </div>
-        {% endfor %}
-        {% for message in app.session.flashBag.get('success') %}
-
-            <div class="mt-4 alert alert-success">
-                {{ message }}
-            </div>
-        {% endfor %}
-        {% for message in app.session.flashBag.get('error') %}
-
-            <div class="mt-4 alert alert-danger">
-                {{ message }}
-            </div>
-        {% endfor %}
-    </div>
     <div id="content" class="container">
+        <div class="container mt-5 px-4">
+            {% for message in app.session.flashBag.get('info') %}
+                <div class="mt-4 alert alert-info">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            {% for message in app.session.flashBag.get('success') %}
+                <div class="mt-4 alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            {% for message in app.session.flashBag.get('error') %}
+
+                <div class="mt-4 alert alert-danger">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
         {% block content %}
 
         {% endblock %}
