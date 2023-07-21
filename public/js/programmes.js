@@ -23,6 +23,8 @@ jQuery(document).ready(function ($) {
 
 });
 
+
+
 $(function() {
     var interval = 30;
     var duration= 1000;
