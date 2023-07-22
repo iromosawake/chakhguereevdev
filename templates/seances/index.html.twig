@@ -21,17 +21,20 @@
         <div class="row">
             <h5>  {{ seance.zone }}</h5>
             {% for  programme in seance.programmes %}
-                <div class="col-3 d-flex align-items-stretch mb-2">
+                <div class="col-md-3  col-xs-12 d-flex align-items-stretch mb-2">
                     <div class="card text-center border border-primary shadow-2">
                         <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-                            <img src="{{ asset('uploads/images/') ~ programme.exercice.image }}" height="200px" class="card-img-top" alt="Card Image" />
+                            <img src="{{ asset('uploads/images/') ~ programme.exercice.image }}" height="260px"
+                                  class="card-img-top" alt="Card Image"/>
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">{{ programme.exercice.nom }}</h5>
                             <p class="card-text">
+                                {{ programme.exercice.patternMuscle }}
                             </p>
-
-                            <button type="button" class="btn btn-primary">Voir</button>
+                            <a href="{{ path('programme.action',{id: programme.id}) }}">
+                                <button type="button" class="btn btn-primary">Voir</button>
+                            </a>
                         </div>
                     </div>
                 </div>

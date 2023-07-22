@@ -16,7 +16,7 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 class ExerciceController extends AbstractController
 {
     #[Route('/edit/{id?0}', name: 'exercice_edit')]
-    public function addExercice(Exercice $exercice = null, ManagerRegistry $doctrine, Request $request, SluggerInterface $slugger): Response
+    public function addExercice(ManagerRegistry $doctrine, Request $request, SluggerInterface $slugger, Exercice $exercice = null): Response
     {
         //si exercice n'existe pas
         if (!$exercice) {
@@ -41,14 +41,11 @@ class ExerciceController extends AbstractController
 
                 // Move the file to the directory where brochures are stored
                 try {
-                    $image->move(
-                        $this->getParameter('exercice_directory'),
-                        $newFilename
-                    );
+                    $image->move($this->getParameter('exercice_directory'), $newFilename);
                     $exercice->setImage($newFilename);
                 } catch (FileException $e) {
                     // ... handle exception if something happens during file upload
-                    dd($e);
+                    $this->addFlash('error', $exercice->getNom() . ' impossible d\'importer l\'image !' . $e->getMessage());
                 }
             }
             $em->persist($exercice);
