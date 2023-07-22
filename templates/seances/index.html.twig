@@ -4,6 +4,7 @@
 
 {% block stylesheets %}
     {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/seances.css') }}" type="text/css">
 {% endblock %}
 
 {% block javascripts %}
@@ -14,17 +15,16 @@
 {% block content %}
     {% for  seance in seances %}
         {% if loop.first %}
-            <h4>Semaine : {{ seance.semaine }}</h4>
+            <div class="row semaine">Semaine  - {{ seance.semaine }}</div>
         {% endif %}
-        <h4>Séance : {{ seance.id }}</h4>
+        <div class="row seance">Séance : {{ seance.id }} -  {{ seance.zone }}</div>
         <hr>
         <div class="row">
-            <h5>  {{ seance.zone }}</h5>
             {% for  programme in seance.programmes %}
                 <div class="col-md-3  col-xs-12 d-flex align-items-stretch mb-2">
-                    <div class="card text-center border border-primary shadow-2">
+                    <div class="card text-center border border-dark shadow-2">
                         <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-                            <img src="{{ asset('uploads/images/') ~ programme.exercice.image }}" height="260px"
+                            <img src="{{ asset('uploads/images/') ~ programme.exercice.image }}" height="330px"
                                   class="card-img-top" alt="Card Image"/>
                         </div>
                         <div class="card-body">
@@ -33,7 +33,7 @@
                                 {{ programme.exercice.patternMuscle }}
                             </p>
                             <a href="{{ path('programme.action',{id: programme.id}) }}">
-                                <button type="button" class="btn btn-primary">Voir</button>
+                                <button type="button" class="btn btn-warning">Voir</button>
                             </a>
                         </div>
                     </div>
