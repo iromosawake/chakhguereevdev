@@ -90,21 +90,21 @@ $(document).ready(function () {
 
     }
 
-    $(".animation").mouseover(function(){
-        $(this).animate({
-            height:'348px',
-            width:'356px',
-            left : '-11px',
-        })
-    });
-
-    $(".animation").mouseout(function(){
-        $(this).animate({
-            height:'416px',
-            width:'427px',
-            left : '0px',
-        })
-    });
+    // $(".animation").mouseover(function(){
+    //     $(this).animate({
+    //         height:'348px',
+    //         width:'356px',
+    //         left : '-11px',
+    //     })
+    // });
+    //
+    // $(".animation").mouseout(function(){
+    //     $(this).animate({
+    //         height:'416px',
+    //         width:'427px',
+    //         left : '0px',
+    //     })
+    // });
 
 });
 
