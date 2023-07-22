@@ -4,8 +4,8 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    <link href="{{ asset('./styles/programme.css') }}" rel="stylesheet">
-    <link href="{{ asset('./styles/bootstrap-table.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('styles/programme.css') }}" rel="stylesheet">
+    <link href="{{ asset('styles/bootstrap-table.min.css') }}" rel="stylesheet">
 {% endblock %}
 
 {% block javascripts %}
@@ -28,17 +28,17 @@
            data-mobile-responsive="true">
         <thead>
         <tr>
-            <th scope="col" data-field="ordre" >#</th>
-            <th scope="col" data-field="petern" >Paterne</th>
-            <th scope="col" data-field="exercice" >Exercice</th>
-            <th scope="col" data-field="series" >Séries</th>
-            <th scope="col" data-field="reps" >Reps</th>
-            <th scope="col" data-field="charge" >Charge</th>
-            <th scope="col" data-field="rpe" >RPE</th>
-            <th scope="col" data-field="repos" >Repos</th>
-            <th scope="col" data-field="consigne" >Consignes</th>
-{#            <th scope="col" data-field="video" >Vidéo</th>#}
-            <th scope="col" data-field="image" >Image</th>
+            <th scope="col" data-field="ordre">#</th>
+            <th scope="col" data-field="petern">Paterne</th>
+            <th scope="col" data-field="exercice">Exercice</th>
+            <th scope="col" data-field="series">Séries</th>
+            <th scope="col" data-field="reps">Reps</th>
+            <th scope="col" data-field="charge">Charge</th>
+            <th scope="col" data-field="rpe">RPE</th>
+            <th scope="col" data-field="repos">Repos</th>
+            <th scope="col" data-field="consigne">Consignes</th>
+            {#            <th scope="col" data-field="video" >Vidéo</th> #}
+            <th scope="col" data-field="image">Image</th>
         </tr>
         </thead>
 
@@ -56,9 +56,9 @@
                 <td>{{ programme.rpe }}</td>
                 <td>{{ programme.repos }}</td>
                 <td>{{ programme.exercice.consigne }}</td>
-{#                <td>#}
-{#                    <iframe src="{{ programme.exercice.video }}" class="responsive-iframe" allowfullscreen></iframe>#}
-{#                </td>#}
+                {#                <td> #}
+                {#                    <iframe src="{{ programme.exercice.video }}" class="responsive-iframe" allowfullscreen></iframe> #}
+                {#                </td> #}
                 <td><a href="{{ path('programme.action',{id: programme.id}) }}"><img
                                 src="{{ asset('uploads/images/') ~ programme.exercice.image }}"
                                 class="img-fluid img-thumbnail " alt="{{ programme.exercice.nom }}"></a></td>
