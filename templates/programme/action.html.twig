@@ -1,19 +1,6 @@
-{% extends 'hommeultime.html.twig' %}
-
-{% block title %}Action{% endblock %}
-
-{% block stylesheets %}
-    {{ parent() }}
-    <link href="{{ asset('styles/programme.css') }}" rel="stylesheet" type="text/css"/>
-{% endblock %}
-
-{% block javascripts %}
-    {{ parent() }}
+{% if programme %}
     <script src="{{ asset('js/programmes.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/jquery.simple.timer.js') }}" type="text/javascript"></script>
-{% endblock %}
-
-{% block content %}
     <div class="container border border-dark rounded p-3 {{ (programme.exercice.principal)? "bg-danger" : "" }}">
         <div id="frame" class="row">
             <div class="col-md-3 col-sm-12">
@@ -40,7 +27,7 @@
                     <div class="col">
                         <h6>ℹ️ Consigne :</h6>
                         <p>{{ programme.exercice.consigne }}</p>
-                        <h4 id="rest"> 🥵  Repos : {{ programme.repos }}sec</h4>
+                        <h4 id="rest">⏱️  Repos : {{ programme.repos }}sec</h4>
                         <h4 class='timer' data-seconds-left={{ programme.repos }}></h4>
                         <a href="#"><h4 id="next" class="d-none">Suivant !</h4></a>
                     </div>
@@ -49,4 +36,6 @@
             </div>
         </div>
     </div>
-{% endblock %}
+{% else %}
+Aucun resultat
+{% endif %}

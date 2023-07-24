@@ -26,21 +26,8 @@ class ProgrammeController extends AbstractController
         if (!$programme) {
             $programme = new Programme();
         }
-        $zone = new Zone();
-        $seance = new Seance();
-        $patternMuscle = new PatternMuscle();
-
-
-
         $form = $this->createForm(ProgrammeType::class, $programme);
-        $formSeance = $this->createForm(SeanceType::class, $seance);
-        $formZone = $this->createForm(ZoneType::class, $zone);
-        $formPatternMuscle = $this->createForm(PatterMuscleType::class, $patternMuscle);
-
         $form->handleRequest($request);
-        $formSeance->handleRequest($request);
-        $formZone->handleRequest($request);
-        $formPatternMuscle->handleRequest($request);
 
         $em = $doctrine->getManager();
 
@@ -51,35 +38,9 @@ class ProgrammeController extends AbstractController
             $this->redirectToRoute('programme.edit');
         }
 
-        if ($formSeance->isSubmitted()) {
-            $em->persist($seance);
-            $em->flush();
-            $this->addFlash('success', 'Seance a été crée avec succès !');
-            $this->redirectToRoute('programme.edit');
-        }
-
-        if ($formZone->isSubmitted()) {
-            $em->persist($zone);
-            $em->flush();
-            $this->addFlash('success', 'Nouvelle zone a été crée avec succès !');
-            $this->redirectToRoute('programme.edit');
-
-        }
-
-        if ($formPatternMuscle->isSubmitted()) {
-            $em->persist($patternMuscle);
-            $em->flush();
-            $this->addFlash('success', 'Nouvelle pattern muscle a été crée avec succès !');
-            $this->redirectToRoute('programme.edit');
-
-        }
-
         return $this->render('programme/index.html.twig', [
             'controller_name' => 'ProgrammeController',
-            'form' => $form->createView(),
-            'seanceForm' => $formSeance->createView(),
-            'zoneForm' => $formZone->createView(),
-            'patternMuscleForm' => $formPatternMuscle->createView()
+            'form' => $form->createView()
         ]);
     }
 
@@ -105,9 +66,13 @@ class ProgrammeController extends AbstractController
         ]);
     }
 
-    #[Route('/action/{id?0}', name: 'programme.action')]
-    public function show_programme(Programme $programme = null): Response
+    #[Route('/action', name: 'programme.action',methods: ['GET'])]
+    public function action(ManagerRegistry $doctrine,Request $request): Response
     {
+
+        $repository = $doctrine->getRepository(Programme::class);
+        $programme = $repository->findOneBy(array('id' => $request->get('id')));
+
         return $this->render('programme/action.html.twig', [
             'controller_name' => 'ProgrammeController',
             'programme' => $programme,

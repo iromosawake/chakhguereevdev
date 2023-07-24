@@ -6,30 +6,28 @@
 
 
 {% block content %}
-
-    {#    {{ form(form) }} #}
-
-        <hr>
-        <h5>Création Exercice</h5>
-        {{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
-        <div class="row">
-            <div class="col">
-                {{ form_row(form.patternMuscle) }}
-            </div>
+    <h5>Création Exercice</h5>
+    {{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
+    <div class="row">
+        <div class="col">
+            {{ form_row(form.patternMuscle) }}
         </div>
-        <div class="row">
-            <div class="col">
-                {{ form_row(form.image) }}
-            </div>
-            <div class="col">
-                {#                {{ dump(form.image) }} #}
-                {#                <img src="{{ asset('uploads/images/'~.image) }}"> #}
-            </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            {{ form_row(form.image) }}
         </div>
-
-        {{ form_rest(form) }}
-
-        {{ form_end(form) }}
+    </div>
+    {{ form_rest(form) }}
+    {{ form_end(form) }}
+    <hr>
+    <div class="row">
+        <div class="col">
+            <h5>Création nouveau pattern muscles</h5>
+            {{ form(patternMuscleForm) }}
+            {{ form_end(patternMuscleForm) }}
+        </div>
+    </div>
 
 {% endblock %}
 

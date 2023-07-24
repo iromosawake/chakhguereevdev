@@ -12,7 +12,8 @@
     font-weight: bold;
     color: #e74c3c;
     background-color: #f1c40f;
-    padding: 4px;
+    padding: 4px 0px 4px 10px;
+    margin-bottom: 4px;
 }
 
 .card{

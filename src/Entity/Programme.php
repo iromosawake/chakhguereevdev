@@ -40,19 +40,11 @@ class Programme
     #[ORM\ManyToOne(targetEntity: Exercice::class)]
     private Exercice $exercice;
 
-
-//    #[ORM\ManyToMany(mappedBy: 'programmes', targetEntity: Seance::class)]
-//    #[ORM\JoinColumn(nullable: false)]
-
     #[ManyToOne(targetEntity: Seance::class)]
     #[JoinTable(name: 'seance_programme')]
     #[JoinColumn(name: 'seance_id', referencedColumnName: 'id')]
     private Seance $seance;
 
-    public function __construct()
-    {
-        $this->seances = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -158,27 +150,6 @@ class Programme
         return $this;
     }
 
-//    /**
-//     * @return Collection<int, Seance>
-//     */
-//    public function getSeances(): Collection
-//    {
-//        return $this->seances;
-//    }
-//
-//    public function addSeance(Seance $Seance): self
-//    {
-//        if (!$this->seances->contains($Seance)) {
-//            $this->seances->add($Seance);
-//        }
-//        return $this;
-//    }
-//
-//    public function removeSeance(Seance $Seance): self
-//    {
-//        $this->seances->removeElement($Seance);
-//        return $this;
-//    }
 
     public function __toString(): string
     {

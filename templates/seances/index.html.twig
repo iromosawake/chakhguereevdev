@@ -5,76 +5,104 @@
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('styles/seances.css') }}" type="text/css">
+    <link href="{{ asset('styles/programme.css') }}" rel="stylesheet" type="text/css"/>
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
+
+    <script>
+        $(document).ready(function () {
+            $(".seance").click(function (event) {
+                $('#seance_' + event.target.id).slideToggle();
+            });
+
+            $('#details_programme').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget) ;
+                var recipient = button.data('programmeid');
+                var modal = $(this);
+
+                $.ajax({
+                    url:'{{ (path('programme.action')) }}',
+                    type: "GET",
+                    dataType: "html",
+                    data: {
+                        "id": recipient
+                    },
+                    async: true,
+                    success: function (data)
+                    {
+                        modal.find('.modal-body ').html(data);
+                    }
+                });
+
+            })
+        });
+    </script>
+    <script>
+        $(document).on('click', 'button.ajax', function(){
+            that = $(this);
+
+            return false;
+
+        });
+    </script>
 
 {% endblock %}
 
 {% block content %}
     {% for  seance in seances %}
         {% if loop.first %}
-            <div class="row semaine">Semaine  - {{ seance.semaine }}</div>
+            <div class="row semaine">Semaine - {{ seance.semaine }}</div>
         {% endif %}
-        <div class="row seance">Séance : {{ seance.id }} -  {{ seance.zone }}</div>
-        <hr>
-        <div class="row">
+        <div class="row seance" id="{{ seance.id }}">🔽 Séance : {{ seance.id }} - {{ seance.zone }}</div>
+
+        <div class="row " id="seance_{{ seance.id }}">
             {% for  programme in seance.programmes %}
                 <div class="col-md-3  col-xs-12 d-flex align-items-stretch mb-2">
                     <div class="card text-center border border-dark shadow-2">
                         <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
                             <img src="{{ asset('uploads/images/') ~ programme.exercice.image }}" height="330px"
-                                  class="card-img-top" alt="Card Image"/>
+                                 class="card-img-top" alt="Card Image"/>
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">{{ programme.exercice.nom }}</h5>
                             <p class="card-text">
                                 {{ programme.exercice.patternMuscle }}
                             </p>
-                            <a href="{{ path('programme.action',{id: programme.id}) }}">
-                                <button type="button" class="btn btn-warning">Voir</button>
-                            </a>
+{#                            <a href="{{ path('programme.action',{id: programme.id}) }}">#}
+
+                            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#details_programme" data-programmeid="{{ programme.id }}">
+                                Go  💯 
+                            </button>
+
+                            {#                            </a>#}
                         </div>
                     </div>
+
                 </div>
             {% endfor %}
         </div>
+
     {% endfor %}
 
-    {#    <div class="container border border-dark rounded p-3 {{ (programme.exercice.principal)? "bg-danger" : "" }}"> #}
-    {#        <div id="frame" class="row"> #}
-    {#            <div class="col-md-3 col-sm-12"> #}
-    {#                <h5> #{{ programme.ordre }} {{ programme.exercice.nom }} - {{ programme.exercice.patternMuscle }}</h5> #}
-    {#                <div class="col"> #}
-    {#                    <img id="activate"  src="{{ asset('uploads/images/') ~ programme.exercice.image }}" class="img-fluid #}
-    {#                        img-thumbnail " alt="{{ programme.exercice.nom }}"> #}
-    {#                </div> #}
-    {#            </div> #}
+    <!-- Modal -->
+    <div class="modal fade" id="details_programme" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
 
-    {#            <div class="col-md-4 col-sm-12 mt-1"> #}
-    {#                <iframe src="{{ programme.exercice.video }}" #}
-    {#                        class="youtube-video img-thumbnail" #}
-    {#                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" #}
-    {#                        allowfullscreen></iframe> #}
-    {#            </div> #}
-    {#            <div class="col-md-5 col-sm-12"> #}
-    {#                <div class="row"> #}
-    {#                    <div class="col"> #}
-    {#                        <h4>👊  Séries : {{ programme.series }} x {{ programme.reps }}</h4> #}
-    {#                        <h4>🏋️  Charge : {{ programme.charge }} </h4> #}
-    {#                        <h4>💪 RPE :{{ programme.rpe }}</h4> #}
-    {#                    </div> #}
-    {#                    <div class="col"> #}
-    {#                        <h6>ℹ️ Consigne :</h6> #}
-    {#                        <p>{{ programme.exercice.consigne }}</p> #}
-    {#                        <h4 id="rest"> 🥵  Repos : {{ programme.repos }}sec</h4> #}
-    {#                        <h4 class='timer' data-seconds-left={{ programme.repos }}></h4> #}
-    {#                        <a href="#"><h4 id="next" class="d-none">Suivant !</h4></a> #}
-    {#                    </div> #}
-    {#                </div> #}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    {#            </div> #}
-    {#        </div> #}
-    {#    </div> #}
 {% endblock %}

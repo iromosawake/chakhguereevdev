@@ -2,12 +2,8 @@
 
 namespace App\Controller;
 
-use App\Entity\PatternMuscle;
-use App\Entity\Programme;
 use App\Entity\Seance;
 use App\Entity\Zone;
-use App\Form\PatterMuscleType;
-use App\Form\ProgrammeType;
 use App\Form\SeanceType;
 use App\Form\ZoneType;
 use Doctrine\Persistence\ManagerRegistry;
@@ -31,14 +27,19 @@ class SeancesController extends AbstractController
         ]);
     }
 
-    #[Route('/edit/{id?1}', name: 'seances.edit')]
+    #[Route('/edit/{id?0}', name: 'seances.edit')]
     public function index(ManagerRegistry $doctrine, Request $request, Seance $seance = null): Response
     {
         if (!$seance) {
             $seance = new Seance();
         }
+        $zone = new Zone();
+
+        $formZone = $this->createForm(ZoneType::class, $zone);
         $form = $this->createForm(SeanceType::class, $seance);
         $form->handleRequest($request);
+        $formZone->handleRequest($request);
+
         $em = $doctrine->getManager();
         if ($form->isSubmitted()) {
             $em->persist($seance);
@@ -46,10 +47,17 @@ class SeancesController extends AbstractController
             $this->addFlash('success', 'Seance a été edité avec succès !');
             $this->redirectToRoute('seances.edit');
         }
+        if ($formZone->isSubmitted()) {
+            $em->persist($zone);
+            $em->flush();
+            $this->addFlash('success', 'Nouvelle zone a été crée avec succès !');
+            $this->redirectToRoute('programme.edit');
+        }
 
         return $this->render('seances/edit.html.twig', [
             'controller_name' => 'SeancesController',
             'form' => $form->createView(),
+            'zoneForm' => $formZone->createView(),
         ]);
     }
 }

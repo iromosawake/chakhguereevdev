@@ -25,7 +25,7 @@ class ExerciceType extends AbstractType
 //            ->add('patternMuscle')
             ->add('patternMuscle', EntityType::class, [
                 'class' => PatternMuscle::class,
-                'label' => 'Muscles visés',
+                'label' => 'Pattern Muscles',
                 'attr' => array(
                     'class' => 'select2'),
 //                'choice_name'=>'Muscles'
@@ -49,6 +49,7 @@ class ExerciceType extends AbstractType
                             'image/x-png',
                             'image/jpeg',
                             'image/jpg',
+                            'image/gif',
                         ],
                         'mimeTypesMessage' => "Le fichier n'est pas valide",
                     ])

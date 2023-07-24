@@ -26,6 +26,7 @@
 {% block content %}
     <hr>
     <div class="row">
+
         <div class="col">
             <!--TODO drag and drop select https://codepen.io/santushDN/pen/BEBxBB-->
             <h5>Création séance</h5>
@@ -36,6 +37,11 @@
             {{ form_end(form) }}
         </div>
     </div>
-
+    <hr>
+    <div class="row">
+        <h5>Création nouvelle zone séance</h5>
+        {{ form(zoneForm) }}
+        {{ form_end(zoneForm) }}
+    </div>
 
 {% endblock %}
