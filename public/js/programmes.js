@@ -17,6 +17,7 @@ jQuery(document).ready(function ($) {
             $(".jst-seconds").remove();
             $("#next").addClass("d-none");
             $("#rest").removeClass("d-none");
+
         });
     });
 

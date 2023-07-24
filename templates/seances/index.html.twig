@@ -5,7 +5,7 @@
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('styles/seances.css') }}" type="text/css">
-    <link href="{{ asset('styles/programme.css') }}" rel="stylesheet" type="text/css"/>
+
 {% endblock %}
 
 {% block javascripts %}
@@ -13,39 +13,70 @@
 
     <script>
         $(document).ready(function () {
+            var items = $('.seance_semaine');
+            for (var i = 0; i <= items.length; i++) {
+                $('#seance_' + i).slideToggle();
+            }
+
+
             $(".seance").click(function (event) {
+
                 $('#seance_' + event.target.id).slideToggle();
             });
 
             $('#details_programme').on('show.bs.modal', function (event) {
-                var button = $(event.relatedTarget) ;
+                var button = $(event.relatedTarget);
                 var recipient = button.data('programmeid');
                 var modal = $(this);
 
                 $.ajax({
-                    url:'{{ (path('programme.action')) }}',
+                    url: '{{ (path('programme.action')) }}',
                     type: "GET",
                     dataType: "html",
                     data: {
                         "id": recipient
                     },
                     async: true,
-                    success: function (data)
-                    {
+                    success: function (data) {
                         modal.find('.modal-body ').html(data);
                     }
                 });
 
             })
-        });
-    </script>
-    <script>
-        $(document).on('click', 'button.ajax', function(){
-            that = $(this);
+            //notification
+            const btn = document.getElementById("button4");
+            btn.addEventListener("click", () => {
+                console.log("permission");
+                let promise = Notification.requestPermission();
+                // wait for permission
+            });
 
-            return false;
+            var title = "JavaScript Jeep";
+            icon = 'https://homepages.cae.wisc.edu/~ece533/images/airplane.png';
+            var body = "It's Your boarding time";
+            new Notification(title, { body, icon });
 
+            //geoloc
+            var options = {
+                enableHighAccuracy: true,
+                timeout: 5000,
+                maximumAge: 0
+            };
+
+            //notification
+
+
+            function success(pos) {
+                var crd = pos.coords;
+            }
+
+            function error(err) {
+                console.warn(`ERREUR (${err.code}): ${err.message}`);
+            }
+
+            navigator.geolocation.getCurrentPosition(success, error, options);
         });
+
     </script>
 
 {% endblock %}
@@ -57,7 +88,7 @@
         {% endif %}
         <div class="row seance" id="{{ seance.id }}">🔽 Séance : {{ seance.id }} - {{ seance.zone }}</div>
 
-        <div class="row " id="seance_{{ seance.id }}">
+        <div class="row seance_semaine" id="seance_{{ seance.id }}">
             {% for  programme in seance.programmes %}
                 <div class="col-md-3  col-xs-12 d-flex align-items-stretch mb-2">
                     <div class="card text-center border border-dark shadow-2">
@@ -70,13 +101,14 @@
                             <p class="card-text">
                                 {{ programme.exercice.patternMuscle }}
                             </p>
-{#                            <a href="{{ path('programme.action',{id: programme.id}) }}">#}
+                            {#                            <a href="{{ path('programme.action',{id: programme.id}) }}"> #}
 
-                            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#details_programme" data-programmeid="{{ programme.id }}">
+                            <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                                    data-bs-target="#details_programme" data-programmeid="{{ programme.id }}">
                                 Go  💯 
                             </button>
 
-                            {#                            </a>#}
+                            {#                            </a> #}
                         </div>
                     </div>
 
@@ -98,10 +130,10 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Terminer</button>
                 </div>
             </div>
         </div>
     </div>
-
+<button type="button" class="btn btn-primary" id="button4">ICI</button>
 {% endblock %}

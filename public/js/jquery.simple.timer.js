@@ -11,20 +11,11 @@
 (function (factory) {
   // Using as a CommonJS module
   if(typeof module === "object" && typeof module.exports === "object") {
-    // jQuery must be provided as argument when used
-    // as a CommonJS module.
-    //
-    // For example:
-    //   let $ = require("jquery");
-    //   require("jquery-simple-timer")($);
+
     module.exports = function(jq) {
       factory(jq, window, document);
     }
   } else {
-    // Using as script tag
-    //
-    // For example:
-    //   <script src="jquery.simple.timer.js"></script>
     factory(jQuery, window, document);
   }
 }(function($, window, document, undefined) {
@@ -33,7 +24,6 @@
   Number.isFinite = Number.isFinite || function(value) {
     return typeof value === 'number' && isFinite(value);
   }
-
   var timer;
 
   var Timer = function(targetElement){
