@@ -44,37 +44,36 @@
 
             })
             //notification
-            const btn = document.getElementById("button4");
-            btn.addEventListener("click", () => {
-                console.log("permission");
-                let promise = Notification.requestPermission();
-                // wait for permission
-            });
-
-            var title = "JavaScript Jeep";
-            icon = 'https://homepages.cae.wisc.edu/~ece533/images/airplane.png';
-            var body = "It's Your boarding time";
-            new Notification(title, { body, icon });
-
-            //geoloc
-            var options = {
-                enableHighAccuracy: true,
-                timeout: 5000,
-                maximumAge: 0
+            if (!Notification) {
+                alert('Le navigateur ne supporte pas les notifications.');
+            }
+            Notification.requestPermission();
+            const optionsN = {
+                body: "Your code submission has received 3 new review comments.",
+                vibrate: [200, 100, 200],
             };
 
-            //notification
+            const n = new Notification("New review activity", optionsN);
 
-
-            function success(pos) {
-                var crd = pos.coords;
-            }
-
-            function error(err) {
-                console.warn(`ERREUR (${err.code}): ${err.message}`);
-            }
-
-            navigator.geolocation.getCurrentPosition(success, error, options);
+            //geoloc
+            // var options = {
+            //     enableHighAccuracy: true,
+            //     timeout: 5000,
+            //     maximumAge: 0
+            // };
+            //
+            // //notification
+            //
+            //
+            // function success(pos) {
+            //     var crd = pos.coords;
+            // }
+            //
+            // function error(err) {
+            //     console.warn(`ERREUR (${err.code}): ${err.message}`);
+            // }
+            //
+            // navigator.geolocation.getCurrentPosition(success, error, options);
         });
 
     </script>
