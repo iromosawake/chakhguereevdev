@@ -12,6 +12,18 @@
     {{ parent() }}
 
     <script>
+
+            const openInNewTab = (url) => {
+                window.open(url, "_blank");
+            }
+
+            function pdf(s) {
+                var path = '{{ url('seances.pdf') }}';
+                openInNewTab(path + "/" + s);
+            }
+
+
+
         $(document).ready(function () {
             var items = $('.seance_semaine');
             for (var i = 0; i <= items.length; i++) {
@@ -43,17 +55,7 @@
                 });
 
             })
-            //notification
-            if (!Notification) {
-                alert('Le navigateur ne supporte pas les notifications.');
-            }
-            Notification.requestPermission();
-            const optionsN = {
-                body: "Your code submission has received 3 new review comments.",
-                vibrate: [200, 100, 200],
-            };
 
-            const n = new Notification("New review activity", optionsN);
 
             //geoloc
             // var options = {
@@ -81,10 +83,18 @@
 {% endblock %}
 
 {% block content %}
+
     {% for  seance in seances %}
         {% if loop.first %}
-            <div class="row semaine">Semaine - {{ seance.semaine }}</div>
+            <div class="row semaine">Semaine - {{ seance.semaine }} - {{ seance.programme_muscu }}</div>
         {% endif %}
+        <div class="row justify-content-end">
+            <div class="col-lg-1 col-md-2 col-sm-2 my-2 p-0 d-none d-md-block d-lg-block">
+                <button type="button" class="btn btn-primary" onclick="pdf({{ seance.semaine }})">Imprimer</button>
+                </a>
+            </div>
+        </div>
+
         <div class="row seance" id="{{ seance.id }}">🔽 Séance : {{ seance.id }} - {{ seance.zone }}</div>
 
         <div class="row seance_semaine" id="seance_{{ seance.id }}">
@@ -100,14 +110,10 @@
                             <p class="card-text">
                                 {{ programme.exercice.patternMuscle }}
                             </p>
-                            {#                            <a href="{{ path('programme.action',{id: programme.id}) }}"> #}
-
                             <button type="button" class="btn btn-warning" data-bs-toggle="modal"
                                     data-bs-target="#details_programme" data-programmeid="{{ programme.id }}">
                                 Go  💯 
                             </button>
-
-                            {#                            </a> #}
                         </div>
                     </div>
 
@@ -134,5 +140,4 @@
             </div>
         </div>
     </div>
-<button type="button" class="btn btn-primary" id="button4">ICI</button>
 {% endblock %}

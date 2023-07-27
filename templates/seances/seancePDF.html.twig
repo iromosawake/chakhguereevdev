@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seances musculation semaine {{ numSemaine }}</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('images/favicon.ico') }}">
+    <link rel="stylesheet" href="{{ asset('styles/seances.css') }}" type="text/css">
+    <style>
+        table,
+        td {
+            border: 1px solid #333;
+        }
+
+        thead,
+        tfoot {
+            background-color: #333;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+<table>
+
+    {% for  seance in seances %}
+        {% if loop.first %}
+            <thead>
+            <tr>
+                <th colspan="9">Semaine - {{ seance.semaine }}</th>
+            </tr>
+            </thead>
+        {% endif %}
+        <tr><th colspan="9">Séance : {{ seance.id }} - {{ seance.zone }}</th></tr>
+        <tbody>
+        <tr>
+            <td></td>
+            <td>Nom</td>
+            <td>Muscles visées</td>
+            <td>Séries</td>
+            <td>Reps</td>
+            <td>Charge</td>
+            <td>RPE</td>
+            <td>Repos</td>
+            <td>Mes impressions</td>
+        </tr>
+        {% for  programme in seance.programmes %}
+            <tr>
+                <td><img src="{{ url('app_home') ~ '/uploads/images/' ~ programme.exercice.image }}" height="60px" width="100px"/></td>
+                <td><h5>{{ programme.exercice.nom }}</h5></td>
+                <td>{{ programme.exercice.patternMuscle }}</td>
+                <td>{{ programme.series }}</td>
+                <td>{{ programme.reps }}</td>
+                <td>{{ programme.charge }}</td>
+                <td>{{ programme.rpe }}</td>
+                <td>{{ programme.repos }}</td>
+                <td></td>
+            </tr>
+
+
+        {% endfor %}
+        </tbody>
+
+    {% endfor %}
+</table>
+
+
+</body>
+</html>

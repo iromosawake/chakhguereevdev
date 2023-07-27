@@ -6,6 +6,7 @@ use App\Entity\Seance;
 use App\Entity\Zone;
 use App\Form\SeanceType;
 use App\Form\ZoneType;
+use App\Service\PdfService;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,20 +16,26 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route("/seances")]
 class SeancesController extends AbstractController
 {
-    #[Route('/semaine/{num?1}', name: 'seances.all')]
+//TODO si num = null afficher les semaines possibles
+    #[Route('/semaine/{num?0}', name: 'seances.all')]
     public function showAll(ManagerRegistry $doctrine, $num): Response
     {
         $repository = $doctrine->getRepository(Seance::class);
-        $seances = $repository->findBySemaine($num);
+        if ($num == 0) {
+            $seances = $repository->findAll();
+        } else {
+            $seances = $repository->findBySemaine($num);
+        }
+
 
         return $this->render('seances/index.html.twig', [
             'controller_name' => 'SeancesController',
-            'seances'=>$seances
+            'seances' => $seances
         ]);
     }
 
     #[Route('/edit/{id?0}', name: 'seances.edit')]
-    public function index(ManagerRegistry $doctrine, Request $request, Seance $seance = null): Response
+    public function editSeance(ManagerRegistry $doctrine, Request $request, Seance $seance = null): Response
     {
         if (!$seance) {
             $seance = new Seance();
@@ -59,5 +66,18 @@ class SeancesController extends AbstractController
             'form' => $form->createView(),
             'zoneForm' => $formZone->createView(),
         ]);
+    }
+
+    #[Route('/semaine/pdf/{num?1}', name: 'seances.pdf')]
+    public function seanceToPDf(ManagerRegistry $doctrine, PdfService $pdfService, int $num)
+    {
+        $repository = $doctrine->getRepository(Seance::class);
+        $seances = $repository->findBySeance($num);
+        $html = $this->render('seances/seancePDF.html.twig', [
+            'seances' => $seances,
+            'numSemaine' => $num
+        ]);
+        $pdfService->pdf($html);
+
     }
 }

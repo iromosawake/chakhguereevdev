@@ -23,10 +23,6 @@ class Seance
     private ?int $semaine = null;
 
 
-    /**
-     * Many Seances have Many programmes.
-     * @var Collection<int, Programme>
-     */
     #[JoinTable(name: 'seance_programme')]
     #[JoinColumn(name: 'seance_id', referencedColumnName: 'id')]
     #[InverseJoinColumn(name: 'programme_id', referencedColumnName: 'id', unique: true)]
@@ -36,6 +32,9 @@ class Seance
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
     private ?Zone $zone = null;
+
+    #[ORM\Column(length: 100)]
+    private ?string $programme_muscu = null;
 
     public function __construct()
     {
@@ -58,23 +57,6 @@ class Seance
 
         return $this;
     }
-
-//    public function getProgramme(): ?Programme
-//    {
-//        return $this->programme;
-//    }
-//
-//    public function setProgramme(Programme $programme): self
-//    {
-//        // set the owning side of the relation if necessary
-//        if ($programme->getSeance() !== $this) {
-//            $programme->setSeance($this);
-//        }
-//
-//        $this->programme = $programme;
-//
-//        return $this;
-//    }
 
     /**
      * @return Collection<int, Programme>
@@ -113,5 +95,17 @@ class Seance
     public function __toString(): string
     {
        return "Semaine : $this->semaine seance $this->id";
+    }
+
+    public function getProgramme_Muscu(): ?string
+    {
+        return $this->programme_muscu;
+    }
+
+    public function setProgramme_Muscu(string $programme_muscu): static
+    {
+        $this->programme_muscu = $programme_muscu;
+
+        return $this;
     }
 }

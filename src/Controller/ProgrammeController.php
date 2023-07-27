@@ -69,7 +69,6 @@ class ProgrammeController extends AbstractController
     #[Route('/action', name: 'programme.action',methods: ['GET'])]
     public function action(ManagerRegistry $doctrine,Request $request): Response
     {
-
         $repository = $doctrine->getRepository(Programme::class);
         $programme = $repository->findOneBy(array('id' => $request->get('id')));
 
