@@ -15,4 +15,15 @@ class HomeController extends AbstractController
             'controller_name' => 'HomeController',
         ]);
     }
+
+    #[Route('/home', name: 'app.home.muscu')]
+    public function home(): Response
+    {
+        return $this->render('home/home.html.twig', [
+            'controller_name' => 'HomeController',
+        ]);
+    }
+
+
+
 }

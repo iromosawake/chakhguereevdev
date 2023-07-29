@@ -5,34 +5,26 @@
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('styles/seances.css') }}" type="text/css">
-
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
-
     <script>
+        const openInNewTab = (url) => {
+            window.open(url, "_blank");
+        }
 
-            const openInNewTab = (url) => {
-                window.open(url, "_blank");
-            }
-
-            function pdf(s) {
-                var path = '{{ url('seances.pdf') }}';
-                openInNewTab(path + "/" + s);
-            }
-
-
+        function pdf(s) {
+            var path = '{{ url('seances.pdf') }}';
+            openInNewTab(path + "/" + s);
+        }
 
         $(document).ready(function () {
             var items = $('.seance_semaine');
             for (var i = 0; i <= items.length; i++) {
                 $('#seance_' + i).slideToggle();
             }
-
-
             $(".seance").click(function (event) {
-
                 $('#seance_' + event.target.id).slideToggle();
             });
 
@@ -40,7 +32,6 @@
                 var button = $(event.relatedTarget);
                 var recipient = button.data('programmeid');
                 var modal = $(this);
-
                 $.ajax({
                     url: '{{ (path('programme.action')) }}',
                     type: "GET",
@@ -53,51 +44,24 @@
                         modal.find('.modal-body ').html(data);
                     }
                 });
-
             })
-
-
-            //geoloc
-            // var options = {
-            //     enableHighAccuracy: true,
-            //     timeout: 5000,
-            //     maximumAge: 0
-            // };
-            //
-            // //notification
-            //
-            //
-            // function success(pos) {
-            //     var crd = pos.coords;
-            // }
-            //
-            // function error(err) {
-            //     console.warn(`ERREUR (${err.code}): ${err.message}`);
-            // }
-            //
-            // navigator.geolocation.getCurrentPosition(success, error, options);
         });
-
     </script>
-
 {% endblock %}
 
 {% block content %}
-
     {% for  seance in seances %}
         {% if loop.first %}
             <div class="row semaine">Semaine - {{ seance.semaine }} - {{ seance.programme_muscu }}</div>
         {% endif %}
-        <div class="row justify-content-end">
-            <div class="col-lg-1 col-md-2 col-sm-2 my-2 p-0 d-none d-md-block d-lg-block">
-                <button type="button" class="btn btn-primary" onclick="pdf({{ seance.semaine }})">Imprimer</button>
-                </a>
-            </div>
-        </div>
-
         <div class="row seance" id="{{ seance.id }}">🔽 Séance : {{ seance.id }} - {{ seance.zone }}</div>
-
         <div class="row seance_semaine" id="seance_{{ seance.id }}">
+            <div class="row justify-content-end">
+                <div class="col-lg-1 col-md-2 col-sm-2 my-1 p-0 d-none d-md-grid gap-2">
+                    <button type="button" class="btn btn-dark btn-sm" onclick="pdf({{ seance.id }})"><i
+                                class="fa-solid fa-file-pdf"></i></button>
+                </div>
+            </div>
             {% for  programme in seance.programmes %}
                 <div class="col-md-3  col-xs-12 d-flex align-items-stretch mb-2">
                     <div class="card text-center border border-dark shadow-2">
@@ -120,7 +84,6 @@
                 </div>
             {% endfor %}
         </div>
-
     {% endfor %}
 
     <!-- Modal -->

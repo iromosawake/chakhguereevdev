@@ -2,15 +2,14 @@
 
 namespace App\Service;
 
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 
 class MailerService
 {
-    private $replyTo;
-    public function __construct(private readonly MailerInterface $mailer, $replyTo) {
-        $this->replyTo = $replyTo;
+    private $adminEmail;
+    public function __construct(private readonly MailerInterface $mailer, $adminEmail) {
+        $this->adminEmail = $adminEmail;
     }
     public function sendEmail(
         $to = 'lioma.chakhguereev.sio@gmail.com',
@@ -23,7 +22,7 @@ class MailerService
             ->to($to)
             //->cc('cc@example.com')
             //->bcc('bcc@example.com')
-            ->replyTo($this->replyTo)
+            ->replyTo($this->adminEmail)
             //->priority(Email::PRIORITY_HIGH)
             ->subject($subject)
 //            ->text('Sending emails is fun again!')

@@ -4009,7 +4009,7 @@
         var additions = definitions.reduce(this._pullDefinitions, {});
         Object.keys(additions).forEach(function (key) {
           _this.definitions[key] = _objectSpread2(_objectSpread2({}, _this.definitions[key] || {}), additions[key]);
-          defineIcons(key, additions[key]); // TODO can we stop doing this? We can't get the icons by 'fa-solid' any longer so this probably needs to change
+          defineIcons(key, additions[key]);
 
           var longPrefix = PREFIX_TO_LONG_STYLE[FAMILY_CLASSIC][key];
           if (longPrefix) defineIcons(longPrefix, additions[key]);

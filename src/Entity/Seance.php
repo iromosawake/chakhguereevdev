@@ -36,6 +36,9 @@ class Seance
     #[ORM\Column(length: 100)]
     private ?string $programme_muscu = null;
 
+    #[ORM\ManyToOne(inversedBy: 'seances')]
+    private ?User $createdby = null;
+
     public function __construct()
     {
         $this->programmes = new ArrayCollection();
@@ -105,6 +108,18 @@ class Seance
     public function setProgramme_Muscu(string $programme_muscu): static
     {
         $this->programme_muscu = $programme_muscu;
+
+        return $this;
+    }
+
+    public function getCreatedby(): ?User
+    {
+        return $this->createdby;
+    }
+
+    public function setCreatedby(?User $createdby): static
+    {
+        $this->createdby = $createdby;
 
         return $this;
     }

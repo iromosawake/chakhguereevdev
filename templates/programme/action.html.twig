@@ -24,12 +24,12 @@
                         <h4>👊  Séries : {{ programme.series }} x {{ programme.reps }}</h4>
                         <h4>🏋️  Charge : {{ programme.charge }} </h4>
                         <h4>💪 RPE :{{ programme.rpe }}</h4>
+                        <h4 id="rest">⏱️  Repos : {{ programme.repos }}sec</h4>
+                        <h4 class='timer' data-seconds-left={{ programme.repos }}></h4>
                     </div>
                     <div class="col">
                         <h6>ℹ️ Consigne :</h6>
                         <p>{{ programme.exercice.consigne }}</p>
-                        <h4 id="rest">⏱️  Repos : {{ programme.repos }}sec</h4>
-                        <h4 class='timer' data-seconds-left={{ programme.repos }}></h4>
                     </div>
                 </div>
 

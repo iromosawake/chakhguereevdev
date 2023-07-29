@@ -16,7 +16,6 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route("/seances")]
 class SeancesController extends AbstractController
 {
-//TODO si num = null afficher les semaines possibles
     #[Route('/semaine/{num?0}', name: 'seances.all')]
     public function showAll(ManagerRegistry $doctrine, $num): Response
     {
@@ -34,6 +33,7 @@ class SeancesController extends AbstractController
         ]);
     }
 
+    //TODO Update creater_user
     #[Route('/edit/{id?0}', name: 'seances.edit')]
     public function editSeance(ManagerRegistry $doctrine, Request $request, Seance $seance = null): Response
     {
@@ -52,7 +52,7 @@ class SeancesController extends AbstractController
             $em->persist($seance);
             $em->flush();
             $this->addFlash('success', 'Seance a été edité avec succès !');
-            $this->redirectToRoute('seances.edit');
+            $this->redirect('seances.edit');
         }
         if ($formZone->isSubmitted()) {
             $em->persist($zone);
@@ -68,7 +68,7 @@ class SeancesController extends AbstractController
         ]);
     }
 
-    #[Route('/semaine/pdf/{num?1}', name: 'seances.pdf')]
+    #[Route('/semaine/pdf/{num?0}', name: 'seances.pdf')]
     public function seanceToPDf(ManagerRegistry $doctrine, PdfService $pdfService, int $num)
     {
         $repository = $doctrine->getRepository(Seance::class);
