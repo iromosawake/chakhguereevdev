@@ -23,9 +23,7 @@
     <table
             class="table table-striped table-dark"
             id="table"
-            data-show-columns="true"
-            data-mobile-responsive="true"
-            data-check-on-init="true">
+            data-mobile-responsive="true">
         <thead>
         <tr>
             <th scope="col" data-field="s">S</th>
@@ -56,7 +54,7 @@
         </tbody>
     </table>
     
-    <div class="col">
+    <div class="row">
 
         {{ form_start(form) }}
         {{ form_row(form.silence) }}
@@ -67,6 +65,7 @@
         {{ form_row(form.scribing) }}
         {{ form_rest(form) }}
         {{ form_end(form) }}
+        
     </div>
 
 {% endblock %}

@@ -52,7 +52,7 @@ class ExerciceController extends AbstractController
             $em->persist($exercice);
             $em->flush();
             $this->addFlash('success', $exercice->getNom() . ' a été edité avec succès !');
-            $this->redirectToRoute('exercice.edit');
+            return $this->redirectToRoute('exercice.edit');
 
         }
         return $this->render('exercice/add-exercice.html.twig', [

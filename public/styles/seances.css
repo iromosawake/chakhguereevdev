@@ -17,9 +17,42 @@
 }
 
 .card{
-    background-color: #bdc3c7;
+    background-color: #34495e;
 }
 
 .btn{
     color:white;
+}
+
+.card-body{
+    color: white;
+}
+
+.bg-main{
+background-color: #e74c3c !important;
+}
+
+.bg-seconds{
+    background-color: #bdc3c7 !important;
+}
+
+.link_edit{
+    color: white;
+    text-decoration: none;
+    padding: 4px;
+    margin-bottom: 4px;
+}
+
+.link_edit:hover{
+    color: #8de0ff;
+}
+
+.exercices {
+    padding: 4px;
+    margin: 4px;
+    box-shadow: 0 15px 30px 0 rgba(0,0,0,0.11),
+    0 5px 15px 0 rgba(0,0,0,0.08);
+    background-color: #ffffff;
+    border-radius: 0.5rem;
+    border-left: 0 solid #00ff99;
 }

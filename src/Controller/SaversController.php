@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Savers;
-use App\Form\ProgrammeType;
 use App\Form\SaversType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -31,7 +30,7 @@ class SaversController extends AbstractController
             $em->flush();
             $this->addFlash('success', 'SAVERS a été edité saisi !');
             $savers = new Savers();
-            $this->redirectToRoute('savers.insert');
+            return $this->redirectToRoute('savers.insert');
         }
 
 

@@ -3,14 +3,8 @@
 namespace App\Controller;
 
 
-use App\Entity\PatternMuscle;
 use App\Entity\Programme;
-use App\Entity\Seance;
-use App\Entity\Zone;
-use App\Form\PatterMuscleType;
 use App\Form\ProgrammeType;
-use App\Form\SeanceType;
-use App\Form\ZoneType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,22 +20,23 @@ class ProgrammeController extends AbstractController
         if (!$programme) {
             $programme = new Programme();
         }
+
         $form = $this->createForm(ProgrammeType::class, $programme);
         $form->handleRequest($request);
 
         $em = $doctrine->getManager();
 
-        if ($form->isSubmitted()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $em->persist($programme);
             $em->flush();
             $this->addFlash('success', 'Programme a été edité avec succès !');
-            $this->redirectToRoute('programme.edit');
+            return $this->redirectToRoute('programme.edit');
+        }else {
+            return $this->render('programme/index.html.twig', [
+                'controller_name' => 'ProgrammeController',
+                'form' => $form->createView()
+            ]);
         }
-
-        return $this->render('programme/index.html.twig', [
-            'controller_name' => 'ProgrammeController',
-            'form' => $form->createView()
-        ]);
     }
 
     #[Route('/show/{page?1}/{nombre?6}', name: 'programme.show')]

@@ -25,8 +25,6 @@ class SeancesController extends AbstractController
         } else {
             $seances = $repository->findBySemaine($num);
         }
-
-
         return $this->render('seances/index.html.twig', [
             'controller_name' => 'SeancesController',
             'seances' => $seances
@@ -58,7 +56,7 @@ class SeancesController extends AbstractController
             $em->persist($zone);
             $em->flush();
             $this->addFlash('success', 'Nouvelle zone a été crée avec succès !');
-            $this->redirectToRoute('programme.edit');
+            return $this->redirectToRoute('programme.edit');
         }
 
         return $this->render('seances/edit.html.twig', [

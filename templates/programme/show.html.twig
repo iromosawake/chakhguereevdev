@@ -22,13 +22,13 @@
 
 
 {% block content %}
-    <hr>
+    <h4>Programmes</h4>
     <table class="table table-striped table-dark "
            id="table"
            data-mobile-responsive="true">
         <thead>
         <tr>
-            <th scope="col" data-field="ordre">#</th>
+            <th scope="col" data-field="ordre">Ordre</th>
             <th scope="col" data-field="petern">Paterne</th>
             <th scope="col" data-field="exercice">Exercice</th>
             <th scope="col" data-field="series">Séries</th>
@@ -38,7 +38,8 @@
             <th scope="col" data-field="repos">Repos</th>
             <th scope="col" data-field="consigne">Consignes</th>
             {#            <th scope="col" data-field="video" >Vidéo</th> #}
-            <th scope="col" data-field="image">Image</th>
+            <th scope="col" data-field="image"></th>
+            <th scope="col" data-field="update">Dernière modification</th>
         </tr>
         </thead>
 
@@ -61,8 +62,8 @@
                 {#                </td> #}
                 <td><a href="{{ path('programme.edit',{id: programme.id}) }}"><img
                                 src="{{ asset('uploads/images/') ~ programme.exercice.image }}"
-                                class="img-fluid img-thumbnail " alt="{{ programme.exercice.nom }}"></a></td>
-
+                                 height=50px alt="{{ programme.exercice.nom }}"></a></td>
+                <td>{{ (programme.upated)?programme.upated |date("m/d/Y"): "" }}</td>
             </tr>
 
         {% endfor %}
