@@ -41,14 +41,15 @@
         <!-- Navbar-->
         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
             <li class="nav-item dropdown">
+
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
-                   aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                   aria-expanded="false">{{  (app.user)?app.user.prenom:"Anonymous" }}<i class="fas fa-user fa-fw"></i></a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                         <li><a class="dropdown-item" href="{{ path('app.logout') }}">Logout</a></li>
                     {% else %}
                         <li><a class="dropdown-item" href="{{ path('app.login') }}">Login</a></li>
-{#                        <li><a class="dropdown-item" href="{{ path('app.register') }}">Register</a></li>#}
+                        {#                        <li><a class="dropdown-item" href="{{ path('app.register') }}">Register</a></li> #}
                     {% endif %}
 
                 </ul>
@@ -61,20 +62,30 @@
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-                        <div class="sb-sidenav-menu-heading">Routine</div>
-
+                        <div class="sb-sidenav-menu-heading">Ma routine</div>
                         <a class="nav-link" href="{{ path('savers.insert') }}">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-dragon"></i></div>
                             S.A.V.E.R.S
                         </a>
-
-
+                        <div class="sb-sidenav-menu-heading">Mon challenge</div>
+                        <a class="nav-link" href="{{ path('seances.all') }}">
+                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            Mes séances
+                        </a>
+                        <a class="nav-link" href="{{ path('programme.show') }}">
+                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                            Programmes
+                        </a>
+                        <a class="nav-link" href="{{ path('exercice.all') }}">
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-hand-fist"></i></div>
+                            Exercices
+                        </a>
                         <div class="sb-sidenav-menu-heading">Administration</div>
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                            data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                             <!---ICI--->
-                            Programme muscu
+                            Base de données
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
@@ -85,63 +96,12 @@
                                 <a class="nav-link" href="{{ path('seances.edit') }}">Création seance</a>
                             </nav>
                         </div>
-
-
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
-                           aria-expanded="false" aria-controls="collapsePages">
-                            <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                            <!---ICI--->
-                            Articles
-                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                        </a>
-                        <div class="collapse" id="collapsePages" aria-labelledby="headingTwo"
-                             data-bs-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                                   data-bs-target="#pagesCollapseAuth" aria-expanded="false"
-                                   aria-controls="pagesCollapseAuth">
-                                    Santé
-                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                </a>
-                                <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne"
-                                     data-bs-parent="#sidenavAccordionPages">
-                                    <nav class="sb-sidenav-menu-nested nav">
-                                        <a class="nav-link" href="#">Jeune intermittent</a>
-                                        <a class="nav-link" href="#">Nutrition</a>
-                                        <a class="nav-link" href="#">Sommeil</a>
-                                    </nav>
-                                </div>
-                            </nav>
-                        </div>
-                        <div class="sb-sidenav-menu-heading">Musculation</div>
-                        <a class="nav-link" href="{{ path('seances.all') }}">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            Séances
-                        </a>
-                        <a class="nav-link" href="{{ path('programme.show') }}">
-                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                            Programmes
-                        </a>
-                        <a class="nav-link" href="{{ path('exercice.all') }}">
-                            <div class="sb-nav-link-icon"><i class="fa-solid fa-hand-fist"></i></div>
-                            Exercices
-                        </a>
-
                     </div>
-                </div>
-                <div class="sb-sidenav-footer">
-                    <div class="small">Compte :</div>
-                    CHAKHGUEREEVDEV
                 </div>
             </nav>
         </div>
-
-        {#        {{ include('fragments/date-jour.html.twig') }} #}
-        {#        {{ render('App\\Controller\\nomController:func',{max:10}) }} #}
-
     </div>
     <!--- message_session ---->
-
     <div id="content" class="container">
         <div class="container mt-5 px-4">
             {% for message in app.session.flashBag.get('info') %}

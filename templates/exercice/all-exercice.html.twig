@@ -13,8 +13,6 @@
 {% endblock %}
 
 {% block content %}
-    <h4>Exercices</h4>
-
         {% for  exercice in exercices %}
             <div class="row exercices {{ exercice.principal?"bg-main":"bg-seconds" }}">
                 {#                <div class="col  m-2" style="width: 18rem;"> </div> #}
@@ -22,11 +20,11 @@
                     <b>{{ exercice.nom }}</b>
                     <p>{{ exercice.patternMuscle }}</p>
                 </div>
-                <div class="col .d-none .d-md-block .d-lg-block ratio ratio-16x9">
+                <div class="col d-none d-md-block d-lg-block ratio ratio-16x9">
                     <iframe src="{{ exercice.video }}" class="responsive-iframe" allowfullscreen></iframe>
                 </div>
                 <div class="col">
-                    <img src="{{ asset('uploads/images/') ~ exercice.image }}" height="200px" class="w-100 m-auto rounded ">
+                    <img src="{{ asset('uploads/images/') ~ exercice.image }}" height="100px" class="m-auto rounded ">
                 </div>
                 <div class="col">
                     <button class="btn btn-dark btn-sm my-1 w-100" type="button"><a
@@ -34,14 +32,15 @@
                                 class="link_edit m-2"><i class="fa-sharp fa-solid fa-pen-to-square"></i></a>
                     </button>
                     <br>
-                    <button class="btn btn-dark btn-sm my-1 w-100" type="button" data-bs-toggle="modal" data-bs-target="#suppression"><a
+                    <button class="btn btn-dark btn-sm my-1 w-100" type="button" data-bs-toggle="modal"
+                            data-bs-target="#suppression"><a
                                 href="#" alt="Supprimer"
                                 class="link_edit m-2"><i class="fa-sharp fa-solid fa-trash"></i></a></button>
                 </div>
 
             </div>
         {% endfor %}
-
+<div class="row mb-2"></div>
     <!-- Modal -->
     <div class="modal fade" id="suppression" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">

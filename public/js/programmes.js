@@ -4,14 +4,16 @@ jQuery(document).ready(function ($) {
     });
 
     $("#rest").on('click', function () {
-        // alert("my message to you");
         $("#rest").addClass("d-none");
-        $('.timer').startTimer({
+
+
+        $timer = $('.timer').startTimer({
             onComplete: function (element) {
-                // $("#next").removeClass("d-none");
                 $('html, body').addClass('bodyTimeoutBackground');
-            }
+            },
+
         }).on('click', function () {
+
             $(".jst-hours").remove();
             $(".jst-minutes").remove();
             $(".jst-seconds").remove();
@@ -25,7 +27,7 @@ jQuery(document).ready(function ($) {
 });
 
 
-
+//vibration
 $(function() {
     var interval = 30;
     var duration= 1000;

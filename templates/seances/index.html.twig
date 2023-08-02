@@ -50,7 +50,6 @@
 {% endblock %}
 
 {% block content %}
-    <h4>Séances</h4>
     {% for  seance in seances %}
         {% if loop.first %}
             <div class="row semaine">Semaine - {{ seance.semaine }} - {{ seance.programme_muscu }}</div>
@@ -91,20 +90,15 @@
     <div class="modal fade" id="details_programme" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                {#                <div class="modal-header"> #}
-                {#                    <h1 class="modal-title fs-5" id="exampleModalLabel">C'est parti !</h1> #}
-                {#                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> #}
-                {#                </div> #}
                 <div class="modal-body">
-
                 </div>
                 <div class="modal-footer justify-content-evenly">
-                            <button type="button" class="btn btn-secondary btn-lg btn-block" data-bs-dismiss="modal">
-                                Fermer
-                            </button>
-                            <button type="button" class="btn btn-primary btn-lg btn-block" data-bs-dismiss="modal">
-                                Terminer
-                            </button>
+                    <button type="button" class="btn btn-secondary btn-lg btn-block" data-bs-dismiss="modal">
+                        Fermer
+                    </button>
+                    <button type="button" class="btn btn-primary btn-lg btn-block" data-bs-dismiss="modal">
+                        Terminer
+                    </button>
                 </div>
             </div>
         </div>

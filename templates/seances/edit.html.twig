@@ -24,9 +24,7 @@
 {% endblock %}
 
 {% block content %}
-    <hr>
     <div class="row">
-
         <div class="col">
             <h5>Création séance</h5>
             {{ form(form) }}
@@ -36,9 +34,11 @@
     </div>
     <hr>
     <div class="row">
-        <h5>Création nouvelle zone séance</h5>
-        {{ form(zoneForm) }}
-        {{ form_end(zoneForm) }}
+        <div class="col">
+            <h5>Création nouvelle zone séance</h5>
+            {{ form(zoneForm) }}
+            {{ form_end(zoneForm) }}
+        </div>
     </div>
 
 {% endblock %}
