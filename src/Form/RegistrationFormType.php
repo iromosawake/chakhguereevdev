@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -23,7 +24,12 @@ class RegistrationFormType extends AbstractType
             ->add('nom')
             ->add('prenom')
             ->add('age')
-            ->add('sexe')
+            ->add('sexe',ChoiceType::class, [
+                'choices'  => [
+                    'Homme' => true,
+                    'Femme' => false,
+                ],
+            ])
             ->add('image', FileType::class, [
                     'label' => 'Image',
                     // unmapped means that this field is not associated to any entity property
@@ -46,10 +52,11 @@ class RegistrationFormType extends AbstractType
                     ]
                 ])
             ->add('agreeTerms', CheckboxType::class, [
+                'label' => 'J\'accepte les conditions d\'utilisation',
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([
-                        'message' => 'You should agree to our terms.',
+                        'message' => 'Vous devez accepter les termes d\'utilisation pour continuer',
                     ]),
                 ],
             ])
