@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Security\EmailVerifier;
 use App\Security\LoginAuthenticator;
+use App\Service\UploaderService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -28,7 +29,7 @@ class RegistrationController extends AbstractController
     }
 
     #[Route('/register', name: 'app.register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, LoginAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
+    public function register(Request $request,UploaderService $uploaderService, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, LoginAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
     {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
@@ -42,6 +43,13 @@ class RegistrationController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
+            $image = $form->get('image')->getData();
+            // this condition is needed because the 'photo' field is not required
+            // so the image file must be processed only when a file is uploaded
+            if ($image) {
+                $directoryFolder = $this->getParameter('exercice_directory');
+                $user->setPhoto($uploaderService->uploadImage($image, $directoryFolder));
+            }
 
             $entityManager->persist($user);
             $entityManager->flush();

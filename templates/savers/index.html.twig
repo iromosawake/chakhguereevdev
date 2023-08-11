@@ -19,18 +19,52 @@
 {% endblock %}
 
 {% block content %}
-    <div class="row">
-        <div class="col mt-2">
-            <button type="button" class="btn btn-info" data-toggle="modal" data-target=".bd-affirmations-modal-lg">Mes affiramtions positives</button>
-        </div>
-        <div class="modal fade bd-affirmations-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    Here man
+    <!-- Modal -->
+    <div class="modal fade modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title" id="exampleModalLabel">Affiramtions positives</h6>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Je me sens bien,je suis en bonne santé et je vie consciemment et prends soins de moi</p>
+                    <p>Je suis patient et régulier</p>
+                    <p>Le positif attire le positif</p>
+                    <p>Je ne juge pas, ne critique pas et ne compare pas les personnes</p>
+                    <p>J'écoute non pas pour répondre mais pour comprendre la personne</p>
+                    <p>Je suis persévérant, je ne lâche rien</p>
+                    <p>L'alcool c'est mal ça crée de l'anxiété et détruit mon estime de moi</p>
+                    <p>La drogue c'est mal, ce n'est pas du bonheure</p>
+                    <p>Je suis un homme 10/10, je mérite le meilleur</p>
+                    <p>Tout ce que je donne aux autres me revient x100</p>
+                    <p>Je suis talentieux, je suis le profile recherché par les entreprises</p>
+                    <p>Je suis riche et je crée la vie que je désire</p>
+                    <p>Je suis fiable et on peut compter sur moi</p>
+                    <p>Je connais beaucoup de choses et je suis force de proposition</p>
+                    <p>Je suis créatif, je crée en non consomme</p>
+                    <p>Je supporte facilement l'inconfort, je m'adapte en fonction</p>
+                    <p>Je suis discipliné, je réussi tout ce que j'entreprends</p>
+                    <p>Je suis productif, je ne perds pas mon temps</p>
+                    <p>J'ouvre mon coeur à l'agréable et au désagréable</p>
+                    <p>Je n'ai pas peur de souffrir dans ma relation amoureuse, je fais confiance à ma femme</p>
+                    <p>Je reconnais mes imperfections et je les accepte, je peux même en rire d'eux</p>
+                    <p>Mes croyances limitantes ne sont que des croyannes</p>
+                    <p>Je ne doute en aucun cas de moi, je m'aime comme je suis, je m'éstime énormement et me fais confiance</p>
+                    <p>La peur ce n'est pas ce qui se passe mais comment on perçoit ce qui se passe</p>
+                    <p>Je ne vends pas mon âme, je me fais passer en priorité</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary1" data-bs-dismiss="modal">Terminé</button>
                 </div>
             </div>
         </div>
     </div>
+    <div class="row mt-1">
+        <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><button type="button" class="btn btn-info mt-2">Mes affiramtions positives</button></a>
+    </div>
+
+
 <div class="row">
         <div class="col-lg-6 mt-3">
             {{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}

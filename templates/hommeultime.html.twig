@@ -48,6 +48,7 @@
                    aria-expanded="false">{{  (app.user)?app.user.prenom:"" }}<i class="fas fa-user fa-fw"></i></a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <li><a class="dropdown-item" href="{{ path('app.home.muscugit') }}">Challenge</a></li>
                         <li><a class="dropdown-item" href="{{ path('app.logout') }}">Paramètres</a></li>
                         <li><a class="dropdown-item" href="{{ path('app.logout') }}">Logout</a></li>
                     {% else %}

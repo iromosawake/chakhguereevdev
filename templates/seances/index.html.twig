@@ -52,9 +52,9 @@
 {% block content %}
     {% for  seance in seances %}
         {% if loop.first %}
-            <div class="row semaine">Jour {{ seance.numJour | date('d') }} - {{ seance.programme_muscu }}</div>
+            <div class="row semaine ">Jour {{ seance.numJour | date('d') }} - {{ seance.programme_muscu }}</div>
         {% endif %}
-        <div class="row seance" id="{{ seance.id }}">🔽 Séance : {{ seance.id }} - {{ seance.zone }}</div>
+        <div class="row seance " id="{{ seance.id }}">🔽 Jour : {{ seance.numJour }} - {{ seance.zone }}</div>
         <div class="row seance_semaine" id="seance_{{ seance.id }}">
             <div class="row justify-content-end">
                 <div class="col-lg-1 col-md-2 col-sm-2 my-1 p-0 d-none d-md-grid gap-2">
@@ -63,8 +63,8 @@
                 </div>
             </div>
             {% for  programme in seance.programmes %}
-                <div class="col-md-3  col-xs-12 d-flex align-items-stretch mb-2">
-                    <div class="card text-center border border-dark shadow-2">
+                <div class="col-md-3  col-xs-12 d-flex align-items-stretch mb-2 ">
+                    <div class="card text-center gradient-border">
                         <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
                             <img src="{{ asset('uploads/images/') ~ programme.exercice.image }}" height="330px"
                                  class="card-img-top" alt="Card Image"/>
@@ -83,7 +83,12 @@
 
                 </div>
             {% endfor %}
+            <div class="row text-center mb-4">
+                <button type="submit" class="btn btn-dark ">J'ai terminé ma séance <i class="fa-solid fa-check"></i>
+                </button>
+            </div>
         </div>
+
     {% endfor %}
 
     <!-- Modal -->

@@ -5,7 +5,6 @@
 
 {% block javascripts %}
     {{ parent() }}
-
 {% endblock %}
 
 {% block stylesheets %}
@@ -14,19 +13,39 @@
 
 {% block content %}
     {% if app.user.challenge %}
-        <h4>Bienvenue {{ app.user.prenom }}</h4>
+        <div class="row">
+            <div class="col-6">
+                <h4>Bienvenue {{ app.user.prenom }}</h4>
+                <div>
+                    <img class="rounded-4 challenge m-1" src="{{ asset('uploads/images/') ~ app.user.photo }}"
+                         height=150px alt="">
+                </div>
+                <hr>
+            </div>
+            <div class="col-6">
+                <h4>Depuis {{ app.user.challenge.dateDebut | date("m/d/Y") }}, duree {{ app.user.challenge.nbSemaine }} semaines </h4>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-lg-6 text-center ">
+                <p>Photo 0</p>
+                <img class="rounded-4 challenge m-1" src="{{ asset('uploads/images/') ~ app.user.avant }}"
+                        height=50px alt="">
+            </div>
+            <div class="col-lg-6 text-center ">
+                <p>Photo 1</p>
+                <img class="rounded-4 challenge m-1" src="{{ asset('uploads/images/') ~ app.user.apres }}"
+                     height=50px alt="">
+            </div>
+        </div>
+
         <h5>Mon tableau de bord</h5>
-        <p>Jour challenge n°1/56</p>
         Entrainements réalisées
-        <p> Photo 0</p>
-        <p>Photo semaine 1</p>
-        <p>Photo semaine 2</p>
-        <p> Photo semaine 3</p>
-        <p>Photo semaine 4</p>
-        <p>Photo semaine 5</p>
-        <p> Photo semaine 6</p>
-        <p> Photo semaine 7</p>
-        <p> Photo semaine 8</p>
+        {% for seance_realises in app.user.challenge.seances %}
+           {{ dump(seance_realises) }}
+        {% endfor %}
+
+
     {% else %}
         <h4>Prêt pour ton challenge ?</h4>
 
