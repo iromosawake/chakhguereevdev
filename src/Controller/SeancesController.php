@@ -31,6 +31,21 @@ class SeancesController extends AbstractController
         ]);
     }
 
+    #[Route('/ma-seance/{num?0}', name: 'seances.day')]
+    public function mySeance(ManagerRegistry $doctrine, $num): Response
+    {
+        $repository = $doctrine->getRepository(Seance::class);
+        if ($num == 0) {
+            $seances = $repository->findAll();
+        } else {
+            $seances = $repository->findBySemaine($num);
+        }
+        return $this->render('seances/index.html.twig', [
+            'controller_name' => 'SeancesController',
+            'seances' => $seances
+        ]);
+    }
+
     //TODO Update creater_user
     #[Route('/edit/{id?0}', name: 'seances.edit')]
     public function editSeance(ManagerRegistry $doctrine, Request $request, Seance $seance = null): Response

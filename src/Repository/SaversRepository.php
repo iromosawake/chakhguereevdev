@@ -39,6 +39,12 @@ class SaversRepository extends ServiceEntityRepository
         }
     }
 
+
+    public function findAllSavers()
+    {
+        return $this->findBy(array(),array('created_at'=> 'DESC'),30);
+    }
+
 //    /**
 //     * @return Savers[] Returns an array of Savers objects
 //     */

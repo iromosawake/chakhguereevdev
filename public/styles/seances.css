@@ -7,7 +7,7 @@
 }
 
 .seance{
-    margin-top: 4px;
+    margin-top: 0px;
     font-size: 20px;
     font-weight: bold;
     color: #e74c3c;
@@ -39,8 +39,8 @@ background-color: #e74c3c !important;
 .link_edit{
     color: white;
     text-decoration: none;
-    padding: 4px;
-    margin-bottom: 4px;
+    padding: 2px;
+    margin-bottom: 2px;
 }
 
 .link_edit:hover{

@@ -18,14 +18,15 @@ class SaversController extends AbstractController
     {
         $savers = new Savers();
         $em = $doctrine->getManager();
-
-        $saverses = $em->getRepository(Savers::class)->findAll();
+// findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+        $saverses = $em->getRepository(Savers::class)->findAllSavers();
 
         $form = $this->createForm(SaversType::class, $savers);
 
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
             $savers->setCreatedAt(new \DateTime());
+            $savers->setUser($this->getUser());
             $em->persist($savers);
             $em->flush();
             $this->addFlash('success', 'SAVERS a été edité saisi !');

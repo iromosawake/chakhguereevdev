@@ -54,8 +54,7 @@ class ExerciceType extends AbstractType
                         'mimeTypesMessage' => "Le fichier n'est pas valide",
                     ])
                 ],
-            ])
-            ->add('Ajouter', SubmitType::class);
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

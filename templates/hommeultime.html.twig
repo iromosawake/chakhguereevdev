@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    Homme Ultime
+    ChallengePack🔥 
 {% endblock %}
 
 
@@ -25,10 +25,12 @@
     <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="{{ path('programme.show') }}">Homme ultime</a>
+        <a class="navbar-brand ps-3" href="{{ path('app.home.muscu') }}">ChallengePack🔥 </a>
         <!-- Sidebar Toggle-->
+        {% if is_granted('IS_AUTHENTICATED_FULLY')  %}
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
                     class="fas fa-bars"></i></button>
+        {% endif %}
         <!-- Navbar Search-->
         <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
             {#            <div class="input-group"> #}
@@ -43,9 +45,10 @@
             <li class="nav-item dropdown">
 
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
-                   aria-expanded="false">{{  (app.user)?app.user.prenom:"Anonymous" }}<i class="fas fa-user fa-fw"></i></a>
+                   aria-expanded="false">{{  (app.user)?app.user.prenom:"" }}<i class="fas fa-user fa-fw"></i></a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <li><a class="dropdown-item" href="{{ path('app.logout') }}">Paramètres</a></li>
                         <li><a class="dropdown-item" href="{{ path('app.logout') }}">Logout</a></li>
                     {% else %}
                         <li><a class="dropdown-item" href="{{ path('app.login') }}">Login</a></li>
@@ -56,7 +59,7 @@
             </li>
         </ul>
     </nav>
-
+    {% if is_granted('IS_AUTHENTICATED_FULLY') and app.user.challenge %}
     <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
@@ -68,17 +71,9 @@
                             S.A.V.E.R.S
                         </a>
                         <div class="sb-sidenav-menu-heading">Mon challenge</div>
-                        <a class="nav-link" href="{{ path('seances.all') }}">
+                        <a class="nav-link" href="{{ path('seances.day') }}">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            Mes séances
-                        </a>
-                        <a class="nav-link" href="{{ path('programme.show') }}">
-                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                            Programmes
-                        </a>
-                        <a class="nav-link" href="{{ path('exercice.all') }}">
-                            <div class="sb-nav-link-icon"><i class="fa-solid fa-hand-fist"></i></div>
-                            Exercices
+                            Ma séance
                         </a>
                         <div class="sb-sidenav-menu-heading">Administration</div>
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
@@ -94,6 +89,18 @@
                                 <a class="nav-link" href="{{ path('exercice.edit') }}">Création exercice </a>
                                 <a class="nav-link" href="{{ path('programme.edit') }}">Création programme </a>
                                 <a class="nav-link" href="{{ path('seances.edit') }}">Création seance</a>
+                                <a class="nav-link" href="{{ path('seances.day') }}">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                    Seances
+                                </a>
+                                <a class="nav-link" href="{{ path('programme.show') }}">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                    Programmes
+                                </a>
+                                <a class="nav-link" href="{{ path('exercice.all') }}">
+                                    <div class="sb-nav-link-icon"><i class="fa-solid fa-hand-fist"></i></div>
+                                    Exercices
+                                </a>
                             </nav>
                         </div>
                     </div>
@@ -101,26 +108,27 @@
             </nav>
         </div>
     </div>
+    {% endif %}
     <!--- message_session ---->
     <div id="content" class="container">
-        <div class="container mt-5 px-4">
             {% for message in app.session.flashBag.get('info') %}
-                <div class="mt-4 alert alert-info">
+                <br>
+                <div class="row alert alert-info">
                     {{ message }}
                 </div>
             {% endfor %}
             {% for message in app.session.flashBag.get('success') %}
-                <div class="mt-4 alert alert-success">
+                <br>
+                <div class="row alert alert-success">
                     {{ message }}
                 </div>
             {% endfor %}
             {% for message in app.session.flashBag.get('error') %}
-
-                <div class="mt-4 alert alert-danger">
+                <br>
+                <div class="row alert alert-danger">
                     {{ message }}
                 </div>
             {% endfor %}
-        </div>
         {% block content %}
 
         {% endblock %}

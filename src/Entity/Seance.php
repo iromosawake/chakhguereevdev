@@ -24,7 +24,7 @@ class Seance
     private ?int $id = null;
 
     #[ORM\Column(type: Types::SMALLINT)]
-    private ?int $semaine = null;
+    private ?int $numJour = null;
 
 
     #[JoinTable(name: 'seance_programme')]
@@ -53,14 +53,14 @@ class Seance
         return $this->id;
     }
 
-    public function getSemaine(): ?int
+    public function getNumJour(): ?int
     {
-        return $this->semaine;
+        return $this->numJour;
     }
 
-    public function setSemaine(int $semaine): self
+    public function setNumJour(int $numJour): self
     {
-        $this->semaine = $semaine;
+        $this->numJour = $numJour;
 
         return $this;
     }
@@ -101,7 +101,7 @@ class Seance
 
     public function __toString(): string
     {
-       return "Semaine : $this->semaine seance $this->id";
+       return "Semaine : $this->numJour seance $this->id";
     }
 
     public function getProgramme_Muscu(): ?string
