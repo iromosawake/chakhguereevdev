@@ -61,6 +61,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     private ?Challenge $challenge = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $poids = null;
+
     public function __construct()
     {
         $this->seances = new ArrayCollection();
@@ -270,6 +273,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setChallenge(?Challenge $challenge): static
     {
         $this->challenge = $challenge;
+
+        return $this;
+    }
+
+    public function getPoids(): ?int
+    {
+        return $this->poids;
+    }
+
+    public function setPoids(?int $poids): static
+    {
+        $this->poids = $poids;
 
         return $this;
     }

@@ -16,9 +16,16 @@
         <div class="row">
             <div class="col-6">
                 <h4>Bienvenue {{ app.user.prenom }}</h4>
-                <div>
-                    <img class="rounded-4 challenge m-1" src="{{ asset('uploads/images/') ~ app.user.photo }}"
-                         height=150px alt="">
+                <div class="row">
+                    <div class="col-lg-6 col-sm-12">
+                        <img class="rounded-2 challenge m-1" src="{{ asset('uploads/images/') ~ app.user.photo }}"
+                             height=150px alt="">
+                    </div>
+                   <div class="col-lg-6 col-sm-12">
+                       <p>Age {{ app.user.age }} Ans</p>
+                       <p>Poids {{ app.user.poids }} Kg</p>
+                       <p>Objectif {{ app.user.challenge.objectif }}</p>
+                   </div>
                 </div>
                 <hr>
             </div>

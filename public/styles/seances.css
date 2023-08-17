@@ -11,7 +11,7 @@
     font-size: 20px;
     font-weight: bold;
     color: #34495e;
-    background-color: #e74c3c;
+    background-color: #ecf0f1;
     padding: 4px 0px 4px 10px;
     margin-bottom: 4px;
 }
@@ -75,7 +75,7 @@ background-color: #e74c3c !important;
     font-size: 2.5rem;
 }
 .gradient-border {
-    --borderWidth: 3px;
+    --borderWidth: 4px;
     position: relative;
     border-radius: var(--borderWidth);
 }

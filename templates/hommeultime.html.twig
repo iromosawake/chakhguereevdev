@@ -1,15 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    ChallengePack🔥 
+    Challenger 🔥 
 {% endblock %}
 
 
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('node_modules/select2/dist/css/select2.min.css') }}" type="text/css"/>
-    <link rel="stylesheet"
-          href="{{ asset('node_modules/select2-bootstrap-5-theme/dist/select2-bootstrap-5-theme.rtl.min.css') }}"
+    <link rel="stylesheet" href="{{ asset('node_modules/select2-bootstrap-5-theme/dist/select2-bootstrap-5-theme.rtl.min.css') }}"
           type="text/css"/>
     <link href="{{ asset('styles/styles.css') }}" rel="stylesheet" type="text/css"/>
 {% endblock %}
@@ -25,7 +24,7 @@
     <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="{{ path('app.home.muscu') }}">ChallengePack🔥 </a>
+        <a class="navbar-brand ps-3" href="{{ path('app.home.muscu') }}">Challenger🔥 </a>
         <!-- Sidebar Toggle-->
         {% if is_granted('IS_AUTHENTICATED_FULLY')  %}
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
@@ -76,34 +75,24 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Ma séance
                         </a>
-                        <div class="sb-sidenav-menu-heading">Administration</div>
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                           data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                            <!---ICI--->
-                            Base de données
-                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        <div class="sb-sidenav-menu-heading">Admin</div>
+
+                        <a class="nav-link" href="{{ path('exercice.edit') }}">Création exercice </a>
+                        <a class="nav-link" href="{{ path('programme.edit') }}">Création programme </a>
+                        <a class="nav-link" href="{{ path('seances.edit') }}">Création seance</a>
+                        <div class="sb-sidenav-menu-heading">Contenu</div>
+                        <a class="nav-link" href="{{ path('seances.day') }}">
+                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            Seances
                         </a>
-                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
-                             data-bs-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="{{ path('exercice.edit') }}">Création exercice </a>
-                                <a class="nav-link" href="{{ path('programme.edit') }}">Création programme </a>
-                                <a class="nav-link" href="{{ path('seances.edit') }}">Création seance</a>
-                                <a class="nav-link" href="{{ path('seances.day') }}">
-                                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                    Seances
-                                </a>
-                                <a class="nav-link" href="{{ path('programme.show') }}">
-                                    <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                    Programmes
-                                </a>
-                                <a class="nav-link" href="{{ path('exercice.all') }}">
-                                    <div class="sb-nav-link-icon"><i class="fa-solid fa-hand-fist"></i></div>
-                                    Exercices
-                                </a>
-                            </nav>
-                        </div>
+                        <a class="nav-link" href="{{ path('programme.show') }}">
+                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                            Programmes
+                        </a>
+                        <a class="nav-link" href="{{ path('exercice.all') }}">
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-hand-fist"></i></div>
+                            Exercices
+                        </a>
                     </div>
                 </div>
             </nav>

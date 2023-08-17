@@ -61,7 +61,7 @@
         </div>
     </div>
     <div class="row mt-1">
-        <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><button type="button" class="btn btn-info mt-2">Mes affiramtions positives</button></a>
+        <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><button type="button" class="btn btn-affirmations mt-2">Mes affiramtions positives</button></a>
     </div>
 
 
@@ -75,7 +75,7 @@
             {{ form_row(form.reading) }}
             {{ form_row(form.scribing) }}
             {{ form_rest(form) }}
-            <div class="row text-center mb-4">
+            <div class="col text-center mb-4">
                 <button type="submit" class="btn btn-dark ">J'ai terminé ma routine</button>
             </div>
             {{ form_end(form) }}
@@ -101,12 +101,12 @@
                 {% for  saver in saverses %}
                     <tr class="table">
                         <td>{{ saver.createdAt | date('d-m-Y') }} {{ saver.createdAt | date('H:i') }}</td>
-                        <td>{{ (saver.silence)?"👌🏻 ":"🙄 " }}</td>
-                        <td>{{ (saver.affirmations)?"👌🏻 ":"🙄 " }}</td>
-                        <td>{{ (saver.visualisation)?"👌🏻 ":"🙄 " }}</td>
-                        <td>{{ (saver.exercice)?"👌🏻 ":"🙄 " }}</td>
-                        <td>{{ (saver.reading)?"👌🏻 ":"🙄 " }}</td>
-                        <td>{{ (saver.scribing)?"👌🏻 ":"🙄 " }}</td>
+                        <td>{{ (saver.silence)?"👌🏻 ":"❌ " }}</td>
+                        <td>{{ (saver.affirmations)?"👌🏻 ":"❌ " }}</td>
+                        <td>{{ (saver.visualisation)?"👌🏻 ":"❌ " }}</td>
+                        <td>{{ (saver.exercice)?"👌🏻 ":"❌ " }}</td>
+                        <td>{{ (saver.reading)?"👌🏻 ":"❌ " }}</td>
+                        <td>{{ (saver.scribing)?"👌🏻 ":"❌ " }}</td>
                     </tr>
                 {% endfor %}
                 </tbody>

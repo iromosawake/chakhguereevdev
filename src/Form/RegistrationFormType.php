@@ -24,6 +24,7 @@ class RegistrationFormType extends AbstractType
             ->add('nom')
             ->add('prenom')
             ->add('age')
+            ->add('poids')
             ->add('sexe',ChoiceType::class, [
                 'choices'  => [
                     'Homme' => true,
