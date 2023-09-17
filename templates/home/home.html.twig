@@ -12,7 +12,7 @@
 {% endblock %}
 
 {% block content %}
-    {% if app.user.challenge %}
+{#    {% if app.user.challenge %}#}
         <div class="row">
             <div class="col-6">
                 <h4>Bienvenue {{ app.user.prenom }}</h4>
@@ -24,14 +24,11 @@
                    <div class="col-lg-6 col-sm-12">
                        <p>Age {{ app.user.age }} Ans</p>
                        <p>Poids {{ app.user.poids }} Kg</p>
-                       <p>Objectif {{ app.user.challenge.objectif }}</p>
                    </div>
                 </div>
                 <hr>
             </div>
-            <div class="col-6">
-                <h4>Depuis {{ app.user.challenge.dateDebut | date("m/d/Y") }}, duree {{ app.user.challenge.nbSemaine }} semaines </h4>
-            </div>
+
         </div>
         <div class="row ">
             <div class="col-lg-6 text-center ">
@@ -48,40 +45,37 @@
 
         <h5>Mon tableau de bord</h5>
         Entrainements réalisées
-        {% for seance_realises in app.user.challenge.seances %}
-           {{ dump(seance_realises) }}
-        {% endfor %}
 
 
-    {% else %}
-        <h4>Prêt pour ton challenge ?</h4>
+{#    {% else %}#}
+{#        <h4>Prêt pour ton challenge ?</h4>#}
 
 
-        {{ form_errors(form) }}
+{#        {{ form_errors(form) }}#}
 
-        {{ form_start(form) }}
-    <div class="row ">
-        <div class="col-lg-4 text-center ">
-            <img class="rounded-4 challenge m-1" src='{{ asset('uploads/challenge/seche.png') }}' alt="Sèche"/>
-        </div>
-        <div class="col-lg-4 text-center ">
-            <img class="rounded-4 challenge m-1"src='{{ asset('uploads/challenge/force.png') }}' alt="Force" />
-        </div>
-        <div class="col-lg-4 text-center">
-            <img class="rounded-4 challenge  m-1" src='{{ asset('uploads/challenge/masse.png') }}' alt="Masse" />
-        </div>
-    </div>
+{#        {{ form_start(form) }}#}
+{#    <div class="row ">#}
+{#        <div class="col-lg-4 text-center ">#}
+{#            <img class="rounded-4 challenge m-1" src='{{ asset('uploads/challenge/seche.png') }}' alt="Sèche"/>#}
+{#        </div>#}
+{#        <div class="col-lg-4 text-center ">#}
+{#            <img class="rounded-4 challenge m-1"src='{{ asset('uploads/challenge/force.png') }}' alt="Force" />#}
+{#        </div>#}
+{#        <div class="col-lg-4 text-center">#}
+{#            <img class="rounded-4 challenge  m-1" src='{{ asset('uploads/challenge/masse.png') }}' alt="Masse" />#}
+{#        </div>#}
+{#    </div>#}
 
-        {{ form_rest(form) }}
-        <div class="row text-center mt-4 mb-3">
-            <div class="col">
-                <button type="button" class="btn btn-success ">Activer les noifications</button>
-            </div>
-        </div>
-        <div class="row text-center mb-4">
-            <button type="submit" class="btn btn-dark ">Démarrer le challenge!</button>
-        </div>
+{#        {{ form_rest(form) }}#}
+{#        <div class="row text-center mt-4 mb-3">#}
+{#            <div class="col">#}
+{#                <button type="button" class="btn btn-success ">Activer les noifications</button>#}
+{#            </div>#}
+{#        </div>#}
+{#        <div class="row text-center mb-4">#}
+{#            <button type="submit" class="btn btn-dark ">Démarrer le challenge!</button>#}
+{#        </div>#}
 
-        {{ form_end(form) }}
-    {% endif %}
+{#        {{ form_end(form) }}#}
+{#    {% endif %}#}
 {% endblock %}

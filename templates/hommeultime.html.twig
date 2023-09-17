@@ -59,7 +59,7 @@
             </li>
         </ul>
     </nav>
-    {% if is_granted('IS_AUTHENTICATED_FULLY') and app.user.challenge %}
+    {% if is_granted('IS_AUTHENTICATED_FULLY')  %}
     <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">

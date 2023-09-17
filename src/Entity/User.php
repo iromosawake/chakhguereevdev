@@ -58,8 +58,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?Challenge $challenge = null;
 
     #[ORM\Column(nullable: true)]
     private ?int $poids = null;
@@ -265,17 +263,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getChallenge(): ?Challenge
-    {
-        return $this->challenge;
-    }
-
-    public function setChallenge(?Challenge $challenge): static
-    {
-        $this->challenge = $challenge;
-
-        return $this;
-    }
 
     public function getPoids(): ?int
     {
