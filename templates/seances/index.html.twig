@@ -52,7 +52,7 @@
 {% block content %}
     {% for  seance in seances %}
         {% if loop.first %}
-            <div class="row semaine ">Semaine  {{ seance.programme_muscu }}</div>
+            <div class="row semaine ">Seances semaine</div>
         {% endif %}
         <div class="row seance " id="{{ seance.id }}">🔽  Jour : {{ seance.numJour }} - {{ seance.zone }}</div>
         <div class="row seance_semaine" id="seance_{{ seance.id }}">

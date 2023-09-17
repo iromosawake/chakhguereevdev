@@ -37,11 +37,13 @@ class Seance
     #[ORM\JoinColumn(nullable: false)]
     private ?Zone $zone = null;
 
-    #[ORM\Column(length: 100)]
-    private ?string $programme_muscu = null;
+
 
     #[ORM\ManyToOne(inversedBy: 'seances')]
     private ?User $createdby = null;
+
+    #[ORM\ManyToOne]
+    private ?Objectif $Objectif = null;
 
     public function __construct()
     {
@@ -104,18 +106,6 @@ class Seance
        return "Semaine : $this->numJour seance $this->id";
     }
 
-    public function getProgramme_Muscu(): ?string
-    {
-        return $this->programme_muscu;
-    }
-
-    public function setProgramme_Muscu(string $programme_muscu): static
-    {
-        $this->programme_muscu = $programme_muscu;
-
-        return $this;
-    }
-
     public function getCreatedby(): ?User
     {
         return $this->createdby;
@@ -124,6 +114,18 @@ class Seance
     public function setCreatedby(?User $createdby): static
     {
         $this->createdby = $createdby;
+
+        return $this;
+    }
+
+    public function getObjectif(): ?Objectif
+    {
+        return $this->Objectif;
+    }
+
+    public function setObjectif(?Objectif $Objectif): static
+    {
+        $this->Objectif = $Objectif;
 
         return $this;
     }

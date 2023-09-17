@@ -27,15 +27,16 @@
                     <img src="{{ asset('uploads/images/') ~ exercice.image }}" height="100px" class="m-auto rounded ">
                 </div>
                 <div class="col">
-                    <button class="btn btn-dark btn-sm my-1 w-100" type="button"><a
-                                href="{{ path('exercice.edit',{id:exercice.id}) }}" alt="Editer"
-                                class="link_edit m-2"><i class="fa-sharp fa-solid fa-pen-to-square"></i></a>
-                    </button>
+                    <a href="{{ path('exercice.edit',{id:exercice.id}) }}" alt="Editer" class="link_edit m-2">
+                        <button class="btn btn-dark btn-sm my-1 w-100" type="button">
+                            <i class="fa-sharp fa-solid fa-pen-to-square"></i>
+                    </button></a>
                     <br>
-                    <button class="btn btn-dark btn-sm my-1 w-100" type="button" data-bs-toggle="modal"
-                            data-bs-target="#suppression"><a
-                                href="#" alt="Supprimer"
-                                class="link_edit m-2"><i class="fa-sharp fa-solid fa-trash"></i></a></button>
+                    <a
+                            href="#" alt="Supprimer"
+                            class="link_edit m-2"><button class="btn btn-dark btn-sm my-1 w-100" type="button" data-bs-toggle="modal"
+                            data-bs-target="#suppression"><i class="fa-sharp fa-solid fa-trash"></i></button>
+                    </a>
                 </div>
 
             </div>

@@ -63,4 +63,15 @@ class SeanceRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+
+    //Récupérer les seances selon l'objectif
+    public function findSeanceByObjectif($value): array
+    {
+        return $this->createQueryBuilder('s')
+            ->andWhere('s.id = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }

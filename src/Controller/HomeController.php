@@ -30,7 +30,6 @@ class HomeController extends AbstractController
             $challenge = new Challenge();
             $date =new \DateTime();
             $date->format("d/m/Y");
-
             $challenge->setDateDebut($date);
             $challenge->setNbSemaine(8);
 
@@ -40,9 +39,27 @@ class HomeController extends AbstractController
             $em = $doctrine->getManager();
 
             if ($form->isSubmitted() && $form->isValid()) {
+
+                switch ($challenge->getId()) {
+                    case 1://eche
+                        echo "i égal 0";
+                        break;
+                    case 2://force
+                        echo "i égal 1";
+                        break;
+                    case 3://masse
+                        //Création de programmes pour l'utilisateur pour chaque séance
+
+                        foreach ($arr as &$value) {
+                            $value = $value * 2;
+                        }
+                        break;
+                }
+
                 $em->persist($challenge);
                 $user->setChallenge($challenge);
                 $em->persist($user);
+
                 $em->flush();
                 $this->addFlash('success', 'Votre challenge a été créé avec succès !');
 

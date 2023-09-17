@@ -49,9 +49,9 @@
                     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                         <li><a class="dropdown-item" href="{{ path('app.home.muscu') }}">Challenge</a></li>
                         <li><a class="dropdown-item" href="{{ path('app.logout') }}">Paramètres</a></li>
-                        <li><a class="dropdown-item" href="{{ path('app.logout') }}">Logout</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app.logout') }}">Me déconnecter</a></li>
                     {% else %}
-                        <li><a class="dropdown-item" href="{{ path('app.login') }}">Login</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app.login') }}">Me connecter</a></li>
                         {#                        <li><a class="dropdown-item" href="{{ path('app.register') }}">Register</a></li> #}
                     {% endif %}
 
@@ -119,6 +119,7 @@
                     {{ message }}
                 </div>
             {% endfor %}
+
         {% block content %}
 
         {% endblock %}

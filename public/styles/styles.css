@@ -109,7 +109,8 @@ color: #ff6b81;
 
 #content{
 background-color: #ffffff;
-  padding: 10px;
+  padding: 20px;
+  height: 100%;
   height: auto;
 }
 

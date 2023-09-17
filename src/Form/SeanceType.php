@@ -13,7 +13,6 @@ class SeanceType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('semaine')
             ->add('zone')
             ->add('programmes')
             ->add('Creer', SubmitType::class)
