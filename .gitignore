@@ -9,6 +9,8 @@
 /var/
 /vendor/
 /.idea/
+node_modules
+dist
 ###< symfony/framework-bundle ###
 
 ###> phpunit/phpunit ###
