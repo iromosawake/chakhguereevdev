@@ -57,7 +57,7 @@ h6 {
 }
 
 img {
-    max-width: 100%;
+    max-width: 50%;
     height: auto;
 }
 
@@ -89,12 +89,9 @@ section h2 {
 
 /* MENUNAVBAR */
 .navbar {
-
     font-size: 12px;
     letter-spacing: 4px;
-    text-transform: uppercase;
     font-weight: bold;
-    border-bottom: 1px solid white;
 }
 
 body>nav {
@@ -119,10 +116,15 @@ body>nav {
     line-height: 46px;
 }
 
+.nav-pills .nav-link{
+    padding: 0px 30px;
+}
+
 .nav-pills .nav-link.active {
     color: #d82c2e !important;
     background-color: white !important;
     border-radius: 0px;
+    padding: 0px 30px;
 }
 
 .nav li a:hover,
@@ -136,16 +138,11 @@ body>nav {
 
 /* ABOUT */
 #about {
-    padding-top: 100px;
+    padding-top: 50px;
     background-color: var(--bg-light);
 }
 
-#about_desc {
-    background-color: var(--bg-color);
-    border: solid var(--bg-light);
-    border-radius: 10px;
-    color: var(--text-secondary);
-}
+
 
 .profile-picture {
     text-align: center;
@@ -172,6 +169,7 @@ body>nav {
     display: inline-block;
     transition: all 0.3s ease-in 0s;
     margin-top: 10px;
+    text-decoration: none;
 }
 
 .boutton1:hover {
