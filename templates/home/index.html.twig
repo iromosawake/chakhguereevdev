@@ -1,11 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}CHAKHGUEREEV
+{% block title %}
+    CHAKHGUEREEV-DEV
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
-    <script src="{{ asset('js/cv_responsive_animations.js') }}" type="text/javascript"></script>
+{#    <script src="{{ asset('js/cv_responsive_animations.js') }}" type="text/javascript"></script>#}
 
 {% endblock %}
 
@@ -19,20 +20,18 @@
 
     <section id="about">
 
-        <div class="col-xs-8 col-md-4 profile-picture">
-            <img src="{{ asset('images/photo_perso2-grey.gif') }}" class="rounded-circle" alt="photo_profile"/>
+        <div class="profile-picture">
+            <img src="{{ asset('images/photo_perso2-grey.gif') }}"  alt="photo profile"/>
         </div>
 
         <div class="heading">
             <h1>Lioma CHAKHGUEREEV</h1>
-            <h3>Développeur web</h3>
-            <a href="{{ asset('documents/CV.pdf') }}" class="boutton1" target="_blank">Télécharger CV</a>
+            <a href="{{ asset('documents/CV.pdf') }}" class="button1" target="_blank">Télécharger CV</a>
         </div>
 
         <div class="container">
             <div id="about_desc">
-                <h4>De nature créative dès mon enfance, notamment dans le domaine du dessin, le code est une passion
-                    équivalente à un jeu vidéo pour moi</h4>
+                <h5>En recherche de poste en tant que developpeur PHP Symfony actuellement</h5>
                 <ul>
                     <li><h5>Curieux</h5>
                         Etant petit j'adorais inventer des jeux en dessinant sur e papier, plus tard j'utilisais un
@@ -49,88 +48,136 @@
                         Mais je trouve qu'il n'y a rien de plus efficace et satisfaisant que de chercher les solutions
                         et apprendre sois même.
                     </li>
-                    <li><h5>Un côté technique</h5>
-                        Du fait de mon Bac Pro Systèmes Electroniques et Numériques, j'ai travaillé en tant que
-                        dépanneur d'appareils électroniques chez <a target="_blank"
-                                                                    href="https://electronikservice.com/">Electronik
-                            Service</a>
-                        à Clermont Ferrand. Ce qui m'a appris des techniques de recherche de pannes en divisant le
-                        problème en deux.<br>Analyser si c'est un problème plutôt électronique ou mécanique,
-                        d'alimentation primaire ou secondaire,etc...
-                        Je m'en sers de ces méthodes lors de la recherche de bug
-                    </li>
-                    <li><h5>Trilingue</h5>
-                        Je parle le français, l'<a target="_blank" href="{{ asset('documents/toic.pdf') }}">anglais</a>
-                        et le russe. C'est aussi de là que vient ma capacité à apprendre les langages informatiques.
-                        Cela mepermet aussi de m'informer à l'aide des ressources pouvant venir d'autres pays.
-                    </li>
                 </ul>
-            </div>
-        </div>
-    </section>
 
+                <div class="heading">
+                    <h2>PROJETS</h2>
+                </div>
+                <div id="portfolio">
+                    <div class="projet">
+                        <a href="https://github.com/iromosawake/projetPOEC" target="_blank">
+                            <img src="{{ asset('images/hometraining.png') }}" alt="projet POEC HomeTraining C# MVVM Prism"/>
+                        </a>
+                    </div>
+                    <div class="projet">
+                        <a href="https://github.com/iromosawake/atelier_electronik" target="_blank">
+                            <img src="{{ asset('images/atelier_electronik.png') }}" alt="Application web de gestion de dépannages projet perso"/>
+                        </a>
 
-    <section id="skills">
-        <div class="container">
-            <div class="red-divider"></div>
-            <div class="heading">
-                <h2>Compétences</h2>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-value-min="0"
-                                 aria-valuemax="100" style="width:85%">
-                                <h5>BOOTSTRAP CSS
-                                </h5>
-                            </div>
-                        </div>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-value-min="0"
-                                 aria-valuemax="100" style="width:85%">
-                                <h5>PHP SYMFONY
-                                </h5>
-                            </div>
-                        </div>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-value-min="0"
-                                 aria-valuemax="100" style="width:90%">
-                                <h5>JAVASCRIPT
-                                </h5>
-                            </div>
-                        </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-value-min="0"
-                                 aria-valuemax="100" style="width:85%">
-                                <h5>C# .NET
-                                </h5>
-                            </div>
-                        </div>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-value-min="0"
-                                 aria-valuemax="100" style="width:85%">
-                                <h5>SQL
-                                </h5>
-                            </div>
-                        </div>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-value-min="0"
-                                 aria-valuemax="100" style="width:90%">
-                                <h5>ANGULAR
-                                </h5>
-                            </div>
-                        </div>
+                    <div class="projet">
+                        <a href="{{ path('programme.show') }}" target="_blank">
+                            <img src="{{ asset('images/hola_muscu.png') }}" alt="Projet perso PHP Symfony : Challenger"/>
+                        </a>
                     </div>
+                </div>
+
+                <div class="heading">
+                    <h2>SKILLS</h2>
+                </div>
+
+                    <div id="skills">
+                        <div class="item-skill">
+                            <img src="{{ asset('documents/html-css.webp') }}" alt="comp"/>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-value-min="0"
+                                     aria-valuemax="100" style="width:100%">
+                                    <h5>Avancé</h5>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="item-skill">
+                            <img src="{{ asset('documents/git.webp') }}" alt="comp"/>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-value-min="0"
+                                     aria-valuemax="100" style="width:85%">
+                                    <h5>Quotidien</h5>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="item-skill">
+                            <img src="{{ asset('documents/php.webp') }}" alt="comp"/>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-value-min="0"
+                                     aria-valuemax="100" style="width:85%">
+                                    <h5>Maitrisé</h5>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="item-skill">
+                            <img src="{{ asset('documents/dotnet.webp') }}" alt="comp"/>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-value-min="0"
+                                     aria-valuemax="100" style="width:85%">
+                                    <h5>Modéré</h5>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="item-skill">
+                            <img src="{{ asset('documents/js-ts.webp') }}" alt="comp"/>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-value-min="0"
+                                     aria-valuemax="100" style="width:85%">
+                                    <h5>Avancé</h5>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="item-skill">
+                            <img src="{{ asset('documents/java.webp') }}" alt="comp"/>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-value-min="0"
+                                     aria-valuemax="100" style="width:40%">
+                                    <h5>Midium</h5>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="item-skill">
+                            <img src="{{ asset('documents/nodejs.webp') }}" alt="comp"/>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-value-min="0"
+                                     aria-valuemax="100" style="width:40%">
+                                    <h5>En cours...</h5>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="item-skill">
+                            <img src="{{ asset('documents/react.webp') }}" alt="comp"/>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-value-min="0"
+                                     aria-valuemax="100" style="width:40%">
+                                    <h5>En cours...</h5>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="item-skill">
+                            <img src="{{ asset('documents/docker.webp') }}" alt="comp"/>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-value-min="0"
+                                     aria-valuemax="100" style="width:40%">
+                                    <h5>En cours...</h5>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
                 </div>
 
             </div>
         </div>
     </section>
 
+
     <section id="experience">
         <div class="container">
-            <div class="white-divider"></div>
             <div class="heading">
                 <h2>Expérience progessionelle</h2>
             </div>
@@ -189,7 +236,6 @@
 
     <section id="education">
         <div class="container">
-            <div class="red-divider"></div>
             <div class="heading">
                 <h2>Formation</h2>
             </div>
@@ -229,34 +275,6 @@
             </table>
         </div>
     </section>
-
-    <section id="portfolio">
-        <div class="container">
-            <div class="white-divider"></div>
-            <div class="heading">
-                <h2>Portfolio</h2>
-            </div>
-            <div class="row">
-                <div class="col-sm-4">
-                    <a href="https://github.com/iromosawake/projetPOEC" target="_blank">
-                        <img class="img-thumbnail" src="{{ asset('images/hometraining.png') }}" alt="alt"/>
-                    </a>
-                </div>
-                <div class="col-sm-4">
-                    <a href="https://github.com/iromosawake/atelier_electronik" target="_blank">
-                        <img class="img-thumbnail" src="{{ asset('images/atelier_electronik.png') }}" alt="alt"/>
-                    </a>
-
-                </div>
-                <div class="col-sm-4">
-                    <a href="{{ path('programme.show') }}" target="_blank">
-                        <img class="img-thumbnail" src="{{ asset('images/hola_muscu.png') }}" alt="alt"/>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
 
     <footer class="text-center">
         <h6>

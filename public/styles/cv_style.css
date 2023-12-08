@@ -1,9 +1,4 @@
 /*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
     Created on : 17 févr. 2021, 19:56:56
     Author     : iromos
 */
@@ -14,7 +9,7 @@ body {
     font-family: 'Lato', sans-serif;
     position: relative;
     --bg-color: #173754;
-    --bg-light: #6798C4;
+    --bg-light: #2c3e50;
     --text-primary: #FFFFFF;
     --text-secondary: #FFFFFF;
     --href-color: #FF5757;
@@ -35,6 +30,7 @@ body.dark {
 body {
     color: var(--text-secondary);
     background-color: white;
+    box-sizing: border-box;
 }
 
 a {
@@ -52,8 +48,12 @@ h4,
 h5,
 h6 {
     font-weight: bold;
-    padding: 10px 0px;
+    padding: 4px 0px;
     margin: 0px;
+}
+
+h2{
+    padding-top: 1rem;
 }
 
 img {
@@ -63,7 +63,7 @@ img {
 
 section .heading {
     text-align: center;
-    padding-bottom: 40px;
+    padding-bottom: 1rem;
 
 }
 
@@ -72,20 +72,13 @@ ul li {
 }
 
 section {
-    padding: 45px 0px 80px 0px;
-    min-height: 800px;
+    padding: 2rem 0px 2rem 0px;
 }
 
 section h2 {
     text-transform: uppercase;
 }
 
-.red-divider {
-    width: 100px;
-    height: 2px;
-    background: #d82c2e;
-    margin: 0 auto;
-}
 
 /* MENUNAVBAR */
 .navbar {
@@ -138,16 +131,16 @@ body>nav {
 
 /* ABOUT */
 #about {
-    padding-top: 50px;
+    padding-top: 2rem;
     background-color: var(--bg-light);
 }
 
-
-
-.profile-picture {
+.profile-picture img{
     text-align: center;
     margin: 0 auto;
-    float: none;
+    border-radius: 140px;
+    display: block;
+    max-height: 30vh;
 }
 
 #about .heading h1 {
@@ -155,16 +148,12 @@ body>nav {
     text-transform: uppercase;
 }
 
-#about .heading h3 {
-    color: var(--text-secondary);
-}
-
-.boutton1 {
+.button1 {
     font-weight: bold;
     color: white;
     text-transform: uppercase;
     border: 1px solid white;
-    padding: 18px 50px;
+    padding: 1rem 50px;
     border-radius: 3px;
     display: inline-block;
     transition: all 0.3s ease-in 0s;
@@ -172,30 +161,63 @@ body>nav {
     text-decoration: none;
 }
 
-.boutton1:hover {
+.button1:hover {
     background: white;
     color: #ff6666;
     text-decoration: none;
 }
 
+/* PORTFOLIO */
+#portfolio {
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    background: var(--bg-light);
+    justify-content: space-evenly;
+}
+
+#portfolio .projet{
+    margin: 1rem;
+}
+
+#portfolio h2 {
+    color: var(--text-secondary);
+}
+
+#portfolio img {
+    filter: grayscale(100%);
+    -webkit-filter: grayscale(100%);
+    min-height: 125px;
+    max-height: 30vh;
+    max-width:100% ;
+    border: 4px solid rgba(255, 255, 255, .55);
+    border-radius: 12px;
+}
+
+#portfolio img:hover {
+    filter: none;
+    -webkit-filter: none;
+}
+
 
 /* SKILLS */
 #skills {
-    padding-top: 100px;
-    background: var(--bg-color);
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: space-evenly;
+}
+#skills item-skill{
+    color:white;
+    text-align: center;
+    width: 150px;
 }
 
-
-#skills .heading h2 {
-    color: var(--text-primary);
-    text-transform: uppercase;
-
-
-}
 
 #skills .progress {
     height: 10%;
-    margin: 30px 20px;
+    height: 10%;
+    margin: 6px 10px;
     background: #ffcccc;
 }
 
@@ -207,10 +229,8 @@ body>nav {
     text-shadow: 1px 1px 1px black;
 }
 
-
 /* EXPERIENCE */
 #experience {
-    padding-top: 100px;
     background-color: var(--bg-light);
 }
 
@@ -340,14 +360,12 @@ body>nav {
 
 /*EDUCATION */
 #education {
-    padding-top: 100px;
-    background: var(--bg-color);
-
+    background: var(--bg-light);
 }
 
 
 .table>:not(caption)>*>*{
-    background: var(--bg-color);
+    background: var(--bg-light);
     color: var(--text-secondary);
 }
 
@@ -356,25 +374,7 @@ body>nav {
 }
 
 
-/* PORTFOLIO */
-#portfolio {
-    padding-top: 100px;
-    background: var(--bg-light);
-}
 
-#portfolio h2 {
-    color: var(--text-secondary);
-}
-
-#portfolio img {
-    filter: grayscale(100%);
-    -webkit-filter: grayscale(100%);
-}
-
-#portfolio img:hover {
-    filter: none;
-    -webkit-filter: none;
-}
 
 
 
