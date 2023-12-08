@@ -70,14 +70,14 @@ nav {
     background: #333;
     padding: 1rem 1rem;
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: column wrap;
     justify-content: center;
     align-items: center;
 }
 
 .logo {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
     justify-content: center;
     align-items: center;
 }
@@ -95,7 +95,7 @@ nav {
 
 nav ul {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: column wrap;
     list-style: none;
     font-weight: 700;
 }

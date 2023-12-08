@@ -1,0 +1,65 @@
+/*  Vp + header -------------------------------------------------------------------------------*/
+
+header{
+     flex-direction: column;
+}
+
+
+header ul{
+    border-top: 1px solid #ddd;
+    flex-direction: column;
+    text-align: center;
+}
+
+header ul li{
+    border-bottom: 1px dotted #ddd;
+    width: 100%;
+    padding: 0.5rem;
+}
+header ul li a{
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+
+header p {    
+    text-align: center;
+}
+
+.vp-content p{
+    color: white;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.vp-logo{
+justify-content: space-between;
+}
+
+.offer-list {
+    flex-flow: column nowrap;
+}
+
+.who{
+    flex-flow: column nowrap;
+}
+
+.title{
+    margin-left: 1rem;
+}
+
+.who-content-img img{
+    display: block;
+}
+
+.contact-form-button{
+    width: 100%;    
+}
+
+.offer-elem-img{
+    max-width: 280px;
+    display: block;
+    margin: auto;
+}

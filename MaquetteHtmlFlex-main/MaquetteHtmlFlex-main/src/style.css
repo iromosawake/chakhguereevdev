@@ -1,0 +1,266 @@
+/* reset */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+p{
+    margin-bottom: 0.8rem;
+}
+
+h1,h2,h3,h4{
+    margin-bottom: 1rem;   
+}
+
+a {
+    color: #333;
+    text-decoration: none;
+}
+
+body{
+    font-family: "OpenSans-Regular";
+    background: #eee;
+}
+
+@font-face {
+    font-family: Anton-Regular;
+    src: url("public/Anton-Regular.ttf");
+  }
+
+/* class  */
+
+.container{
+    display: block;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.bg-dark{
+    background: #333;
+    color: white;
+}
+
+/*  Vp + header -------------------------------------------------------------------------------*/
+
+.vp-container{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header{
+    background: #2c3e50;
+    flex-basis: 60px;
+    padding: 1rem 1rem;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+
+header a {
+    color:white;
+    font-family: Anton-Regular;
+    text-shadow: 1px 1px 2px black;
+}
+
+header img{
+    height: 50px;
+}
+
+header ul{
+    display: flex;
+    flex-flow: row nowrap;
+    list-style: none;
+    align-items: center;
+}
+
+header ul li{
+    padding: 1rem;
+}
+
+header ul li a:hover{
+    color:#e74c3c;
+}
+.vp{
+    background: white;
+    flex: auto;
+}
+
+.vp-logo{
+    font-size: 1.8rem;
+    color: white;
+    margin-bottom: 0;
+    font-size: 1rem;
+    font-weight: 200;
+    letter-spacing: 2px;
+    font-family: Anton-Regular;
+    display: flex; 
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+}
+.vp-logo p{
+    margin-bottom: 0;
+    margin-left: 0.5rem;
+    text-shadow: 1px 1px 2px black;
+}
+
+/* VP Content milieu */
+.vp{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    background: url("public/images/cover.jpg") center center /cover;
+}
+
+.vp-content{
+    max-width: 800px;
+    text-align: center;
+}
+
+/* VP Content milieu --------------------------------------------------*/
+.vp-content p{
+    color: white;
+    font-size: 1.8rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    line-height: 2rem;
+    text-shadow: 1px 1px 2px black;
+}
+
+.vp-content a{
+    color: #e74c3c;
+}
+
+.vp-content strong{
+    color: #e74c3c;
+}
+
+/* Services offers -------------------------------------------------------------------------------*/
+
+.offer{
+    padding: 10rem 1 rem 10rem 1rem;
+}
+
+.offer-list{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    list-style: none;    
+}
+
+.offer-elem{
+    border : 1px solid #ddd;
+    margin: 1rem;
+    flex: 1;
+    background: white;
+}
+
+.title{
+    font-weight: 500;
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    font-family: Anton-Regular;
+    letter-spacing: 2px;
+}
+
+.offer-elem-img{
+    width: 100%;
+    max-height: 198px;
+}
+
+.offer-elem-text{
+    padding: 2rem;
+    text-align: center;
+
+}
+
+
+.offer-separator{
+    height: 2px;
+    margin: 1rem auto;
+    width: 50px;
+    background: #333;
+}
+
+
+/* who content --------------------------------------------------*/
+.who {
+    margin-top: 2rem;
+    display: flex;
+    flex-flow: row nowrap;
+
+}
+
+.who-content-img{
+    flex:1 ;
+}
+
+.who-content-img img{
+    width: 100%;
+    height: 100%;
+}
+
+.who-content-text{
+   flex: 1;
+   padding: 2rem;
+   display: flex; 
+   flex-direction: column;
+   justify-content: center;   
+}
+
+.who-content-text p{
+    font-size: 1.3rem;
+}
+
+
+/* Contact-----------------------------------------------------------------*/
+.contact{
+    padding: 2rem 1rem 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+
+}
+
+.contact-form{
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.contact-form input{
+    background: #ddd;
+    border: 0;
+    border-bottom: 1px sold #555;
+    padding: 1rem;
+    font-size: 1.2rem;
+    outline: 0;
+
+}
+
+.contact-form-button{
+    display: block;
+    margin: 2rem auto;
+    padding: 1rem 2rem;
+    border: 0;
+    border-radius: 30px;
+    background: #e74c3c;
+    color: white;
+    font-weight: 700;
+}
+
+footer{
+    margin-bottom: 0;
+    padding: 2rem 1rem 2rem 1rem;
+    color: white;
+    text-align: center;
+}
+
+footer a {
+    color: white;
+}
