@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "sass": "sass -w punlic/scss:public/css",
+    "sass": "sass -w public/scss:public/styles",
     "start": "vite",
     "build": "vite build",
     "preview": "vite preview"

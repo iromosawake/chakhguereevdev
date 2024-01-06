@@ -1,0 +1,22 @@
+.title{
+    &-small{
+        letter-spacing: 0.5rem;
+        font-size: 1.7rem;
+    }
+}
+
+.text{
+    &-primary{
+        color: var(--primary);
+    }
+    &-hint {
+        color: var(--hint);
+      }
+}
+
+.heading {
+    color: var(--text-primary);
+    text-transform: uppercase;
+    text-align: center;
+    padding: 2rem 0;
+}

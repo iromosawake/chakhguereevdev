@@ -1,0 +1,15 @@
+:root {
+  --font-family-muli: "Muli", sans-serif;
+  --font-family-lato: "Lato", sans-serif;
+  --light: #00c3ff;
+  --primary: #2071e7;
+  --dark: #2980b9;
+  --text: #333;
+  --background: #fafafa;
+  --hint: #999;
+  --border: #ddd;
+  --gray: #333;
+  --info:#f1c40f;
+}
+
+/*# sourceMappingURL=variables.css.map */

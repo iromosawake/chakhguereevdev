@@ -12,41 +12,44 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    <link href="{{ asset('styles/cv_style.css') }}" rel="stylesheet" type="text/css"/>
-    <link media="only screen and (max-width: 700px)" href="{{ asset('styles/cv_style.mobile.css') }}"  rel="stylesheet" type="text/css" />
+    {#    <link href="{{ asset('styles/cv_style.css') }}" rel="stylesheet" type="text/css"/> #}
+    <link href="{{ asset('styles/variables.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('styles/style_cv.css') }}" rel="stylesheet" type="text/css"/>
+{#    <link media="only screen and (max-width: 700px)" href="{{ asset('styles/cv_style.mobile.css') }}" rel="stylesheet"type="text/css"/> #}
 {% endblock %}
 
 {% block body %}
-    <nav>
-        <div class="col">
-            <h2 class="logo"><i class="bi bi-terminal"></i><a href="https://github.com/iromosawake">Chakhguereev
-                    Lioma</a></h2>
-            <i>Développeur web full-stack</i>
-        </div>
+    <header>
+        <nav>
+            <div>
+                <h2 class="logo"><i class="bi bi-terminal"></i><a href="https://github.com/iromosawake">Chakhguereev
+                        Lioma</a></h2>
+                <i>Développeur web full-stack</i>
+            </div>
 
-        <ul>
-            <li class="nav-item">
-                <a class="nav-link" href="#about" id="about_butt">À propos de moi</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#skills" id="skills_butt">SKILLS</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#experience" id="experience_butt">Expériences</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#education" id="education_butt">Formations</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#portfolio" id="portfolio_butt">Code</a>
-            </li>
-            <li>
-                <a class="nav-link" href="#" onclick="darkulaMode();">
-                    <i id="darkula_mode" class="bi bi-brightness-low-fill"></i></a>
-            </li>
-        </ul>
-    </nav>
-
+            <ul>
+                <li class="nav-item">
+                    <a class="nav-link" href="#about" id="about_butt">À propos de moi</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#skills" id="skills_butt">SKILLS</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#experience" id="experience_butt">Expériences</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#education" id="education_butt">Formations</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#portfolio" id="portfolio_butt">Code</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="#" onclick="darkulaMode();">
+                        <i id="darkula_mode" class="bi bi-brightness-low-fill"></i></a>
+                </li>
+            </ul>
+        </nav>
+    </header>
     <div class="vp-content">
 
         <section id="about">
@@ -57,9 +60,7 @@
             <a href="{{ asset('documents/CV.pdf') }}" class="button1" target="_blank">Télécharger CV</a>
 
             <div class="desc">
-                <div class="heading">
-                    <h2>A propos de moi</h2>
-                </div>
+                <h2 class="heading">A propos de moi</h2>
                 <p>
                     Développeur junior en quête d'apprentissage continu et passionné par la programmation web avec
                     Symfony. Mon enthousiasme pour relever de nouveaux défis et ma volonté de perfectionner mes
@@ -89,9 +90,8 @@
                 </p>
             </div>
 
-            <div class="heading">
-                <h2>PROJETS</h2>
-            </div>
+            <h2 class="heading">PROJETS</h2>
+
             <div id="portfolio">
                 <div class="projet">
                     <a href="https://github.com/iromosawake/projetPOEC" target="_blank">
@@ -107,7 +107,7 @@
 
                 </div>
                 <div class="projet">
-                    <a href="https://github.com/iromosawake/MaquetteHtmlFlex" target="_blank">
+                    <a href="{{ path('programme.show') }}" target="_blank">
                         <img src="{{ asset('images/hola_muscu.png') }}"
                              alt="Projet perso PHP Symfony : Challenger"/>
                     </a>
@@ -120,17 +120,18 @@
                 </div>
             </div>
 
-            <div class="heading">
-                <h2>SKILLS</h2>
-            </div>
+
+            <h2 class="heading">SKILLS</h2>
 
             <div id="skills">
-                <div class="item-skill">
-                    <img src="{{ asset('documents/html-css.webp') }}" alt="comp"/>
-                    <div class="bar">
-                        <div class="progress html-css"></div>
+                <a href="{{ asset('documents/certificationhtml-css.pdf') }}" target="_blank">
+                    <div class="item-skill">
+                        <img src="{{ asset('documents/html-css.webp') }}" alt="comp"/>
+                        <div class="bar">
+                            <div class="progress html-css"></div>
+                        </div>
                     </div>
-                </div>
+                </a>
 
                 <div class="item-skill">
                     <img src="{{ asset('documents/git.webp') }}" alt="comp"/>
@@ -139,19 +140,23 @@
                     </div>
                 </div>
 
-                <div class="item-skill">
-                    <img src="{{ asset('documents/php.webp') }}" alt="comp"/>
-                    <div class="bar">
-                        <div class="progress php"></div>
+                <a href="{{ asset('documents/') }}" target="_blank">
+                    <div class="item-skill">
+                        <img src="{{ asset('documents/php.webp') }}" alt="comp"/>
+                        <div class="bar">
+                            <div class="progress php"></div>
+                        </div>
                     </div>
-                </div>
+                </a>
 
-                {#                <div class="item-skill"> #}
-                {#                    <img src="{{ asset('documents/dotnet.webp') }}" alt="comp"/> #}
-                {#                    <div class="bar"> #}
-                {#                        <div class="progress net"></div> #}
-                {#                    </div> #}
-                {#                </div> #}
+                <a href="{{ asset('documents/dotNet Comp.pdf') }}" target="_blank">
+                    <div class="item-skill">
+                        <img src="{{ asset('documents/dotnet.webp') }}" alt="comp"/>
+                        <div class="bar">
+                            <div class="progress net"></div>
+                        </div>
+                    </div>
+                </a>
 
                 <div class="item-skill">
                     <img src="{{ asset('documents/js-ts.webp') }}" alt="comp"/>
@@ -194,10 +199,7 @@
 
 
         <section id="experience">
-
-            <div class="heading">
-                <h2>Expérience professionelle</h2>
-            </div>
+            <h2 class="heading">Expérience professionelle</h2>
 
             <div class="exp">
                 <div class="exp-date" style="text-align: right;">Fevrier 2018 - Aout 2018</div>
@@ -230,9 +232,7 @@
         </section>
 
         <section id="education">
-            <div class="heading">
-                <h2>Formation</h2>
-            </div>
+            <h2 class="heading">Formation</h2>
             <table class="table text-left">
                 <tbody>
                 <tr>
@@ -274,8 +274,7 @@
     </div>
 
 
-    <footer class="text-center">
-        <div class="footer">
+    <footer>
             <h6>
                 <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewbox="0 0 512 512" height="1.5em"
                      width="1.5em" xmlns="http://www.w3.org/2000/svg">
@@ -284,7 +283,6 @@
                 CHAKHGUEREEV LIOMA . 2023
             </h6>
             <h6>Tous droits réservés.</h6>
-        </div>
         <div class="links">
             <div class="space-x-6 md:space-x-4 flex flex-row justify-center md:justify-end items-center text-gray-200 w-full">
                 <a href="https://www.linkedin.com/in/lioma-chakhguereev-3a353175/" target="_blank" rel="noreferrer"
@@ -302,8 +300,6 @@
                     </svg>
                 </a></div>
         </div>
-
-
     </footer>
 
 {% endblock %}

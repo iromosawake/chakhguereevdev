@@ -1,0 +1,226 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: var(--font-family-lato);
+  color: var(--text);
+  font-size: 1.6rem;
+}
+
+p {
+  margin: 1rem 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 1rem 0 2rem 0;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  color: var(--href-color);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--href-color-h);
+}
+
+img {
+  max-width: 100%;
+}
+
+.title-small {
+  letter-spacing: 0.5rem;
+  font-size: 1.7rem;
+}
+
+.text-primary {
+  color: var(--primary);
+}
+.text-hint {
+  color: var(--hint);
+}
+
+.heading {
+  color: var(--text-primary);
+  text-transform: uppercase;
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.mb-5 {
+  margin-bottom: 5rem;
+}
+
+/* Landscape phones and down */
+/* Landscape phone to portrait tablet */
+/* Portrait tablet to landscape and desktop */
+/* Large desktop */
+.grid-container {
+  display: grid;
+  grid: "picture header" auto "aside main" 1fr "footer footer" auto/350px auto;
+  min-height: 100vh;
+}
+
+header {
+  grid-area: header;
+  text-align: center;
+  color: white;
+  background: linear-gradient(to right, var(--primary), var(--light));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+header h1 {
+  font-size: 6rem;
+  line-height: 8rem;
+  font-weight: 300;
+  padding: 5rem;
+  letter-spacing: 3rem;
+}
+header p {
+  font-size: 2rem;
+  letter-spacing: 0.5rem;
+}
+
+.picture {
+  grid-area: picture;
+  padding: 4rem;
+  background: var(--background);
+  border-right: 1px solid #ddd;
+}
+.picture img {
+  border-radius: 50%;
+}
+
+aside {
+  grid-area: aside;
+  background: var(--background);
+  border-right: 1px solid #ddd;
+  padding: 5rem;
+}
+aside .block {
+  margin-bottom: 5rem;
+}
+aside .block h3 {
+  margin-bottom: 0;
+  font-size: 1.4rem;
+}
+aside .block p {
+  margin: 0 0 2rem 0;
+  font-style: italic;
+}
+aside .block .bar-skill {
+  margin: 2rem 0;
+  height: 5px;
+  background: var(--hint);
+  position: relative;
+}
+aside .block .bar-skill .bar-skill-progress {
+  position: absolute;
+  height: 5px;
+  top: 0;
+  left: 0;
+  width: 80%;
+  background: var(--light);
+}
+aside .block .bar-skill .bar-skill-dot {
+  position: absolute;
+  height: 10px;
+  width: 10px;
+  background: var(--dark);
+  left: calc(80% - 5px);
+  top: -2.5px;
+  transform: rotate(45deg);
+}
+aside .block .star-container {
+  display: flex;
+  margin: 2rem 0 3rem 0;
+  color: var(--hint);
+}
+aside .block .star-container i {
+  font-size: 2rem;
+  margin: 0 1rem;
+}
+
+main {
+  grid-area: main;
+  margin: 5rem;
+}
+main h2 {
+  margin-bottom: 4rem;
+}
+main p {
+  letter-spacing: 0.1rem;
+  line-height: 3rem;
+}
+
+footer {
+  grid-area: footer;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  padding: 5rem;
+  background: var(--text);
+}
+footer h2 {
+  margin-bottom: 3rem;
+}
+footer form {
+  display: flex;
+  align-items: center;
+}
+footer form .prefix, footer form .postfix {
+  background: linear-gradient(to right, var(--dark), var(--light));
+  padding: 1rem 2rem;
+  color: white;
+  font-size: 2rem;
+}
+footer form .prefix {
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+}
+footer form button {
+  background: var(--text);
+  border: 0;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+footer form button:hover {
+  opacity: 0.8;
+}
+footer form button .postfix {
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+footer form input {
+  outline: 0;
+  border: 0;
+  min-width: 400px;
+  padding: 1rem 2rem;
+  line-height: 2rem;
+}
+footer form input::placeholder {
+  color: var(--text);
+}
+
+/*# sourceMappingURL=style.css.map */
