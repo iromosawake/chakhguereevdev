@@ -2,6 +2,7 @@
 @use "base" as *;
 @use "classes" as *;
 @use "utils" as *;
+@use "animations" as *;
 @use "media-queries" as *;
 
 body {
@@ -133,7 +134,7 @@ section {
 #about {
   .profile-picture img {
     border-radius: 50%;
-    max-height: 30vh;
+    max-height: 20vh;
   }
 
   .button1 {
@@ -177,7 +178,7 @@ section {
     filter: grayscale(100%);
     -webkit-filter: grayscale(100%);
     min-height: 125px;
-    max-height: 30vh;
+    max-height: 25vh;
     max-width: 100%;
     border-radius: 10px;
     transition: transform 1s;
@@ -287,6 +288,7 @@ section {
 
     .exp-date {
       font-weight: 600;
+      letter-spacing: 0.2rem;
     }
 
     .exp-separator {
@@ -299,21 +301,28 @@ section {
 
     .point {
       height: 0.8rem;
-      width: 0.8rem;
+      width: 0.1rem;
       background: var(--dev-green);
       border-radius: 10px;
+      animation: grandir 1s;
+      animation-iteration-count: infinite;
     }
 
     .exp-details {
+      text-align: center;
+      box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
       background: white;
       color: black;
       padding: 1rem;
       border-radius: 10px;
       transition: transform 1s;
       transition-duration: 0.5s;
-
-      a {
-        color: var(--info);
+      img{
+        height: 40px;
+      }
+      p {
+        text-align: left;
+        margin-left: 1rem;
       }
 
       &:hover {
@@ -328,6 +337,13 @@ section {
 /*EDUCATION */
 #education {
   width: 100%;
+  table{
+    width: 100%;
+    td{
+      padding: 0.5rem;
+
+    }
+  }
 }
 
 
