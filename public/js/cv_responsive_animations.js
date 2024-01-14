@@ -84,40 +84,9 @@ $(document).ready(function () {
         });
     }
 
-    if (localStorage.getItem('darkula')) {
-        document.querySelector('body').classList.toggle('dark');
-    } else {
 
-    }
-
-    // $(".animation").mouseover(function(){
-    //     $(this).animate({
-    //         height:'348px',
-    //         width:'356px',
-    //         left : '-11px',
-    //     })
-    // });
-    //
-    // $(".animation").mouseout(function(){
-    //     $(this).animate({
-    //         height:'416px',
-    //         width:'427px',
-    //         left : '0px',
-    //     })
-    // });
 
 });
 
-function darkulaMode() {
-    const darkula = document.querySelector('#darkula_mode');
-    if (darkula.getAttribute("class") === 'bi bi-brightness-low-fill') {
-        darkula.setAttribute("class", 'bi bi-brightness-low');
-        document.querySelector('body').classList.toggle('dark');
-        localStorage.setItem("darkula", "actif");
-    } else {
-        localStorage.removeItem("darkula");
-        darkula.setAttribute("class", 'bi bi-brightness-low-fill');
-        document.querySelector('body').classList.remove('dark');
-    }
-}
+
 

@@ -25,7 +25,7 @@ body{
 
 @font-face {
     font-family: Anton-Regular;
-    src: url("public/Anton-Regular.ttf");
+    src: url("/chakhguereevdev/public/fonts/Anton-Regular.ttf");
   }
 
 /* class  */
@@ -112,7 +112,7 @@ header ul li a:hover{
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
-    background: url("public/images/cover.jpg") center center /cover;
+    background: url("/chakhguereevdev/public/images/maquette/cover.jpg") center center /cover;
 }
 
 .vp-content{

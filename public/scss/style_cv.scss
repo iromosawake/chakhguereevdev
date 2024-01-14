@@ -6,6 +6,19 @@
 @use "media-queries" as *;
 
 body {
+  --dev-green: #63cdda;
+  --bg-color: #596275;
+  --bg-light: #ecf0f1;
+  --text-primary: #574b90;
+  --text-secondary: black;
+  --href-color: #cc4764 ;
+  --href-color-h: #e74c3c;
+  --gray: #333;
+  --bar:#2980b9;
+  --text-footer: #FFFFFF;
+}
+
+body.dark {
   --dev-green: #00ff99;
   --bg-color: #173754;
   --bg-light: #2c3e50;
@@ -13,15 +26,9 @@ body {
   --text-secondary: #FFFFFF;
   --href-color: white;
   --href-color-h: #2ecc71;
-}
-
-body.dark {
-  --bg-color: #13161a;
-  --bg-light: #173754;
-  --text-primary: #fff;
-  --text-secondary: #ffffff;
-  --href-color: #7a8cc7;
-  --href-color-h: #7ac78d;
+  --gray: #333;
+  --bar:#16a085;
+  --text-footer: #FFFFFF;
 }
 
 body {
@@ -50,6 +57,7 @@ header {
   background: var(--gray);
 
   nav {
+    color:var(--text-footer);
     display: flex;
     flex-flow: row nowrap;
     padding: 2rem 1rem;
@@ -59,6 +67,9 @@ header {
       flex-flow: column wrap;
       align-items: start;
       padding: 2rem 3rem;
+    }
+    a{
+      color:var(--text-footer);
     }
     i{
       @include xs {
@@ -84,6 +95,7 @@ header {
 
       a {
         font-size: 1.6rem;
+        color:var(--text-footer);
         @include xs {
 
         }
@@ -142,7 +154,7 @@ section {
     min-width: 150px;
     font-weight: bold;
     text-transform: uppercase;
-    border: 1px solid white;
+    border: 1px solid var(--text-secondary);
     padding: 1rem 50px;
     border-radius: 3px;
     transition: all 0.3s ease-in 0s;
@@ -178,11 +190,12 @@ section {
     filter: grayscale(100%);
     -webkit-filter: grayscale(100%);
     min-height: 125px;
-    max-height: 25vh;
+    max-height: 20vh;
     max-width: 100%;
     border-radius: 10px;
     transition: transform 1s;
     transition-duration: 0.3s;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
 
     &:hover {
       filter: none;
@@ -215,6 +228,7 @@ section {
       transition: transform 1s;
       transition-duration: 1s;
 
+
       &:hover {
         transform: scale(1.3);
         transition-duration: 1s;
@@ -227,7 +241,7 @@ section {
     height: 0.8rem;
     border-radius: 4px;
     border: 1px solid black;
-    background: #16a085;
+    background:var(--bar) ;
     width: 60%;
 
     .progress {
@@ -244,7 +258,7 @@ section {
 }
 
 .git {
-  width: 61%;
+  width: 74%;
 }
 
 .php {
@@ -301,7 +315,7 @@ section {
 
     .point {
       height: 0.8rem;
-      width: 0.1rem;
+      width: 0.2rem;
       background: var(--dev-green);
       border-radius: 10px;
       animation: grandir 1s;
@@ -349,6 +363,7 @@ section {
 
 /* --------------------------------- FOOTER------------------------------------------------------------------- */
 footer {
+  color:var(--text-footer);
   background: var(--gray);
   padding: 2rem 2rem;
   text-align: center;
@@ -356,5 +371,6 @@ footer {
   svg {
     font-size: 0.8rem;
   }
+
 }
 
