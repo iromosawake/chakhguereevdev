@@ -10,7 +10,7 @@
 {% block javascripts %}
     {{ parent() }}
     <script>
-        const openInNewTab = (url) => {
+        /*const openInNewTab = (url) => {
             window.open(url, "_blank");
         }
 
@@ -45,51 +45,42 @@
                     }
                 });
             })
-        });
+        });*/
     </script>
 {% endblock %}
 
 {% block content %}
-    {% for  seance in seances %}
-        {% if loop.first %}
-            <div class="row semaine ">Seances semaine</div>
-        {% endif %}
-        <div class="row seance " id="{{ seance.id }}">🔽  Jour : {{ seance.numJour }} - {{ seance.zone }}</div>
-        <div class="row seance_semaine" id="seance_{{ seance.id }}">
-            <div class="row justify-content-end">
-                <div class="col-lg-1 col-md-2 col-sm-2 my-1 p-0 d-none d-md-grid gap-2">
-                    <button type="button" class="btn btn-dark btn-sm" onclick="pdf({{ seance.id }})"><i
-                                class="fa-solid fa-file-pdf"></i></button>
-                </div>
-            </div>
-            {% for  programme in seance.programmes %}
-                <div class="col-md-3  col-xs-12 d-flex align-items-stretch mb-2 ">
-                    <div class="card text-center gradient-border">
-                        <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-                            <img src="{{ asset('uploads/images/') ~ programme.exercice.image }}" height="330px"
-                                 class="card-img-top" alt="Card Image"/>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">{{ programme.exercice.nom }}</h5>
-                            <p class="card-text">
-                                {{ programme.exercice.patternMuscle }}
-                            </p>
-                            <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                                    data-bs-target="#details_programme" data-programmeid="{{ programme.id }}">
-                                Go  💯 
-                            </button>
-                        </div>
-                    </div>
+{% for  seance in seances %}
+            {% if loop.first %}
+               <h2>Seances semaine</h2>
+            {% endif %}
+            <div class="seance" id="{{ seance.id }}">🔽  Jour : {{ seance.numJour }} - {{ seance.zone }}</div>
 
-                </div>
-            {% endfor %}
-            <div class="col text-center mb-4">
-                <button type="submit" class="btn btn-dark ">J'ai terminé ma séance <i class="fa-solid fa-check"></i>
-                </button>
-            </div>
-        </div>
 
+            <div class="seance_semaine" id="seance_{{ seance.id }}">
+                <button type="button" class="btn btn-primary" onclick="pdf({{ seance.id }})"><i
+                            class="fa-solid fa-file-pdf"></i></button>
+            </div>
+
+        {% for  programme in seance.programmes %}
+                <div class="exercice-view">
+                        <img src="{{ asset('uploads/images/') ~ programme.exercice.image }}" height="330px" alt="Card Image"/>
+                        <h5>{{ programme.exercice.nom }}</h5>
+                        <h6>{{ programme.exercice.patternMuscle }}</h6>
+                        <button type="button" class="btn btn-action" data-bs-toggle="modal"
+                                data-bs-target="#details_programme" data-programmeid="{{ programme.id }}">
+                            Go  💯 
+                        </button>
+                </div>
+        {% endfor %}
+            <button type="submit" class="btn-done btn btn-primary">J'ai terminé ma séance <i class="fa-solid fa-check"></i>
+            </button>
     {% endfor %}
+
+
+
+
+
 
     <!-- Modal -->
     <div class="modal fade" id="details_programme" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

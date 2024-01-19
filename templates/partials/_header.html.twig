@@ -1,0 +1,23 @@
+<header>
+	<div class="navbar content">
+		<a class="header-logo" href="#">
+			<a class="navbar-brand" href="{{ path('app.home.muscu') }}">Challenger🔥</a>
+			<img src="{{ asset('uploads/challenge/s') }}">
+		</a>
+
+		<div class="header-search p-10 flex-fill">
+			<i class="fa-solid fa-search"></i>
+			<input type="text">
+		</div>
+
+		
+
+			{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+				{{ (app.user)?app.user.prenom:"" }} <a class="dropdown-item" href="{{ path('app.logout') }}">Me déconnecter</a>
+			{% else %}
+				<a class="dropdown-item" href="{{ path('app.login') }}"><button class="btn btn-primary">Connexion</button></a>
+			{% endif %}
+		
+	</div>
+	<div class="bars-menu"><i class="fa-solid fa-bars"></i></div>
+</header>

@@ -1,0 +1,284 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: var(--font-family-lato);
+  color: var(--text);
+  font-size: 1.6rem;
+}
+
+p {
+  margin: 1rem 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 1rem 0 2rem 0;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  color: var(--href-color);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--href-color-h);
+}
+
+img {
+  max-width: 100%;
+}
+
+.title-small {
+  letter-spacing: 0.5rem;
+  font-size: 1.7rem;
+}
+
+.text-primary {
+  color: var(--primary);
+}
+.text-hint {
+  color: var(--hint);
+}
+
+.heading {
+  color: var(--text-primary);
+  text-transform: uppercase;
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.mb-5 {
+  margin-bottom: 5rem;
+}
+
+@keyframes grandir {
+  0% {
+    height: 2px;
+  }
+  10% {
+    height: 4px;
+  }
+  30% {
+    height: 10px;
+  }
+  50% {
+    height: 14px;
+  }
+  70% {
+    height: 18px;
+  }
+  100% {
+    height: 22px;
+  }
+}
+/* Landscape phones and down */
+/* Landscape phone to portrait tablet */
+/* Portrait tablet to landscape and desktop */
+/* Large desktop */
+body {
+  --dev-green: #63cdda;
+  --bg-color: #596275;
+  --bg-light: #ecf0f1;
+  --text-primary: #574b90;
+  --text-secondary: black;
+  --href-color: #cc4764 ;
+  --href-color-h: #e74c3c;
+  --gray: #333;
+  --bar:#2980b9;
+  --text-footer: #FFFFFF;
+}
+
+body.dark {
+  --dev-green: #00ff99;
+  --bg-color: #173754;
+  --bg-light: #2c3e50;
+  --text-primary: #FFFFFF;
+  --text-secondary: #FFFFFF;
+  --href-color: white;
+  --href-color-h: #2ecc71;
+  --gray: #333;
+  --bar:#16a085;
+  --text-footer: #FFFFFF;
+}
+
+body {
+  font-family: var(--font-family-lato);
+  color: var(--text-secondary);
+}
+
+/* Main container */
+.vp-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.vp-content {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: stretch;
+  justify-items: center;
+  padding: 20px;
+  width: 100%;
+}
+
+.sidebar {
+  display: flex;
+  flex-flow: column;
+  margin-right: 5rem;
+}
+@media (max-width: 480px) {
+  .sidebar {
+    position: fixed;
+    top: 68px;
+    left: 0;
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-left: -100%;
+    background-color: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(7px);
+    transition: all 0.5s ease;
+    width: 100%;
+  }
+  .sidebar a {
+    color: black;
+    margin-left: 1rem;
+  }
+}
+
+.youtube-video {
+  aspect-ratio: 16/9;
+  width: 100%;
+}
+
+.jst-hours {
+  display: none;
+}
+
+.jst-minutes {
+  float: left;
+}
+
+.jst-seconds {
+  float: left;
+}
+
+.jst-clearDiv {
+  clear: both;
+}
+
+.jst-timeout {
+  color: white;
+}
+
+.see {
+  padding-top: 22px;
+  padding-bottom: 20px;
+  color: #212529;
+}
+
+.action-bg {
+  background-color: #95a5a6;
+}
+
+.bg-main-prog {
+  background-color: #e74c3c;
+}
+
+.exercice-view {
+  padding: 2rem 0;
+  width: 100%;
+  margin: 2rem 0;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+@media (max-width: 480px) {
+  .exercice-view {
+    padding: 0;
+    padding-bottom: 2rem;
+  }
+}
+.exercice-view img {
+  border-radius: 8px;
+}
+@media (max-width: 480px) {
+  .exercice-view img {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}
+.exercice-view h5 {
+  font-weight: 800;
+}
+.exercice-view button {
+  border-radius: 6px;
+}
+
+.btn-done {
+  margin: 0.5rem 0px 3rem 0px;
+}
+
+/*   Header     */
+header {
+  display: flex;
+  background-color: white;
+  flex-flow: row nowrap;
+  padding: 2rem;
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width: 480px) {
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    justify-content: end;
+    width: 100%;
+  }
+}
+header .navbar {
+  display: flex;
+  flex: 1;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+}
+@media (max-width: 480px) {
+  header .navbar {
+    display: none;
+  }
+}
+header .bars-menu {
+  display: none;
+}
+@media (max-width: 480px) {
+  header .bars-menu {
+    display: flex;
+    font-size: 2.6rem;
+  }
+}
+
+.mobile-menu {
+  margin-left: 0;
+}
+
+/*# sourceMappingURL=challenger.css.map */

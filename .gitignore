@@ -7,8 +7,9 @@
 /config/secrets/prod/prod.decrypt.private.php
 /public/bundles/
 /var/
-/vendor/
+/vendor
 /.idea/
+/.vscode
 node_modules
 dist
 ###< symfony/framework-bundle ###

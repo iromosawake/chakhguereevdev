@@ -1,0 +1,48 @@
+<div class="sidebar">
+    {#  <a href="#" class="btn btn-primary btn-icon-primary"> #}
+    {#  <i class="fa-solid fa-question mr-5"></i> #}
+    {#  <span>Poser une question</span> #}
+    {#  </a> #}
+    <ul class="sidebar-nav py-20">
+        {# {{ dump(app.request.pathinfo) }}
+  {{ dump(path('home')) }} #}
+        {#  <a href="{{ path('home') }}" {% if app.request.pathinfo == '/' %} class="active" {% endif %}> #}
+        {#    <i class="fa-solid fa-home mr-5"></i> #}
+        {#    Liste des questions #}
+        {#  </a> #}
+
+
+
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <h5>Ma routine</h5>
+            <a class="nav-link" href="{{ path('savers.insert') }}">
+               <i class="fa-solid fa-dragon mr-5"></i>S.A.V.E.R.S
+            </a>
+
+            <h5>Mon challenge</h5>
+            <a class="nav-link" href="{{ path('seances.day') }}">
+               <i class="fas fa-tachometer-alt mr-5"></i>Seances
+            </a>
+            <a class="nav-link" href="{{ path('programme.show') }}">
+               <i class="fas fa-table mr-5"></i>Programmes
+            </a>
+            <a class="nav-link" href="{{ path('exercice.all') }}">
+                <i class="fa-solid fa-hand-fist mr-5"></i>Exercices
+            </a>
+
+            <a class="nav-link" href="{{ path('seances.day') }}">
+                <i class="fas fa-tachometer-alt mr-5"></i>Ma séance
+            </a>
+
+            <h5>Admin</h5>
+            <a class="nav-link" href="{{ path('exercice.edit') }}">Création exercice </a>
+            <a class="nav-link" href="{{ path('programme.edit') }}">Création programme </a>
+            <a class="nav-link" href="{{ path('seances.edit') }}">Création seance</a>
+
+
+        {% endif %}
+
+
+    </ul>
+</div>
+
