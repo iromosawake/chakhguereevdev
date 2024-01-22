@@ -3,26 +3,27 @@
     
     <div class="modal-inner-view {{ (programme.exercice.principal)? "bg-action-main" : "bg-action-second" }}">
                 <h4> #{{ programme.ordre }} {{ programme.exercice.nom }} - {{ programme.exercice.patternMuscle }}</h4>
-              
-                    <img id="activate"  src="{{ asset('uploads/images/') ~ programme.exercice.image }}" class="img-fluid
-                        img-thumbnail " alt="{{ programme.exercice.nom }}">
-          
-           
                 <iframe src="{{ programme.exercice.video }}"
                         class="youtube-video img-thumbnail"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen></iframe>
            
-          
-                        <h5>👊   {{ programme.series }} x {{ programme.reps }}</h5>
+           <div class="exercice-info">
+                <div id="ordonance">
+                <h5>👊   {{ programme.series }} x {{ programme.reps }}</h5>
                         <h5>🏋️   {{ programme.charge }} Kg</h5>
                         <h5>💪 {{ programme.rpe }} rpe</h5>
                         <h5 id="rest">⏱️   {{ programme.repos }}sec</h5>
                         <h5 class='timer' data-seconds-left={{ programme.repos }}></h5>
-               
-                   
-                        <h6>ℹ️ Consigne :</h6>
-                        <p>{{ programme.exercice.consigne }}</p>
+                </div>
+           
+                <div id="exercice">
+                    <img  src="{{ asset('uploads/images/') ~ programme.exercice.image }}"  alt="{{ programme.exercice.nom }}">
+                </div>
+           </div>
+                    <h6>ℹ️ Consigne :</h6>
+                    <p>{{ programme.exercice.consigne }}</p>
+                        
     </div>
 
 

@@ -65,7 +65,7 @@ body {
     font-size: 1.6rem;
     font-weight: 700;
     margin-left: -100%;
-    background-color: rgba($color: #ffffff, $alpha: 0.40);
+    background-color: rgba($color: #ffffff, $alpha: 0.60);
     backdrop-filter: blur(7px);
     transition: all 0.5s ease;
     width: 100%;
@@ -179,10 +179,23 @@ header {
     flex-flow: row nowrap;
     align-items :center;
     justify-content: space-around;
+      .header-search{
+        @include xs {
+          display: none;
+        }
+      }
+      .header-connect{
+        @include xs {
+          display: none;
+        }
+      }
+      .header-logo{
+        @include xs {
+          display: none;
+        }
+      }
     
-    @include xs {
-      display: none;
-    }
+   
 }
 
 .bars-menu{   
@@ -202,18 +215,15 @@ header {
 }
 
 .modal{
-  display: none;
+ display: none;
  position: fixed;
  top: 0;
  left: 0;
- border-radius: 6px;
  width: 100%;
  height: 100vh;
-
  background-color: rgba($color: #212529, $alpha: 0.80);
  backdrop-filter: blur(7px);
  transition: all 0.5s ease;
-
  flex-direction: column;
  justify-content: center;
  align-items: center;
@@ -231,16 +241,30 @@ header {
         border-radius: 1rem;
         color: white;
         font-weight: 700;
-            h4,h5{
-              color: white;
-            }
-            img{
-              width: 100%;
-              border-radius: 4px;
-            }
-            
-    }
-
+          p{
+            font-size: 1rem;
+          }
+          h4,h5{
+            color: white;
+            margin: 2px 0;
+          }
+          .exercice-info{
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+                #ordonance{
+                  flex: 1;
+                }
+                #exercice{
+                  flex: 1;
+                }
+                
+                img{
+                  width: 100%;
+                  border-radius: 4px;
+                }
+          } 
+      }
   }
 }
 

@@ -25,9 +25,12 @@
             <a class="nav-link" href="{{ path('exercice.all') }}">
                 <i class="fa-solid fa-hand-fist mr-5"></i>Exercices
             </a>
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+				<a class="dropdown-item" href="{{ path('app.logout') }}">Me déconnecter</a>			
+			{% endif %}
 
-            
-
+<br>
+<hr>
             <h5>Admin</h5>
             <a class="nav-link" href="{{ path('exercice.edit') }}">Création exercice </a>
             <a class="nav-link" href="{{ path('programme.edit') }}">Création programme </a>
