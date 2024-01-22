@@ -315,10 +315,6 @@ a {
   transition: opacity 0.4s;
 }
 
-.sidebar-nav a i {
-  color: var(--color-dark);
-}
-
 /* ... */
 .active {
   border-left: 5px solid var(--primary);
@@ -408,6 +404,18 @@ clickable {
   cursor: pointer;
   box-shadow: none;
   transition: box-shadow 0.4s;
+}
+
+.blur {
+  backdrop-filter: blur(7px);
+}
+
+.bg-action-main {
+  background-color: #c0392b;
+}
+
+.bg-action-second {
+  background-color: #d35400;
 }
 
 /*# sourceMappingURL=premates.css.map */

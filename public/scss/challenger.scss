@@ -56,10 +56,11 @@ body {
 .sidebar{
   display: flex;
   flex-flow: column;
+  padding: 2rem;
   margin-right: 5rem;
   @include xs {
     position:fixed;
-    top: 68px;
+    top: 66px;
     left: 0;
     font-size: 1.6rem;
     font-weight: 700;
@@ -68,6 +69,14 @@ body {
     backdrop-filter: blur(7px);
     transition: all 0.5s ease;
     width: 100%;
+    height: 100vh;
+    h5{
+      color: black;
+    }
+    i{
+      font-size: 1.6rem;
+      color: black;
+    }
     a{
       color: black;
       margin-left: 1rem;
@@ -164,18 +173,16 @@ header {
     justify-content: end;  
     width: 100%;
   }
-
-
-.navbar{
-  display: flex;
-  flex: 1;
-  flex-flow: row nowrap;
-  align-items :center;
-  justify-content: space-between;
-  
-  @include xs {
-    display: none;
-  }
+  .navbar{
+    display: flex;
+    flex: 1;
+    flex-flow: row nowrap;
+    align-items :center;
+    justify-content: space-around;
+    
+    @include xs {
+      display: none;
+    }
 }
 
 .bars-menu{   
@@ -188,6 +195,52 @@ header {
   }
 }
 
+
+
 .mobile-menu{
   margin-left: 0;
 }
+
+.modal{
+  display: none;
+ position: fixed;
+ top: 0;
+ left: 0;
+ border-radius: 6px;
+ width: 100%;
+ height: 100vh;
+
+ background-color: rgba($color: #212529, $alpha: 0.80);
+ backdrop-filter: blur(7px);
+ transition: all 0.5s ease;
+
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+ z-index: 2;
+  .modal-content{
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+      .modal-inner-view {    
+        padding: 1rem;  
+        margin-bottom: 1rem;
+        border-radius: 1rem;
+        color: white;
+        font-weight: 700;
+            h4,h5{
+              color: white;
+            }
+            img{
+              width: 100%;
+              border-radius: 4px;
+            }
+            
+    }
+
+  }
+}
+

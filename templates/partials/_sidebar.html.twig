@@ -1,8 +1,4 @@
 <div class="sidebar">
-    {#  <a href="#" class="btn btn-primary btn-icon-primary"> #}
-    {#  <i class="fa-solid fa-question mr-5"></i> #}
-    {#  <span>Poser une question</span> #}
-    {#  </a> #}
     <ul class="sidebar-nav py-20">
         {# {{ dump(app.request.pathinfo) }}
   {{ dump(path('home')) }} #}
@@ -20,8 +16,8 @@
             </a>
 
             <h5>Mon challenge</h5>
-            <a class="nav-link" href="{{ path('seances.day') }}">
-               <i class="fas fa-tachometer-alt mr-5"></i>Seances
+           <a class="nav-link" href="{{ path('seances.day') }}">
+                <i class="fas fa-tachometer-alt mr-5"></i>Ma séance
             </a>
             <a class="nav-link" href="{{ path('programme.show') }}">
                <i class="fas fa-table mr-5"></i>Programmes
@@ -30,9 +26,7 @@
                 <i class="fa-solid fa-hand-fist mr-5"></i>Exercices
             </a>
 
-            <a class="nav-link" href="{{ path('seances.day') }}">
-                <i class="fas fa-tachometer-alt mr-5"></i>Ma séance
-            </a>
+            
 
             <h5>Admin</h5>
             <a class="nav-link" href="{{ path('exercice.edit') }}">Création exercice </a>

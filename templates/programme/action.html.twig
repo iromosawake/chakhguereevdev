@@ -1,39 +1,31 @@
 {% if programme %}
-    <link href="{{ asset('styles/programme.css') }}" rel="stylesheet" type="text/css"/>
     <script src="{{ asset('js/programmes.js') }}" type="text/javascript"></script>
-    <div class="container border rounded p-3 {{ (programme.exercice.principal)? "bg-main-prog" : "action-bg" }}">
-        <div id="frame" class="row">
-            <div class="col-md-3 col-sm-12">
-                <h5> #{{ programme.ordre }} {{ programme.exercice.nom }} - {{ programme.exercice.patternMuscle }}</h5>
-                <div class="col">
+    
+    <div class="modal-inner-view {{ (programme.exercice.principal)? "bg-action-main" : "bg-action-second" }}">
+                <h4> #{{ programme.ordre }} {{ programme.exercice.nom }} - {{ programme.exercice.patternMuscle }}</h4>
+              
                     <img id="activate"  src="{{ asset('uploads/images/') ~ programme.exercice.image }}" class="img-fluid
                         img-thumbnail " alt="{{ programme.exercice.nom }}">
-                </div>
-            </div>
-
-            <div class="col-md-4 col-sm-12 mt-1">
+          
+           
                 <iframe src="{{ programme.exercice.video }}"
                         class="youtube-video img-thumbnail"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen></iframe>
-            </div>
-            <div class="col-md-5 col-sm-12">
-                <div class="row">
-                    <div class="col">
+           
+          
                         <h5>👊   {{ programme.series }} x {{ programme.reps }}</h5>
                         <h5>🏋️   {{ programme.charge }} Kg</h5>
                         <h5>💪 {{ programme.rpe }} rpe</h5>
                         <h5 id="rest">⏱️   {{ programme.repos }}sec</h5>
                         <h5 class='timer' data-seconds-left={{ programme.repos }}></h5>
-                    </div>
-                    <div class="col">
+               
+                   
                         <h6>ℹ️ Consigne :</h6>
                         <p>{{ programme.exercice.consigne }}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
+
+
 {% else %}
 Aucun resultat
 {% endif %}

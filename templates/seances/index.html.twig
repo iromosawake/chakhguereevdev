@@ -10,7 +10,7 @@
 {% block javascripts %}
     {{ parent() }}
     <script>
-        /*const openInNewTab = (url) => {
+        const openInNewTab = (url) => {
             window.open(url, "_blank");
         }
 
@@ -18,8 +18,10 @@
             var path = '{{ url('seances.pdf') }}';
             openInNewTab(path + "/" + s);
         }
-
+        
+      
         $(document).ready(function () {
+            //deplier
             var items = $('.seance_semaine');
             for (var i = 0; i <= items.length; i++) {
                 $('#seance_' + i).slideToggle();
@@ -28,10 +30,19 @@
                 $('#seance_' + event.target.id).slideToggle();
             });
 
-            $('#details_programme').on('show.bs.modal', function (event) {
-                var button = $(event.relatedTarget);
+
+            const modal = $("#details_programme");
+
+           $("#dismiss").click(function (event) {
+            modal.removeClass("d-flex");
+             });
+
+
+            $('.details_programme').click(function (event) {
+                var button = $(event.target);
                 var recipient = button.data('programmeid');
-                var modal = $(this);
+
+                
                 $.ajax({
                     url: '{{ (path('programme.action')) }}',
                     type: "GET",
@@ -42,14 +53,29 @@
                     async: true,
                     success: function (data) {
                         modal.find('.modal-body ').html(data);
+
+                        modal.addClass("d-flex");
                     }
                 });
             })
-        });*/
+        });
     </script>
 {% endblock %}
 
 {% block content %}
+<!-- Modal -->
+    <div class="modal" id="details_programme">
+            <div class="modal-content">
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer justify-content-evenly">
+                    <button id="dismiss" type="button" class="btn btn-primary ">
+                        Fermer
+                    </button>
+                </div>
+            </div>
+    </div>
+
 {% for  seance in seances %}
             {% if loop.first %}
                <h2>Seances semaine</h2>
@@ -60,40 +86,21 @@
             <div class="seance_semaine" id="seance_{{ seance.id }}">
                 <button type="button" class="btn btn-primary" onclick="pdf({{ seance.id }})"><i
                             class="fa-solid fa-file-pdf"></i></button>
-            </div>
+            
 
         {% for  programme in seance.programmes %}
                 <div class="exercice-view">
                         <img src="{{ asset('uploads/images/') ~ programme.exercice.image }}" height="330px" alt="Card Image"/>
                         <h5>{{ programme.exercice.nom }}</h5>
                         <h6>{{ programme.exercice.patternMuscle }}</h6>
-                        <button type="button" class="btn btn-action" data-bs-toggle="modal"
-                                data-bs-target="#details_programme" data-programmeid="{{ programme.id }}">
-                            Go  💯 
+                        <button type="button" class="btn btn-action details_programme" data-programmeid="{{ programme.id }}">
+                            Commencer  💯 
                         </button>
                 </div>
+
         {% endfor %}
             <button type="submit" class="btn-done btn btn-primary">J'ai terminé ma séance <i class="fa-solid fa-check"></i>
             </button>
-    {% endfor %}
-
-
-
-
-
-
-    <!-- Modal -->
-    <div class="modal fade" id="details_programme" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-body">
-                </div>
-                <div class="modal-footer justify-content-evenly">
-                    <button type="button" class="btn btn-secondary btn-lg btn-block" data-bs-dismiss="modal">
-                        Fermer
-                    </button>
-                </div>
             </div>
-        </div>
-    </div>
+    {% endfor %}
 {% endblock %}
