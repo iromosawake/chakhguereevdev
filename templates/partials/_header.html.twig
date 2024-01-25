@@ -1,23 +1,26 @@
 <header>
-	<div class="navbar content">
-		<a class="header-logo" href="#">
-			<a class="navbar-brand" href="{{ path('app.home.muscu') }}">Challenger🔥</a>
-			
-		</a>
+    <div class="navbar content">
+        <a class="header-logo" href="#">
+            <a class="navbar-brand" href="{{ path('app.home.muscu') }}">Challenger🔥</a>
 
-		<div class="header-search p-10 flex-fill">
-			<i class="fa-solid fa-search"></i>
-			<input type="text">
-		</div>
+        </a>
 
-		<div class="header-connect">
+        <div class="header-search p-10 flex-fill">
+            <i class="fa-solid fa-search"></i>
+            <input type="text">
+        </div>
 
-			{% if is_granted('IS_AUTHENTICATED_FULLY') %}
-				<a class="dropdown-item" href="{{ path('app.logout') }}">Me déconnecter</a>
-			{% else %}
-				<a href="{{ path('app.login') }}"><button class="btn btn-primary">Connexion</button></a>
-			{% endif %}
-		</div>
-	</div>
-	<div class="bars-menu"><i class="fa-solid fa-bars"></i></div>
+        <div class="header-connect">
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <a class="dropdown-item" href="{{ path('app.logout') }}">Me déconnecter</a>
+            {% else %}
+                <a href="{{ path('app.login') }}">
+                    <button class="btn btn-primary">Connexion</button>
+                </a>
+            {% endif %}
+        </div>
+    </div>
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <div class="bars-menu"><i class="fa-solid fa-bars"></i></div>
+    {% endif %}
 </header>
