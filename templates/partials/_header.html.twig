@@ -13,7 +13,7 @@
 		<div class="header-connect">
 
 			{% if is_granted('IS_AUTHENTICATED_FULLY') %}
-				{{ (app.user)?app.user.prenom:"" }} <a class="dropdown-item" href="{{ path('app.logout') }}">Me déconnecter</a>
+				<a class="dropdown-item" href="{{ path('app.logout') }}">Me déconnecter</a>
 			{% else %}
 				<a href="{{ path('app.login') }}"><button class="btn btn-primary">Connexion</button></a>
 			{% endif %}

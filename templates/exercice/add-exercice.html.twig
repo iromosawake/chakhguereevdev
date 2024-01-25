@@ -6,28 +6,28 @@
 
 
 {% block content %}
-    <h5>Création Exercice</h5>
+    <h4>Création Exercice</h4>
     {{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
-    <div class="row">
-        <div class="col">
             {{ form_row(form.patternMuscle) }}
-        </div>
-    </div>
-    <div class="row">
-        <div class="col">
             {{ form_row(form.image) }}
-        </div>
+    <div class="checkbox-wrapper-19">
+        {{ form_widget(form.principal) }}
+        Exercice principal
+        {{ form_label(form.principal, ' ', {'label_attr': {'class': 'check-box'}}) }}
     </div>
+
     {{ form_rest(form) }}
-    <div class="row text-center mb-4">
-        <button type="submit" class="btn btn-dark ">Créer exercice</button>
-    </div>
+        <button type="submit" class="btn btn-primary ">Créer exercice</button>
     {{ form_end(form) }}
+    <br>
     <hr>
+
     <div class="row">
         <div class="col">
             <h5>Création nouveau pattern muscles</h5>
             {{ form(patternMuscleForm) }}
+            {{ form_rest(patternMuscleForm) }}
+            <button type="submit" class="btn btn-primary ">Créer exercice</button>
             {{ form_end(patternMuscleForm) }}
         </div>
     </div>
@@ -42,6 +42,3 @@
         });
     </script>
 {% endblock %}
-
-
-

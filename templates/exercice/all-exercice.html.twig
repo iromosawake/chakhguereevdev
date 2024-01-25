@@ -13,51 +13,20 @@
 {% endblock %}
 
 {% block content %}
-        {% for  exercice in exercices %}
-            <div class="row exercices {{ exercice.principal?"bg-main":"bg-seconds" }}">
-                {#                <div class="col  m-2" style="width: 18rem;"> </div> #}
-                <div class="col">
-                    <b>{{ exercice.nom }}</b>
-                    <p>{{ exercice.patternMuscle }}</p>
-                </div>
-                <div class="col d-none d-md-block d-lg-block ratio ratio-16x9">
-                    <iframe src="{{ exercice.video }}" class="responsive-iframe" allowfullscreen></iframe>
-                </div>
-                <div class="col">
-                    <img src="{{ asset('uploads/images/') ~ exercice.image }}" height="100px" class="m-auto rounded ">
-                </div>
-                <div class="col">
-                    <a href="{{ path('exercice.edit',{id:exercice.id}) }}" alt="Editer" class="link_edit m-2">
-                        <button class="btn btn-dark btn-sm my-1 w-100" type="button">
-                            <i class="fa-sharp fa-solid fa-pen-to-square"></i>
-                    </button></a>
-                    <br>
-                    <a
-                            href="#" alt="Supprimer"
-                            class="link_edit m-2"><button class="btn btn-dark btn-sm my-1 w-100" type="button" data-bs-toggle="modal"
-                            data-bs-target="#suppression"><i class="fa-sharp fa-solid fa-trash"></i></button>
-                    </a>
-                </div>
-
-            </div>
-        {% endfor %}
-<div class="row mb-2"></div>
-    <!-- Modal -->
-    <div class="modal fade" id="suppression" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Danger !</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    Êtes-vous sûr de vouloir supprimer ?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                    <button type="button" class="btn btn-danger">Supprimer</button>
-                </div>
-            </div>
+    <br>
+    <br>
+    {% for  exercice in exercices %}
+        <div class="exercices {{ exercice.principal?"bg-main":"bg-seconds" }}">
+            <b>{{ exercice.nom }} </b>{{ exercice.patternMuscle }}
+            <p></p>
+            <iframe src="{{ exercice.video }}" class="responsive-iframe" allowfullscreen></iframe>
+            <img src="{{ asset('uploads/images/') ~ exercice.image }}" height="100px" class="m-auto rounded ">
+            <a href="{{ path('exercice.edit',{id:exercice.id}) }}" alt="Editer" class="link_edit m-2">
+                <button class="btn btn-primary" type="button">
+                    <i class="fa-sharp fa-solid fa-pen-to-square"></i>
+                </button>
+            </a>
+            <br>
         </div>
-    </div>
+    {% endfor %}
 {% endblock %}

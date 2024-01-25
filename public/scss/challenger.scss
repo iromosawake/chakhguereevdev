@@ -11,10 +11,10 @@ body {
   --bg-light: #ecf0f1;
   --text-primary: #574b90;
   --text-secondary: black;
-  --href-color: #cc4764 ;
+  --href-color: #cc4764;
   --href-color-h: #e74c3c;
   --gray: #333;
-  --bar:#2980b9;
+  --bar: #2980b9;
   --text-footer: #FFFFFF;
 }
 
@@ -27,7 +27,7 @@ body.dark {
   --href-color: white;
   --href-color-h: #2ecc71;
   --gray: #333;
-  --bar:#16a085;
+  --bar: #16a085;
   --text-footer: #FFFFFF;
 }
 
@@ -48,18 +48,18 @@ body {
   flex-flow: column nowrap;
   align-items: stretch;
   justify-items: center;
- 
+
   padding: 20px;
   width: 100%;
 }
 
-.sidebar{
+.sidebar {
   display: flex;
   flex-flow: column;
   padding: 2rem;
   margin-right: 5rem;
   @include xs {
-    position:fixed;
+    position: fixed;
     top: 66px;
     left: 0;
     font-size: 1.6rem;
@@ -67,22 +67,23 @@ body {
     margin-left: -100%;
     background-color: rgba($color: #ffffff, $alpha: 0.60);
     backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
     transition: all 0.5s ease;
     width: 100%;
     height: 100vh;
-    h5{
+    h5 {
       color: black;
     }
-    i{
+    i {
       font-size: 1.6rem;
       color: black;
     }
-    a{
+    a {
       color: black;
       margin-left: 1rem;
 
     }
-    
+
   }
 }
 
@@ -96,60 +97,67 @@ body {
 .jst-hours {
   display: none;
 }
+
 .jst-minutes {
   float: left;
 }
+
 .jst-seconds {
   float: left;
 }
+
 .jst-clearDiv {
   clear: both;
 }
+
 .jst-timeout {
   color: white;
 }
 
-.see{
+.see {
   padding-top: 22px;
   padding-bottom: 20px;
-  color:#212529;
+  color: #212529;
 }
 
-.action-bg{
+.action-bg {
   background-color: #95a5a6;
 }
 
-.bg-main-prog{
+.bg-main-prog {
   background-color: #e74c3c;
 }
 
 //seances
-.exercice-view{
+.exercice-view {
   padding: 2rem 0;
   width: 100%;
   margin: 2rem 0;
-  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px; display: flex;
-  flex-flow: column ;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+  display: flex;
+  flex-flow: column;
   justify-content: center;
   align-items: center;
   @include xs {
     padding: 0;
-   padding-bottom: 2rem; 
+    padding-bottom: 2rem;
   }
 
-  img{
+  img {
     border-radius: 8px;
 
     @include xs {
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
     }
-    
+
   }
-  h5{
+
+  h5 {
     font-weight: 800;
   }
-  button{
+
+  button {
     border-radius: 6px;
   }
 }
@@ -165,40 +173,44 @@ header {
   flex-flow: row nowrap;
   padding: 2rem;
   align-items: center;
-  justify-content: center;  
+  justify-content: center;
   @include xs {
     position: fixed;
     top: 0;
     left: 0;
-    justify-content: end;  
+    justify-content: end;
     width: 100%;
   }
-  .navbar{
+
+  .navbar {
     display: flex;
     flex: 1;
     flex-flow: row nowrap;
-    align-items :center;
+    align-items: center;
     justify-content: space-around;
-      .header-search{
-        @include xs {
-          display: none;
-        }
-      }
-      .header-connect{
-        @include xs {
-          display: none;
-        }
-      }
-      .header-logo{
-        @include xs {
-          display: none;
-        }
-      }
-    
-   
-}
 
-.bars-menu{   
+    .header-search {
+      @include xs {
+        display: none;
+      }
+    }
+
+    .header-connect {
+      @include xs {
+        display: none;
+      }
+    }
+
+    .header-logo {
+      @include xs {
+        display: none;
+      }
+    }
+
+
+  }
+
+  .bars-menu {
     display: none;
     @include xs {
       display: flex;
@@ -209,62 +221,69 @@ header {
 }
 
 
-
-.mobile-menu{
+.mobile-menu {
   margin-left: 0;
 }
 
-.modal{
- display: none;
- position: fixed;
- top: 0;
- left: 0;
- width: 100%;
- height: 100vh;
- background-color: rgba($color: #212529, $alpha: 0.80);
- backdrop-filter: blur(7px);
- transition: all 0.5s ease;
- flex-direction: column;
- justify-content: center;
- align-items: center;
- z-index: 2;
-  .modal-content{
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba($color: #212529, $alpha: 0.80);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+  transition: all 0.5s ease;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+
+  .modal-content {
     padding: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 
-      .modal-inner-view {    
-        padding: 1rem;  
-        margin-bottom: 1rem;
-        border-radius: 1rem;
-        color: white;
-        font-weight: 700;
-          p{
-            font-size: 1rem;
-          }
-          h4,h5{
-            color: white;
-            margin: 2px 0;
-          }
-          .exercice-info{
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-                #ordonance{
-                  flex: 1;
-                }
-                #exercice{
-                  flex: 1;
-                }
-                
-                img{
-                  width: 100%;
-                  border-radius: 4px;
-                }
-          } 
+    .modal-inner-view {
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border-radius: 1rem;
+      color: white;
+      font-weight: 700;
+
+
+      p {
+        font-size: 1rem;
       }
+
+      h4, h5 {
+        color: white;
+        margin: 2px 0;
+      }
+
+      .exercice-info {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        #ordonance {
+          flex: 1;
+        }
+
+        #exercice {
+          flex: 1;
+        }
+
+        img {
+          width: 100%;
+          border-radius: 4px;
+        }
+      }
+    }
   }
 }
 

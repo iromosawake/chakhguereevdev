@@ -14,7 +14,6 @@ class PatterMuscleType extends AbstractType
     {
         $builder
             ->add('nom')
-            ->add('Creer', SubmitType::class);
         ;
     }
 

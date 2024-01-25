@@ -255,6 +255,16 @@ textarea {
     min-height: 150px;
 }
 
+.form-row select {
+    padding: 10px 10px;
+    font-family: var(--font-family);
+    border: 0;
+    border-radius: var(--border-radius);
+    background-color: var(--gray-light);
+}
+
+
+
 .form-errors {
     color: var(--warning);
     font-size: var(--font-size-small);
@@ -448,3 +458,69 @@ clickable {
   .bg-action-second{
     background-color: #d35400;
   }
+
+.semaine{
+    font-size: 28px;
+    font-weight: bold;
+    color: #3498db;
+    background-color: #2c3e50;
+    padding: 4px 0px 4px 10px;
+}
+
+.seance{
+    margin-top: 0px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #34495e;
+    background-color: #ecf0f1;
+    padding: 4px 0px 4px 10px;
+    margin-bottom: 4px;
+}
+
+
+
+.bg-main{
+    background-color: #e74c3c !important;
+}
+
+.bg-seconds{
+    background-color: #bdc3c7 !important;
+}
+
+.link_edit{
+    color: white;
+    text-decoration: none;
+    padding: 2px;
+    margin-bottom: 2px;
+}
+
+.link_edit:hover{
+    color: #8de0ff;
+}
+
+.exercices {
+    padding: 1rem;
+    margin: 1rem;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+    background-color: #ffffff;
+    border-radius: 1rem;
+    border-left: 1px solid #00ff99;
+}
+
+/*
+*Border awsome
+ */
+
+@import url('https://fonts.googleapis.com/css?family=Raleway:200');
+
+
+#box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 400px;
+    height: 200px;
+    color: white;
+    font-family: 'Raleway';
+    font-size: 2.5rem;
+}
