@@ -16,15 +16,15 @@
 
             <h5>Ma routine</h5>
 
-            <a  href="{{ path('savers.insert') }}" {% if ("/chakhguereevdev/public"~app.request.pathinfo) == path('savers.insert') %} class="active nav-link" {% else%} class="nav-link" {% endif %} >
+            <a  href="{{ path('savers.insert') }}" {% if (app.request.pathinfo) == path('savers.insert') %} class="active nav-link" {% else%} class="nav-link" {% endif %} >
                 <i class="fa-solid fa-dragon mr-5"></i>S.A.V.E.R.S
             </a>
 
             <h5>Mon challenge</h5>
-            <a href="{{ path('seances.day') }} " {% if ("/chakhguereevdev/public"~app.request.pathinfo) == path('seances.day') %} class="active nav-link" {% else%} class="nav-link" {% endif %}>
+            <a href="{{ path('seances.day') }} " {% if (app.request.pathinfo) == path('seances.day') %} class="active nav-link" {% else%} class="nav-link" {% endif %}>
                 <i class="fas fa-tachometer-alt mr-5"></i>Ma séance
             </a>
-            <a href="{{ path('programme.show') }}" {% if ("/chakhguereevdev/public"~app.request.pathinfo) == path('programme.show') %} class="active nav-link" {% else%} class="nav-link" {% endif %}>
+            <a href="{{ path('programme.show') }}" {% if (app.request.pathinfo) == path('programme.show') %} class="active nav-link" {% else%} class="nav-link" {% endif %}>
                 <i class="fas fa-table mr-5"></i>Programmes
             </a>
             <a href="{{ path('exercice.all') }}" {% if (app.request.pathinfo) == path('exercice.all') %} class="active nav-link" {% else%} class="nav-link" {% endif %}>
