@@ -48,7 +48,7 @@
             <tr class="table{{ (programme.exercice.principal)? "-danger" : "" }}">
                 <td>{{ programme.ordre }}</td>
                 <td>{{ programme.exercice.patternMuscle }}</td>
-                <td><a class="link-dark see"
+                <td class="left"><a class="link-dark see"
                        href="{{ path('exercice.edit',{id: programme.exercice.id}) }}">{{ programme.exercice.nom }}</a></td>
 {#                <td>{{ programme.series }}</td>#}
 {#                <td>{{ programme.reps }}</td>#}
@@ -69,8 +69,8 @@
     </table>
     <hr>
     {% if isPaginated %}
-        <div class="row">
-            <nav aria-label="col Page navigation example">
+
+            <nav>
                 <ul class="pagination justify-content-center">
                     {% if page != 1 %}
                         <li class="page-item"><a class="page-link"
@@ -91,7 +91,6 @@
                     {% endif %}
                 </ul>
             </nav>
-        </div>
     {% endif %}
 
 {% endblock %}

@@ -232,7 +232,8 @@ body {
 .see {
   padding-top: 22px;
   padding-bottom: 20px;
-  color: #212529;
+  color: #126dc7;
+  font-weight: 700;
 }
 
 .action-bg {
@@ -452,7 +453,6 @@ form[name=savers] .form-row label {
   margin-bottom: 2px;
 }
 form[name=savers] .help-text {
-  width: 100%;
   font-size: smaller;
 }
 

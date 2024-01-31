@@ -495,4 +495,28 @@ clickable {
   font-size: 2.5rem;
 }
 
+tbody tr td {
+  text-align: center;
+}
+
+.left {
+  text-align: left;
+}
+
+.pagination {
+  display: flex;
+  padding-right: 0;
+  list-style: none;
+}
+.pagination li {
+  padding: 0.8rem;
+}
+
+.bootstrap-table tr {
+  border: 1px solid black;
+}
+.bootstrap-table tr td {
+  border-collapse: collapse;
+}
+
 /*# sourceMappingURL=premates.css.map */
