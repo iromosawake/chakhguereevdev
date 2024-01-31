@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Savers;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -39,34 +40,8 @@ class SaversRepository extends ServiceEntityRepository
         }
     }
 
-
-    public function findAllSavers()
+    public function findAllSavers(User $user)
     {
-        return $this->findBy(array(),array('created_at'=> 'DESC'),30);
+        return $this->findBy(['user' => $user],array('created_at'=> 'DESC'),7);
     }
-
-//    /**
-//     * @return Savers[] Returns an array of Savers objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('s')
-//            ->andWhere('s.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('s.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
-
-//    public function findOneBySomeField($value): ?Savers
-//    {
-//        return $this->createQueryBuilder('s')
-//            ->andWhere('s.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
 }

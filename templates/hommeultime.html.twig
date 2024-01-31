@@ -7,19 +7,16 @@
 {% block stylesheets %}
     {{ parent() }}
     {#    <link rel="stylesheet" href="{{ asset('node_modules/bootstrap/dist/css/bootstrap.min.css') }}" type="text/css"> #}
-    {#    <link rel="stylesheet" href="{{ asset('node_modules/select2/dist/css/select2.min.css') }}" type="text/css"/> #}
-    {#    <link rel="stylesheet" #}
-    {#          href="{{ asset('node_modules/select2-bootstrap-5-theme/dist/select2-bootstrap-5-theme.rtl.min.css') }}" #}
-    {#          type="text/css"/> #}
+    <link href="{{ asset('styles/select2.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('styles/challenger.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ asset('styles/premates.css') }}" rel="stylesheet" type="text/css"/>
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
-    <script src="{{ asset('js/jquery-3.7.1.min.js') }}" type="text/javascript"></script> 
-    {#    <script src="{{ asset('node_modules/select2/dist/js/select2.full.min.js') }}" type="text/javascript"></script> #}
 
+    <script src="{{ asset('js/jquery-3.7.1.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/select2.min.js') }}" type="text/javascript"></script>
     <script>
     document.addEventListener("DOMContentLoaded", function() {
         const menuHamburger = document.querySelector(".bars-menu");
@@ -37,34 +34,36 @@
 {% block body %}
     {{ include('partials/_header.html.twig') }}
 
-    <!--- message_session -->
-    {% for message in app.session.flashBag.get('info') %}
-        <br>
-        <div class="row alert alert-info">
-            {{ message }}
-        </div>
-    {% endfor %}
-    {% for message in app.session.flashBag.get('success') %}
-        <br>
-        <div class="row alert alert-success">
-            {{ message }}
-        </div>
-    {% endfor %}
-    {% for message in app.session.flashBag.get('error') %}
-        <br>
-        <div class="row alert alert-danger">
-            {{ message }}
-        </div>
-    {% endfor %}
-
-    {#    ---------------------------------------------- -#}
-
-
     <div class="app-content flex-fill d-flex flex-row-nowrap justify-content-center">
+
+
+
         <div class="content d-flex flex-row-nowrap flex-fill ">
 
+
             {{ include('partials/_sidebar.html.twig') }}
+
+
             <div class="vp-content">
+
+                <!--- message_session -->
+                {% for message in app.session.flashBag.get('info') %}
+                    <div class="alert alert-info">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+                {% for message in app.session.flashBag.get('success') %}
+                    <div class="alert alert-success">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+                {% for message in app.session.flashBag.get('error') %}
+                    <div class="alert alert-danger">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+
+                {#    ---------------------------------------------- -#}
                 {% block content %}
 
                 {% endblock %}

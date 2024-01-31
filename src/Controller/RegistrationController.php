@@ -12,7 +12,9 @@ use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Address;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
@@ -29,7 +31,9 @@ class RegistrationController extends AbstractController
     }
 
     #[Route('/register', name: 'app.register')]
-    public function register(Request $request,UploaderService $uploaderService, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, LoginAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
+    public function register(Request $request,UploaderService $uploaderService, UserPasswordHasherInterface $userPasswordHasher,
+                             UserAuthenticatorInterface $userAuthenticator, LoginAuthenticator $authenticator, EntityManagerInterface $entityManager,
+                             MailerInterface $mailer): Response
     {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
@@ -57,12 +61,20 @@ class RegistrationController extends AbstractController
             // generate a signed url and email it to the user
             $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
                 (new TemplatedEmail())
-                    ->from(new Address('loma@atelier-electronik.com', 'Lioma CHAKHGUEREEV'))
+                    ->from(new Address('lioma@atelier-electronik.com', 'Lioma CHAKHGUEREEV'))
                     ->to($user->getEmail())
                     ->subject('Veuillez confirmer votre adresse mail')
                     ->htmlTemplate('registration/confirmation_email.html.twig')
             );
             // do anything else you need here, like send an email
+
+            $email =new Email();
+            $email->from(new Address('lioma@atelier-electronik.com', 'Lioma CHAKHGUEREEV'))
+                ->to($user->getEmail())
+                ->subject('Veuillez confirmer votre adresse mail')
+                ->text('Let the boddies hit the floor');
+
+            $mailer->send($email);
 
             return $userAuthenticator->authenticateUser(
                 $user,

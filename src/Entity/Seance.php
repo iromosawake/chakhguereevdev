@@ -37,13 +37,8 @@ class Seance
     #[ORM\JoinColumn(nullable: false)]
     private ?Zone $zone = null;
 
-
-
     #[ORM\ManyToOne(inversedBy: 'seances')]
     private ?User $createdby = null;
-
-    #[ORM\ManyToOne]
-    private ?Objectif $Objectif = null;
 
     public function __construct()
     {
@@ -78,7 +73,7 @@ class Seance
     public function addProgramme(Programme $programme): self
     {
         if (!$this->programmes->contains($programme)) {
-            $this->exercices->add($programme);
+            $this->programmes->add($programme);
         }
         return $this;
     }
@@ -114,18 +109,6 @@ class Seance
     public function setCreatedby(?User $createdby): static
     {
         $this->createdby = $createdby;
-
-        return $this;
-    }
-
-    public function getObjectif(): ?Objectif
-    {
-        return $this->Objectif;
-    }
-
-    public function setObjectif(?Objectif $Objectif): static
-    {
-        $this->Objectif = $Objectif;
 
         return $this;
     }

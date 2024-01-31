@@ -10,13 +10,12 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script src="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table.min.js"></script>
-    <script src="https://unpkg.com/bootstrap-table@1.22.1/dist/extensions/mobile/bootstrap-table-mobile.min.js"></script>
-    <script src="{{ asset('js/programmes.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/bootstrap-table.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/bootstrap-table-mobile.min.js') }}" type="text/javascript"></script>
     <script>
-        $(function () {
+        $(document).ready(function () {
             $('#table').bootstrapTable()
-        })
+        });
     </script>
 {% endblock %}
 
@@ -31,12 +30,12 @@
             <th scope="col" data-field="ordre">Ordre</th>
             <th scope="col" data-field="petern">Paterne</th>
             <th scope="col" data-field="exercice">Exercice</th>
-            <th scope="col" data-field="series">Séries</th>
-            <th scope="col" data-field="reps">Reps</th>
-            <th scope="col" data-field="charge">Charge</th>
-            <th scope="col" data-field="rpe">RPE</th>
-            <th scope="col" data-field="repos">Repos</th>
-            <th scope="col" data-field="consigne">Consignes</th>
+{#            <th scope="col" data-field="series">Séries</th>#}
+{#            <th scope="col" data-field="reps">Reps</th>#}
+{#            <th scope="col" data-field="charge">Charge</th>#}
+{#            <th scope="col" data-field="rpe">RPE</th>#}
+{#            <th scope="col" data-field="repos">Repos</th>#}
+{#            <th scope="col" data-field="consigne">Consignes</th>#}
             {#            <th scope="col" data-field="video" >Vidéo</th> #}
             <th scope="col" data-field="image"></th>
             <th scope="col" data-field="update">Dernière modification</th>
@@ -50,22 +49,21 @@
                 <td>{{ programme.ordre }}</td>
                 <td>{{ programme.exercice.patternMuscle }}</td>
                 <td><a class="link-dark see"
-                       href="{{ path('programme.edit',{id: programme.id}) }}">{{ programme.exercice.nom }}</a></td>
-                <td>{{ programme.series }}</td>
-                <td>{{ programme.reps }}</td>
-                <td>{{ programme.charge }}</td>
-                <td>{{ programme.rpe }}</td>
-                <td>{{ programme.repos }}</td>
-                <td>{{ programme.exercice.consigne }}</td>
+                       href="{{ path('exercice.edit',{id: programme.exercice.id}) }}">{{ programme.exercice.nom }}</a></td>
+{#                <td>{{ programme.series }}</td>#}
+{#                <td>{{ programme.reps }}</td>#}
+{#                <td>{{ programme.charge }}</td>#}
+{#                <td>{{ programme.rpe }}</td>#}
+{#                <td>{{ programme.repos }}</td>#}
+{#                <td>{{ programme.exercice.consigne }}</td>#}
                 {#                <td> #}
                 {#                    <iframe src="{{ programme.exercice.video }}" class="responsive-iframe" allowfullscreen></iframe> #}
                 {#                </td> #}
                 <td><a href="{{ path('programme.edit',{id: programme.id}) }}"><img
                                 src="{{ asset('uploads/images/') ~ programme.exercice.image }}"
-                                 height=50px alt="{{ programme.exercice.nom }}"></a></td>
+                                height=50px alt="{{ programme.exercice.nom }}"></a></td>
                 <td>{{ (programme.upated)?programme.upated |date("m/d/Y"): "" }}</td>
             </tr>
-
         {% endfor %}
         </tbody>
     </table>

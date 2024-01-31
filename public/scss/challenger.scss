@@ -16,6 +16,8 @@ body {
   --gray: #333;
   --bar: #2980b9;
   --text-footer: #FFFFFF;
+  --text-shadow: 0 0 2px black, 0 0 2px black, 0 0 2px black, 0 0 2px black, 0 0 2px black, 0 0 2px black, 0 0 2px black, 0 0 2px black, 0 0 2px black, 0 0 2px black, 0 0 2px black, 0 0 2px black, 0 0 2px black, 0 0 2px black, 0 0 2px black, 0 0 2px black, 0 0 2px black, 0 0 2px black, 0 0 2px black, 0 0 2px black;
+
 }
 
 body.dark {
@@ -30,6 +32,8 @@ body.dark {
   --bar: #16a085;
   --text-footer: #FFFFFF;
 }
+
+
 
 body {
   font-family: var(--font-family-lato);
@@ -189,7 +193,7 @@ header {
     flex: 1;
     flex-flow: row nowrap;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
 
     .header-search {
       @include xs {
@@ -198,13 +202,17 @@ header {
     }
 
     .header-connect {
+      display: flex;
+      flex-flow: row;
+      justify-content: center;
+      align-items: center;
+      img{
+        margin-right: 1rem;
+      }
       @include xs {
         display: none;
       }
-    }
-
-    .header-logo {
-      @include xs {
+      @include sm {
         display: none;
       }
     }
@@ -227,10 +235,17 @@ header {
   margin-left: 0;
 }
 
+#logout{
+  display: none;
+  @include xs {
+    display: inline;
+  }
+}
+
 
 .app-content{
   @include xs {
-   margin-top: 40px;
+   margin-top: 60px;
   }
 }
 
@@ -256,6 +271,10 @@ header {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    @include xs {
+      width: 90%;
+    }
+
 
     .modal-inner-view {
       padding: 1rem;
@@ -295,4 +314,58 @@ header {
     }
   }
 }
+
+.alert{
+  text-align: center;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  color: white;
+  font-weight: 700;
+  text-shadow: var(--text-shadow);
+  &-info{
+    background-color: #3498db;
+  }
+
+  &-success{
+    background-color: #2ecc71;
+  }
+
+  &-danger{
+    background-color: #e74c3c;
+  }
+}
+
+form[name="savers"]{
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  .form-row{
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    padding: 1rem 0;
+  }
+
+  .form-row label {
+    margin-bottom: 2px;
+
+  }
+  .help-text{
+    width: 100%;
+    font-size: smaller;
+  }
+
+}
+
+.profile-acces{
+  display: none!important;
+
+  @include xs {
+    display: block!important;
+  }
+}
+
 

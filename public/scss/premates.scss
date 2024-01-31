@@ -499,13 +499,24 @@ clickable {
 }
 
 .exercices {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+
+    color: black;
     padding: 1rem;
     margin: 1rem;
     box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
-    background-color: #ffffff;
     border-radius: 1rem;
-    border-left: 1px solid #00ff99;
+    img{
+        padding: 0.5rem;
+        border-radius: 1rem;
+        width: 200px;
+    }
 }
+
+
 
 /*
 *Border awsome

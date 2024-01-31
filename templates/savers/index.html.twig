@@ -9,108 +9,96 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script src="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table.min.js"></script>
-    <script src="https://unpkg.com/bootstrap-table@1.22.1/dist/extensions/mobile/bootstrap-table-mobile.min.js"></script>
     <script>
-        $(function () {
-            $('#table').bootstrapTable()
-        })
+        $(document).ready(function () {
+            $('#affirm').slideToggle();
+
+            $("#tog_affirm").click(function (event) {
+                $('#affirm').slideToggle();
+            });
+        });
     </script>
 {% endblock %}
 
 {% block content %}
     <!-- Modal -->
-    <div class="modal fade modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h6 class="modal-title" id="exampleModalLabel">Affiramtions positives</h6>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p>Je me sens bien,je suis en bonne santé et je vie consciemment et prends soins de moi</p>
-                    <p>Je suis patient et régulier</p>
-                    <p>Le positif attire le positif</p>
-                    <p>Je ne juge pas, ne critique pas et ne compare pas les personnes</p>
-                    <p>J'écoute non pas pour répondre mais pour comprendre la personne</p>
-                    <p>Je suis persévérant, je ne lâche rien</p>
-                    <p>L'alcool c'est mal ça crée de l'anxiété et détruit mon estime de moi</p>
-                    <p>La drogue c'est mal, ce n'est pas du bonheure</p>
-                    <p>Je suis un homme 10/10, je mérite le meilleur</p>
-                    <p>Tout ce que je donne aux autres me revient x100</p>
-                    <p>Je suis talentieux, je suis le profile recherché par les entreprises</p>
-                    <p>Je suis riche et je crée la vie que je désire</p>
-                    <p>Je suis fiable et on peut compter sur moi</p>
-                    <p>Je connais beaucoup de choses et je suis force de proposition</p>
-                    <p>Je suis créatif, je crée en non consomme</p>
-                    <p>Je supporte facilement l'inconfort, je m'adapte en fonction</p>
-                    <p>Je suis discipliné, je réussi tout ce que j'entreprends</p>
-                    <p>Je suis productif, je ne perds pas mon temps</p>
-                    <p>J'ouvre mon coeur à l'agréable et au désagréable</p>
-                    <p>Je n'ai pas peur de souffrir dans ma relation amoureuse, je fais confiance à ma femme</p>
-                    <p>Je reconnais mes imperfections et je les accepte, je peux même en rire d'eux</p>
-                    <p>Mes croyances limitantes ne sont que des croyannes</p>
-                    <p>Je ne doute en aucun cas de moi, je m'aime comme je suis, je m'éstime énormement et me fais confiance</p>
-                    <p>La peur ce n'est pas ce qui se passe mais comment on perçoit ce qui se passe</p>
-                    <p>Je ne vends pas mon âme, je me fais passer en priorité</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary1" data-bs-dismiss="modal">Terminé</button>
-                </div>
-            </div>
-        </div>
+    <div id="affirm">
+{#        <p>L'alcool c'est mal ça crée de l'anxiété et détruit mon estime de moi</p>#}
+{#        <p>La drogue c'est mal, ce n'est pas du bonheure</p>#}
+
+        <p>Je me sens bien, je suis en bonne santé, je vis consciemment et prends soins de moi</p>
+        <p>Mes croyances limitantes ne sont que des croyannes</p>
+        <p>Je ne doute en aucun cas de moi, je m'aime comme je suis, je m'éstime et me fais confiance</p>
+        <p>La peur ce n'est pas ce qui se passe mais comment on perçoit ce qui se passe</p>
+        <p>Je ne vends pas mon âme, je me fais passer en priorité</p>
+
+        <p>Je suis patient et régulier</p>
+        <p>Le positif attire le positif</p>
+        <p>Je ne juge pas, ne critique pas et ne compare pas les personnes</p>
+        <p>J'écoute non pas pour répondre mais pour comprendre la personne</p>
+        <p>Je suis persévérant, je ne lâche rien</p>
+        <p>Je suis un homme 10/10, je mérite le meilleur</p>
+        <p>Tout ce que je donne aux autres me revient x100</p>
+        <p>Je suis talentieux, je suis le profile recherché par les entreprises</p>
+        <p>Je suis riche et je crée la vie que je désire</p>
+        <p>Je suis fiable et on peut compter sur moi</p>
+        <p>Je connais beaucoup de choses et je suis force de proposition</p>
+        <p>Je suis créatif, je crée en non consomme</p>
+        <p>Je supporte facilement l'inconfort, je m'adapte en fonction</p>
+        <p>Je suis discipliné, je réussi tout ce que j'entreprends</p>
+        <p>Je suis productif, je ne perds pas mon temps</p>
+        <p>J'ouvre mon coeur à l'agréable et au désagréable</p>
+        <p>Je n'ai pas peur de souffrir dans ma relation amoureuse, je fais confiance à ma femme</p>
+        <p>Je reconnais mes imperfections et je les accepte, je peux même en rire d'eux</p>
     </div>
-    <div class="row mt-1">
-        <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><button type="button" class="btn btn-affirmations mt-2">Mes affiramtions positives</button></a>
+    <button id="tog_affirm" type="button" class="btn mt-2">Mes affiramtions positives</button>
+
+    <br>
+    <hr>
+
+    <div class="mt-4">
+        {{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
+        <i class="bi bi-volume-mute"></i>{{ form_row(form.silence) }}
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-heart" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M2.965 12.695a1 1 0 0 0-.287-.801C1.618 10.83 1 9.468 1 8c0-3.192 3.004-6 7-6s7 2.808 7 6-3.004 6-7 6a8 8 0 0 1-2.088-.272 1 1 0 0 0-.711.074c-.387.196-1.24.57-2.634.893a11 11 0 0 0 .398-2m-.8 3.108.02-.004c1.83-.363 2.948-.842 3.468-1.105A9 9 0 0 0 8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6a10.4 10.4 0 0 1-.524 2.318l-.003.011a11 11 0 0 1-.244.637c-.079.186.074.394.273.362a22 22 0 0 0 .693-.125M8 5.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132"/>
+        </svg>{{ form_row(form.affirmations) }}
+        <i class="bi bi-eye"></i>{{ form_row(form.visualisation) }}
+        <i class="bi bi-bicycle"></i>{{ form_row(form.exercice) }}
+        <i class="bi bi-book"></i>{{ form_row(form.reading) }}
+        <i class="bi bi-pen"></i>{{ form_row(form.scribing) }}
+        {{ form_rest(form) }}
+        <button type="submit" class="btn btn-primary">J'ai terminé ma routine <i class="bi bi-check2-square"></i></button>
+        {{ form_end(form) }}
     </div>
 
+    <br>
+    <hr>
+    <table>
+        <thead>
+        <tr>
+            <th scope="col" data-field="date">Date</th>
+            <th scope="col" data-field="s">S</th>
+            <th scope="col" data-field="a">A</th>
+            <th scope="col" data-field="v">V</th>
+            <th scope="col" data-field="e">R</th>
+            <th scope="col" data-field="r">R</th>
+            <th scope="col" data-field="sc">S</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for  saver in saverses %}
+            <tr>
+                {% set jour = (saver.createdAt | format_datetime('full', 'none', locale='fr')) | split(' ')  %}
+                <td>{{  jour[0]}} {{ saver.createdAt | date('H:i') }}</td>
+                <td>{{ (saver.silence)?"👌🏻 ":"❌ " }}</td>
+                <td>{{ (saver.affirmations)?"👌🏻 ":"❌ " }}</td>
+                <td>{{ (saver.visualisation)?"👌🏻 ":"❌ " }}</td>
+                <td>{{ (saver.exercice)?"👌🏻 ":"❌ " }}</td>
+                <td>{{ (saver.reading)?"👌🏻 ":"❌ " }}</td>
+                <td>{{ (saver.scribing)?"👌🏻 ":"❌ " }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 
-<div class="row">
-        <div class="col-lg-6 mt-3">
-            {{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
-            {{ form_row(form.silence) }}
-            {{ form_row(form.affirmations) }}
-            {{ form_row(form.visualisation) }}
-            {{ form_row(form.exercice) }}
-            {{ form_row(form.reading) }}
-            {{ form_row(form.scribing) }}
-            {{ form_rest(form) }}
-            <div class="col text-center mb-4">
-                <button type="submit" class="btn btn-dark ">J'ai terminé ma routine</button>
-            </div>
-            {{ form_end(form) }}
-        </div>
-
-        <div class="col-lg-6">
-            <table
-                    class="table table-striped table-dark"
-                    id="table"
-                    data-mobile-responsive="true">
-                <thead>
-                <tr>
-                    <th scope="col" data-field="date">Date</th>
-                    <th scope="col" data-field="s">S</th>
-                    <th scope="col" data-field="a">A</th>
-                    <th scope="col" data-field="v">V</th>
-                    <th scope="col" data-field="e">R</th>
-                    <th scope="col" data-field="r">R</th>
-                    <th scope="col" data-field="sc">S</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for  saver in saverses %}
-                    <tr class="table">
-                        <td>{{ saver.createdAt | date('d-m-Y') }} {{ saver.createdAt | date('H:i') }}</td>
-                        <td>{{ (saver.silence)?"👌🏻 ":"❌ " }}</td>
-                        <td>{{ (saver.affirmations)?"👌🏻 ":"❌ " }}</td>
-                        <td>{{ (saver.visualisation)?"👌🏻 ":"❌ " }}</td>
-                        <td>{{ (saver.exercice)?"👌🏻 ":"❌ " }}</td>
-                        <td>{{ (saver.reading)?"👌🏻 ":"❌ " }}</td>
-                        <td>{{ (saver.scribing)?"👌🏻 ":"❌ " }}</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    </div>
 {% endblock %}

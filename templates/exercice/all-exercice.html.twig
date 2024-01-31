@@ -4,7 +4,6 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('styles/seances.css') }}" type="text/css">
 {% endblock %}
 
 {% block javascripts %}
@@ -13,20 +12,15 @@
 {% endblock %}
 
 {% block content %}
-    <br>
-    <br>
     {% for  exercice in exercices %}
         <div class="exercices {{ exercice.principal?"bg-main":"bg-seconds" }}">
             <b>{{ exercice.nom }} </b>{{ exercice.patternMuscle }}
-            <p></p>
-            <iframe src="{{ exercice.video }}" class="responsive-iframe" allowfullscreen></iframe>
-            <img src="{{ asset('uploads/images/') ~ exercice.image }}" height="100px" class="m-auto rounded ">
-            <a href="{{ path('exercice.edit',{id:exercice.id}) }}" alt="Editer" class="link_edit m-2">
+            <img src="{{ asset('uploads/images/') ~ exercice.image }}" >
+            <a href="{{ path('exercice.edit',{id:exercice.id}) }}" alt="Editer" >
                 <button class="btn btn-primary" type="button">
                     <i class="fa-sharp fa-solid fa-pen-to-square"></i>
                 </button>
             </a>
-            <br>
         </div>
     {% endfor %}
 {% endblock %}

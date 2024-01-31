@@ -18,8 +18,8 @@
             var path = '{{ url('seances.pdf') }}';
             openInNewTab(path + "/" + s);
         }
-        
-      
+
+
         $(document).ready(function () {
             //deplier
             var items = $('.seance_semaine');
@@ -33,16 +33,38 @@
 
             const modal = $("#details_programme");
 
-           $("#dismiss").click(function (event) {
-            modal.removeClass("d-flex");
-             });
+            // $("#dismiss").click(function (event) {
+            //
+            // });
 
+
+            const dialog = document.querySelector("#details_programme");
+            dialog.addEventListener("click", e => {
+                closeModale(e.clientX,e.clientY);
+            });
+
+            function closeModale(x,y){
+                var modal_in = document.querySelector(".modal-content");
+                console.log(modal_in);
+                var modalDimensions = modal_in.getBoundingClientRect();
+                console.log(x,y,modalDimensions);
+                if (
+                    x < modalDimensions.left ||
+                    x > modalDimensions.right ||
+                    y < modalDimensions.top ||
+                    y > modalDimensions.bottom
+                ) {
+                    modal_in.classList.remove("d-flex");
+
+                    // dialog.removeClass("d-flex");
+                }
+            }
 
             $('.details_programme').click(function (event) {
                 var button = $(event.target);
                 var recipient = button.data('programmeid');
 
-                
+
                 $.ajax({
                     url: '{{ (path('programme.action')) }}',
                     type: "GET",
@@ -63,44 +85,43 @@
 {% endblock %}
 
 {% block content %}
-<!-- Modal -->
+    <!-- Modal -->
     <div class="modal" id="details_programme">
-            <div class="modal-content">
-                <div class="modal-body">
-                </div>
-                <div class="modal-footer justify-content-evenly">
-                    <button id="dismiss" type="button" class="btn btn-primary ">
-                        Fermer
-                    </button>
-                </div>
+        <div class="modal-content">
+            <div class="modal-body">
             </div>
+        </div>
     </div>
 
-{% for  seance in seances %}
-            {% if loop.first %}
-               <h2>Seances semaine</h2>
-            {% endif %}
-            <div class="seance" id="{{ seance.id }}">🔽  Jour : {{ seance.numJour }} - {{ seance.zone }}</div>
+    {% for  seance in seances %}
+        {% if loop.first %}
+            <h2>Seances semaine</h2>
+        {% endif %}
+        <div class="seance" id="{{ seance.id }}">🔽  Jour : {{ seance.numJour }} - {{ seance.zone }}</div>
+{#        {% if  (seance.objectif is not null) %}#}
+{#        <h6>{{ seance.objectif.libelle }}</h6>#}
+{#        <img src="{{ asset('uploads/challenge/') ~ seance.objectif.image }}" height="330px" alt="Exercice"/>#}
+{#        {% endif %}#}
+        <div class="seance_semaine" id="seance_{{ seance.id }}">
+            <button type="button" class="btn btn-primary" onclick="pdf({{ seance.id }})"><i
+                        class="fa-solid fa-file-pdf"></i></button>
 
 
-            <div class="seance_semaine" id="seance_{{ seance.id }}">
-                <button type="button" class="btn btn-primary" onclick="pdf({{ seance.id }})"><i
-                            class="fa-solid fa-file-pdf"></i></button>
-            
-
-        {% for  programme in seance.programmes %}
+            {% for  programme in seance.programmes %}
                 <div class="exercice-view">
-                        <img src="{{ asset('uploads/images/') ~ programme.exercice.image }}" height="330px" alt="Card Image"/>
-                        <h5>{{ programme.exercice.nom }}</h5>
-                        <h6>{{ programme.exercice.patternMuscle }}</h6>
-                        <button type="button" class="btn btn-action details_programme" data-programmeid="{{ programme.id }}">
-                            Commencer  💯 
-                        </button>
+                    <img src="{{ asset('uploads/images/') ~ programme.exercice.image }}" height="330px" alt="Exercice"/>
+                    <h5>{{ programme.exercice.nom }}</h5>
+                    <h6>{{ programme.exercice.patternMuscle }}</h6>
+                    <button type="button" class="btn btn-action details_programme"
+                            data-programmeid="{{ programme.id }}">
+                        Commencer  💯 
+                    </button>
                 </div>
 
-        {% endfor %}
-            <button type="submit" class="btn-done btn btn-primary">J'ai terminé ma séance <i class="fa-solid fa-check"></i>
+            {% endfor %}
+            <button type="submit" class="btn-done btn btn-primary">J'ai terminé ma séance <i
+                        class="fa-solid fa-check"></i>
             </button>
-            </div>
+        </div>
     {% endfor %}
 {% endblock %}

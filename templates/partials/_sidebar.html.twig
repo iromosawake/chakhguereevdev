@@ -10,31 +10,42 @@
 
 
         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <a class="profile-acces" href="{{ path('app.home.muscu') }}">
+                <img  class="avatar" src="{{ asset('uploads/images/' ~ app.user.photo) }}" alt="Profile avatar">
+            </a>
+
             <h5>Ma routine</h5>
             <a class="nav-link" href="{{ path('savers.insert') }}">
-               <i class="fa-solid fa-dragon mr-5"></i>S.A.V.E.R.S
+                <i class="fa-solid fa-dragon mr-5"></i>S.A.V.E.R.S
             </a>
 
             <h5>Mon challenge</h5>
-           <a class="nav-link" href="{{ path('seances.day') }}">
+            <a class="nav-link" href="{{ path('seances.day') }}">
                 <i class="fas fa-tachometer-alt mr-5"></i>Ma séance
             </a>
             <a class="nav-link" href="{{ path('programme.show') }}">
-               <i class="fas fa-table mr-5"></i>Programmes
+                <i class="fas fa-table mr-5"></i>Programmes
             </a>
             <a class="nav-link" href="{{ path('exercice.all') }}">
                 <i class="fa-solid fa-hand-fist mr-5"></i>Exercices
             </a>
-            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-				<a class="dropdown-item" href="{{ path('app.logout') }}">Me déconnecter</a>			
-			{% endif %}
 
-<br>
-<hr>
-            <h5>Admin</h5>
-            <a class="nav-link" href="{{ path('exercice.edit') }}">Création exercice </a>
-            <a class="nav-link" href="{{ path('programme.edit') }}">Création programme </a>
-            <a class="nav-link" href="{{ path('seances.edit') }}">Création seance</a>
+            {%- if is_granted('ROLE_ADMIN') -%}
+                <br>
+                <hr>
+                <br>
+                <h5>Admin</h5>
+                <a class="nav-link" href="{{ path('exercice.edit') }}">Création exercice </a>
+                <a class="nav-link" href="{{ path('programme.edit') }}">Création programme </a>
+                <a class="nav-link" href="{{ path('seances.edit') }}">Création seance</a>
+            {% endif %}
+
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <br>
+                <a id="logout" href="{{ path('app.logout') }}">Me déconnecter</a>
+            {% endif %}
+
+
 
 
         {% endif %}

@@ -18,8 +18,9 @@ class SaversController extends AbstractController
     {
         $savers = new Savers();
         $em = $doctrine->getManager();
+        $user = $this->getUser();
 // findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
-        $saverses = $em->getRepository(Savers::class)->findAllSavers();
+        $saverses = $em->getRepository(Savers::class)->findAllSavers($user);
 
         $form = $this->createForm(SaversType::class, $savers);
 
