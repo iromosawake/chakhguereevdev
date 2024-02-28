@@ -4,7 +4,7 @@
 
 {% block content %}
     <h1>Inscription</h1>
-
+<div class="form_inputt">
     {{ form_errors(registrationForm) }}
 
     {{ form_start(registrationForm) }}
@@ -16,4 +16,5 @@
     {{ form_rest(registrationForm) }}
     <button type="submit" class="btn btn-primary">Créer mon compte</button>
     {{ form_end(registrationForm) }}
+</div>
 {% endblock %}
