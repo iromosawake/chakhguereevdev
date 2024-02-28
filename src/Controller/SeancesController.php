@@ -7,6 +7,7 @@ use App\Entity\Zone;
 use App\Form\SeanceType;
 use App\Form\ZoneType;
 use App\Service\PdfService;
+use Doctrine\DBAL\Schema\View;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -82,7 +83,7 @@ class SeancesController extends AbstractController
     }
 
     #[Route('/semaine/pdf/{num?0}', name: 'seances.pdf')]
-    public function seanceToPDf(ManagerRegistry $doctrine, PdfService $pdfService, int $num)
+    public function seanceToPDf(ManagerRegistry $doctrine, PdfService $pdfService, int $num): Response
     {
         $repository = $doctrine->getRepository(Seance::class);
         $seances = $repository->findBySeance($num);
@@ -90,7 +91,7 @@ class SeancesController extends AbstractController
             'seances' => $seances,
             'numSemaine' => $num
         ]);
-        $pdfService->pdf($html);
+        return $pdfService->pdf($html);
 
     }
 }

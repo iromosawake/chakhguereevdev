@@ -1,7 +1,7 @@
 /* theme */
 
 :root {
-    --primary: #12cbc4;
+    --primary: #3498db;
     --action: #d35400;
     --primary-light: #e7f9f9;
     --accent: #0652dd;
@@ -233,6 +233,7 @@ h5 {
     display: flex;
     flex-flow: column;
     margin-bottom: 15px;
+
 }
 
 .form-row label {
@@ -242,6 +243,7 @@ h5 {
 }
 
 .form-row input,
+
 textarea {
     font-family: var(--font-family);
     border: 0;
@@ -359,6 +361,7 @@ a {
 }
 
 .avatar {
+    height: 25px;
     width: 25px;
     border-radius: 50%;
 }
@@ -558,6 +561,8 @@ tbody{
 }
 
 .bootstrap-table{
+    box-shadow: var(--shadowbox);
+    background-color: var(--white-cng);
     tr{
         border: 1px solid black;
         td{

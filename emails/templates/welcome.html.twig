@@ -11,14 +11,9 @@
 <body>
 {% apply inline_css(source('@email_css/email.css')) %}
 
-    <h1>Bienvenue dans la communauté challenger {{ username }} !</h1>
-    <p>Clique sur le lien pour valider ton adresse email </p>
-    <p><a href="{{ signedUrl|raw }}">Confirmer mon Email</a>.</p>
-    <p>Ce lien va expirer dans {{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}.</p>
-
-    <p>
-        A très vite sur Challenger !
-    </p>
+    <h1>Bienvenue {{ username }}</h1>
+    <p>Vous pouvez dès à présent poser vos questions sur Wonder.</p>
+    <a href="{{ url('login') }}">Me connecter</a>
 {% endapply %}
 
 </body>

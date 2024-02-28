@@ -31,7 +31,7 @@ class ProgrammeController extends AbstractController
             $em->flush();
             $this->addFlash('success', 'Programme a été edité avec succès !');
             return $this->redirectToRoute('programme.edit');
-        }else {
+        } else {
             return $this->render('programme/index.html.twig', [
                 'controller_name' => 'ProgrammeController',
                 'form' => $form->createView()
@@ -40,7 +40,7 @@ class ProgrammeController extends AbstractController
     }
 
     #[Route('/show/{page?1}/{nombre?6}', name: 'programme.show')]
-    public function show_programmes(ManagerRegistry $doctrine,$page,$nombre): Response
+    public function show_programmes(ManagerRegistry $doctrine, $page, $nombre): Response
     {
         $isPaginated = true;
         $repository = $doctrine->getRepository(Programme::class);
@@ -49,24 +49,23 @@ class ProgrammeController extends AbstractController
         //nombre des occurences / nombre d'affichée par page, ceil arrondi au supérieur
         $nbPAges = ceil($nbElements / $nombre);
 
-        $programmes = $repository->findBy([],[],$nombre, ($page-1)*$nombre);
+        $programmes = $repository->findBy([], [], $nombre, ($page - 1) * $nombre);
 
         return $this->render('programme/show.html.twig', [
             'controller_name' => 'ProgrammeController',
             'programmes' => $programmes,
-            'isPaginated' =>$isPaginated,
-            'nbPages'=>$nbPAges,
-            'page'=>$page,
-            'elements'=>$nombre
+            'isPaginated' => $isPaginated,
+            'nbPages' => $nbPAges,
+            'page' => $page,
+            'elements' => $nombre
         ]);
     }
 
-    #[Route('/action', name: 'programme.action',methods: ['GET'])]
-    public function action(ManagerRegistry $doctrine,Request $request): Response
+    #[Route('/action/{id?1}', name: 'programme.action')]
+    public function action($id, ManagerRegistry $doctrine): Response
     {
         $repository = $doctrine->getRepository(Programme::class);
-        $programme = $repository->findOneBy(array('id' => $request->get('id')));
-
+        $programme = $repository->findOneBy(array('id' => $id));
         return $this->render('programme/action.html.twig', [
             'controller_name' => 'ProgrammeController',
             'programme' => $programme,

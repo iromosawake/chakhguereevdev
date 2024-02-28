@@ -1,0 +1,25 @@
+{% extends 'hommeultime.html.twig' %}
+
+{% block title %}Edition profile{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+{% endblock %}
+
+
+{% block content %}
+    <h4>Profile</h4>
+<div class="form_inputt">
+    {{ form_start(form) }}
+    {{ form_rest(form) }}
+    <button type="submit" class="btn btn-primary">Modifier</button>
+    {{ form_end(form) }}
+</div>
+
+{% endblock %}

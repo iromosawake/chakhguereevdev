@@ -1,7 +1,7 @@
 /* theme */
 @import url("https://fonts.googleapis.com/css?family=Raleway:200");
 :root {
-  --primary: #12cbc4;
+  --primary: #3498db;
   --action: #d35400;
   --primary-light: #e7f9f9;
   --accent: #0652dd;
@@ -335,6 +335,7 @@ a {
 }
 
 .avatar {
+  height: 25px;
   width: 25px;
   border-radius: 50%;
 }
@@ -512,6 +513,10 @@ tbody tr td {
   padding: 0.8rem;
 }
 
+.bootstrap-table {
+  box-shadow: var(--shadowbox);
+  background-color: var(--white-cng);
+}
 .bootstrap-table tr {
   border: 1px solid black;
 }

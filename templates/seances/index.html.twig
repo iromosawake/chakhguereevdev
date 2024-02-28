@@ -4,7 +4,6 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('styles/seances.css') }}" type="text/css">
 {% endblock %}
 
 {% block javascripts %}
@@ -19,7 +18,6 @@
             openInNewTab(path + "/" + s);
         }
 
-
         $(document).ready(function () {
             //deplier
             var items = $('.seance_semaine');
@@ -31,55 +29,41 @@
             });
 
 
-            const modal = $("#details_programme");
-
-            // $("#dismiss").click(function (event) {
-            //
-            // });
-
-
-            const dialog = document.querySelector("#details_programme");
-            dialog.addEventListener("click", e => {
-                closeModale(e.clientX,e.clientY);
+            // Récupère l'élément de la modale par son ID et ferme la modale
+            const modal = document.getElementById('details_programme');
+            let modalBody = modal.querySelector('.modal-body');
+            document.addEventListener('click', function (e) {
+                if (!modalBody.contains(e.target) && modalBody.style.display !== 'none') {
+                    modal.style.display = 'none';
+                }
             });
 
-            function closeModale(x,y){
-                var modal_in = document.querySelector(".modal-content");
-                console.log(modal_in);
-                var modalDimensions = modal_in.getBoundingClientRect();
-                console.log(x,y,modalDimensions);
-                if (
-                    x < modalDimensions.left ||
-                    x > modalDimensions.right ||
-                    y < modalDimensions.top ||
-                    y > modalDimensions.bottom
-                ) {
-                    modal_in.classList.remove("d-flex");
+            const detailProg = document.querySelectorAll('.details_programme');
 
-                    // dialog.removeClass("d-flex");
-                }
-            }
-
-            $('.details_programme').click(function (event) {
-                var button = $(event.target);
-                var recipient = button.data('programmeid');
+            // Parcourt tous les boutons et attache un écouteur d'événement de clic à chacun
+            detailProg.forEach(function (bouton) {
+                bouton.addEventListener('click', function () {
+                    const url = '{{ path('programme.action') }}';
 
 
-                $.ajax({
-                    url: '{{ (path('programme.action')) }}',
-                    type: "GET",
-                    dataType: "html",
-                    data: {
-                        "id": recipient
-                    },
-                    async: true,
-                    success: function (data) {
-                        modal.find('.modal-body ').html(data);
-
-                        modal.addClass("d-flex");
-                    }
-                });
-            })
+                    fetch(url + '/' + bouton.dataset.programmeid)
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('La requête a échoué');
+                            }
+                            return response.text();
+                        })
+                        .then(data => {
+                            let modal = document.getElementById('details_programme');
+                            let modalBody = modal.querySelector('.modal-body');
+                            modalBody.innerHTML = data;
+                            modal.style.display = 'flex';
+                        })
+                        .catch(error => {
+                            console.error('Erreur lors de la requête:', error);
+                        });
+                })
+            });
         });
     </script>
 {% endblock %}
@@ -93,35 +77,36 @@
         </div>
     </div>
 
-    {% for  seance in seances %}
-        {% if loop.first %}
-            <h2>Seances semaine</h2>
-        {% endif %}
-        <div class="seance" id="{{ seance.id }}">🔽  Jour : {{ seance.numJour }} - {{ seance.zone }}</div>
-{#        {% if  (seance.objectif is not null) %}#}
-{#        <h6>{{ seance.objectif.libelle }}</h6>#}
-{#        <img src="{{ asset('uploads/challenge/') ~ seance.objectif.image }}" height="330px" alt="Exercice"/>#}
-{#        {% endif %}#}
-        <div class="seance_semaine" id="seance_{{ seance.id }}">
-            <button type="button" class="btn btn-primary" onclick="pdf({{ seance.id }})"><i
-                        class="fa-solid fa-file-pdf"></i></button>
+    <div class="seances">
+
+        {% for  seance in seances %}
+            {% if loop.first %}
+                <h2>Seances semaine</h2>
+            {% endif %}
+
+            <div class="seance" id="{{ seance.id }}">🔽  Jour : {{ seance.numJour }} - {{ seance.zone }}</div>
+            <div class="seance_semaine" id="seance_{{ seance.id }}">
+                <button type="button" class="btn btn-primary" onclick="pdf({{ seance.id }})"><i
+                            class="fa-solid fa-file-pdf"></i></button>
 
 
-            {% for  programme in seance.programmes %}
-                <div class="exercice-view">
-                    <img src="{{ asset('uploads/images/') ~ programme.exercice.image }}" height="330px" alt="Exercice"/>
-                    <h5>{{ programme.exercice.nom }}</h5>
-                    <h6>{{ programme.exercice.patternMuscle }}</h6>
-                    <button type="button" class="btn btn-action details_programme"
-                            data-programmeid="{{ programme.id }}">
-                        Commencer  💯 
-                    </button>
-                </div>
+                {% for  programme in seance.programmes %}
+                    <div class="exercice-view">
+                        <img src="{{ asset('uploads/images/') ~ programme.exercice.image }}" height="330px"
+                             alt="Exercice"/>
+                        <h5>{{ programme.exercice.nom }}</h5>
+                        <h6>{{ programme.exercice.patternMuscle }}</h6>
+                        <button type="button" class="btn btn-action details_programme"
+                                data-programmeid="{{ programme.id }}">
+                            Commencer  💯 
+                        </button>
+                    </div>
+                {% endfor %}
 
-            {% endfor %}
-            <button type="submit" class="btn-done btn btn-primary">J'ai terminé ma séance <i
-                        class="fa-solid fa-check"></i>
-            </button>
-        </div>
-    {% endfor %}
+                <button type="submit" class="btn-done btn btn-primary">J'ai terminé ma séance <i
+                            class="fa-solid fa-check"></i>
+                </button>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}

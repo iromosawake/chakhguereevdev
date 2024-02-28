@@ -1,3 +1,4 @@
+@charset "UTF-8";
 * {
   margin: 0;
   padding: 0;
@@ -151,10 +152,14 @@ body.dark {
 body {
   font-family: var(--font-family-lato);
   color: var(--text-secondary);
+  --shadowbox: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  --bg-light-cng: linear-gradient(19deg, #FAACA8 0%, #DDD6F3 100%);
+  --white-cng: white;
 }
 
 /* Main container */
 .vp-container {
+  background-color: var(--gray-light);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -248,7 +253,7 @@ body {
   padding: 2rem 0;
   width: 100%;
   margin: 2rem 0;
-  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+  box-shadow: var(--shadowbox);
   display: flex;
   flex-flow: column;
   justify-content: center;
@@ -283,7 +288,7 @@ body {
 /*   Header     */
 header {
   display: flex;
-  background-color: white;
+  background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
   flex-flow: row nowrap;
   padding: 2rem;
   align-items: center;
@@ -319,6 +324,9 @@ header .navbar .header-connect {
 }
 header .navbar .header-connect img {
   margin-right: 1rem;
+}
+header .navbar .header-connect .navbar-brand {
+  display: flex;
 }
 @media (max-width: 480px) {
   header .navbar .header-connect {
@@ -362,18 +370,21 @@ header .bars-menu {
 .modal {
   display: none;
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
+  top: 50%; /* Positionne la modale à 50% du haut de la fenêtre */
+  left: 50%; /* Positionne la modale à 50% du côté gauche de la fenêtre */
+  transform: translate(-50%, -50%); /* Déplace la modale de 50% vers le haut et la gauche pour la centrer précisément */
+  min-width: 50vh; /* Définit la largeur de la modale à 25% de la hauteur de la fenêtre du navigateur */
+  min-height: 101vh;
   background-color: rgba(33, 37, 41, 0.8);
   backdrop-filter: blur(7px);
   -webkit-backdrop-filter: blur(7px);
   transition: all 0.5s ease;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre portée pour un effet de profondeur */
+  z-index: 1000; /* S'assure que la modale apparaît au-dessus des autres éléments */
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 2;
+  justify-content: center; /* Centre horizontalement le contenu dans la modale */
+  align-items: center; /* Centre verticalement le contenu dans la modale */
 }
 .modal .modal-content {
   padding: 1rem;
@@ -421,10 +432,8 @@ header .bars-menu {
   text-align: center;
   padding: 0.5rem;
   margin-bottom: 1rem;
-  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
   color: white;
   font-weight: 700;
-  text-shadow: var(--text-shadow);
 }
 .alert-info {
   background-color: #3498db;
@@ -438,6 +447,10 @@ header .bars-menu {
 
 form[name=savers] {
   display: flex;
+  box-shadow: var(--shadowbox);
+  background-color: var(--white-cng);
+  margin-top: 6px;
+  padding: 1rem;
   flex-flow: column;
   justify-content: center;
 }
@@ -463,6 +476,34 @@ form[name=savers] .help-text {
   .profile-acces {
     display: block !important;
   }
+}
+
+/* Espace profile */
+.profile-home {
+  background-color: var(--white-cng);
+  padding: 2rem;
+  border-radius: 1rem;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+.profile-home .photo-profile {
+  border-radius: 1rem;
+  box-shadow: var(--shadowbox);
+}
+
+.seances .seance {
+  background-color: var(--white-cng);
+  box-shadow: var(--shadowbox);
+}
+.seances .exercice-view {
+  background-color: var(--white-cng);
+}
+
+.form_inputt {
+  box-shadow: var(--shadowbox);
+  background-color: var(--white-cng);
+  padding: 1rem;
 }
 
 /*# sourceMappingURL=challenger.css.map */

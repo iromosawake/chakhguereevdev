@@ -46,7 +46,7 @@ class ExerciceController extends AbstractController
             // this condition is needed because the 'photo' field is not required
             // so the image file must be processed only when a file is uploaded
             if ($image) {
-                $directoryFolder = $this->getParameter('exercice_directory');
+                $directoryFolder = $this->getParameter('upload_directory');
                 $exercice->setImage($uploaderService->uploadImage($image, $directoryFolder));
             }
             $em->persist($exercice);
