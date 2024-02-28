@@ -63,6 +63,20 @@ class RegistrationController extends AbstractController
                     ->subject('Veuillez confirmer votre adresse mail')
                     ->htmlTemplate('registration/confirmation_email.html.twig')
             );
+            // do anything else you need here, like send an email
+
+            $email =new Email();
+            $email->from(new Address('lioma@atelier-electronik.com', 'Lioma CHAKHGUEREEV'))
+                ->to($user->getEmail())
+                ->subject('Veuillez confirmer votre adresse mail')
+                ->text('Let the boddies hit the floor');
+
+            try {
+                $mailer->send($email);
+
+            } catch (TransportExceptionInterface $e) {
+                dd($e);
+            }
 
             return $userAuthenticator->authenticateUser(
                 $user,
