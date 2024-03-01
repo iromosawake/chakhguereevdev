@@ -4,7 +4,11 @@
 
 {% block stylesheets %}
     {{ parent() }}
-
+    <style>
+        .sidebar {
+            display: none;
+        }
+    </style>
 {% endblock %}
 
 {% block javascripts %}
@@ -14,7 +18,7 @@
 
 {% block content %}
     <div class="d-flex justify-content-center align-items-center ">
-        <form  method="post">
+        <form class="form-row" method="post">
             {% if error %}
                 <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
             {% endif %}
@@ -24,39 +28,48 @@
                     {{ app.user.email }} <a href="{{ path('app.logout²') }}">Se déconnecter</a>
                 </div>
             {% endif %}
-    <div class="d-flex flex-column justify-content-center flex-fill">
-    
-            <h1 class="h3 mb-3 font-weight-normal">Connexion</h1>
-            
-            <label class="p-5 m-5" for="inputEmail">Email</label>
-            <input class="p-5 m-5" type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control"
-                   autocomplete="email" required autofocus>
-            </div>
-            <div>
-            <label class="p-5 m-5" for="inputPassword">Mot de passe</label>
-            <input  class="p-5 m-5" type="password" name="password" id="inputPassword" class="form-control"
-                   autocomplete="current-password" required>
 
-            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-            {#        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality. #}
-            {#        See https://symfony.com/doc/current/security/remember_me.html #}
-            {#        <div class="checkbox mb-3 mt-1"> #}
-            {#            <label> #}
-            {#                <input type="checkbox" name="_remember_me"> Se souvenir de moi #}
-            {#            </label> #}
-            {#        </div> #}
-            </div>
-<div class="d-flex flex-fill flex-row-nowrap">
+            <div class="d-flex flex-column justify-content-center flex-fill">
+                <h1 class="h3 mb-3 font-weight-normal">Connexion</h1>
+                <div class="form_inputt">
 
-            <button type="submit" class="d-flex flex-fill p-5 m-5 btn btn-primary btn-sm mt-2" type="submit">
-                Se connecter
-            </button>
-            <a href="{{ path('app.register') }}">
-                <button type="button" class="d-flex  flex-fill p-5 m-5 btn btn-secondary btn-sm mt-2">
-                    Création compte
-                </button>
-            </a>
-            </div>
+
+                    <label class="p-5 m-5" for="inputEmail">Email</label>
+                    <input class="form-row p-5 m-5" type="email" value="{{ last_username }}" name="email"
+                           id="inputEmail" class="form-control"
+                           autocomplete="email" required autofocus>
+
+                    <label class="p-5 m-5" for="inputPassword">Mot de passe</label>
+                    <input class="form-row p-5 m-5" type="password" name="password" id="inputPassword"
+                           class="form-control"
+                           autocomplete="current-password" required>
+
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                    {#                    Uncomment this section and add a remember_me option below your firewall to activate remember me functionality. #}
+                    {#                    See https://symfony.com/doc/current/security/remember_me.html #}
+                    <div class="checkbox mb-4 mt-4">
+                        <label>
+                            <input type="checkbox" name="_remember_me"> Se souvenir de moi
+                        </label>
+                    </div>
+                    <div class="checkbox mb-4 mt-4">
+                        <a href="{{ path('reset.password.request') }}"> Mot de passe oublié</a>
+                    </div>
+
+
+                    <div class="d-flex flex-fill flex-row-nowrap">
+
+                        <button type="submit" class="d-flex flex-fill p-5 m-5 btn btn-primary btn-sm mt-2"
+                                type="submit">
+                            Se connecter
+                        </button>
+                        <a href="{{ path('app.register') }}">
+                            <button type="button" class="d-flex  flex-fill p-5 m-5 btn btn-secondary btn-sm mt-2">
+                                Création compte
+                            </button>
+                        </a>
+                    </div>
+                </div>
             </div>
 
         </form>

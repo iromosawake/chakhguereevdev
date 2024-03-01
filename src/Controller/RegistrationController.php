@@ -33,8 +33,7 @@ class RegistrationController extends AbstractController
 
     #[Route('/register', name: 'app.register')]
     public function register(Request $request,UploaderService $uploaderService, UserPasswordHasherInterface $userPasswordHasher,
-                             UserAuthenticatorInterface $userAuthenticator, LoginAuthenticator $authenticator, EntityManagerInterface $entityManager,
-                             MailerInterface $mailer): Response
+                             UserAuthenticatorInterface $userAuthenticator, LoginAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
     {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
@@ -42,6 +41,7 @@ class RegistrationController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             // encode the plain password
+
             $user->setPassword($userPasswordHasher->hashPassword($user,$form->get('plainPassword')->getData()));
             $image = $form->get('image')->getData();
             // this condition is needed because the 'photo' field is not required
@@ -63,20 +63,6 @@ class RegistrationController extends AbstractController
                     ->subject('Veuillez confirmer votre adresse mail')
                     ->htmlTemplate('registration/confirmation_email.html.twig')
             );
-            // do anything else you need here, like send an email
-
-            $email =new Email();
-            $email->from(new Address('lioma@atelier-electronik.com', 'Lioma CHAKHGUEREEV'))
-                ->to($user->getEmail())
-                ->subject('Veuillez confirmer votre adresse mail')
-                ->text('Let the boddies hit the floor');
-
-            try {
-                $mailer->send($email);
-
-            } catch (TransportExceptionInterface $e) {
-                dd($e);
-            }
 
             return $userAuthenticator->authenticateUser(
                 $user,

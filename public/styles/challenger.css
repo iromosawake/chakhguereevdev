@@ -504,6 +504,8 @@ form[name=savers] .help-text {
   box-shadow: var(--shadowbox);
   background-color: var(--white-cng);
   padding: 1rem;
+  display: flex;
+  flex-flow: column;
 }
 
 /*# sourceMappingURL=challenger.css.map */
