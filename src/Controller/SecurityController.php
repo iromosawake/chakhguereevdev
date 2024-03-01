@@ -137,7 +137,7 @@ class SecurityController extends AbstractController
                 }
             }
             $this->addFlash('success', 'Un email vous a été envoyé pour réinitialiser votre mot de passe');
-            //return $this->redirectToRoute('app.home.muscu');
+            return $this->redirectToRoute('app.home.muscu');
         }
 
         return $this->render('security/reset-password-request.html.twig', [
