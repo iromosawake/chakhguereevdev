@@ -1,3 +1,9 @@
+
 framework:
     mailer:
         dsn: '%env(MAILER_DSN)%'
+        envelope:
+            sender: 'lioma@atelier-electronik.com'
+        headers:
+            From: 'Lioma <lioma@atelier-electronik.com>'
+

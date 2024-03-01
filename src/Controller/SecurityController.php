@@ -12,7 +12,9 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mailer\Transport;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
@@ -42,6 +44,7 @@ class SecurityController extends AbstractController
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
+
 
     #[Route(path: '/reset-password/{token}', name: 'reset.password')]
     public function resetPassword(UserPasswordHasherInterface $userPasswordHasher, Request $request, EntityManagerInterface $em, string $token, ResetPasswordRepository $resetPasswordRepository)
@@ -89,7 +92,7 @@ class SecurityController extends AbstractController
     }
 
     #[Route(path: '/reset-password-request', name: 'reset.password.request')]
-    public function resetPasswordRequest(MailerInterface $mailer, Request $request, UserRepository $userRepository, ResetPasswordRepository $resetPasswordRepository, EntityManagerInterface $em):Response
+    public function resetPasswordRequest(Transport\TransportInterface $mailer, Request $request, UserRepository $userRepository, ResetPasswordRepository $resetPasswordRepository, EntityManagerInterface $em):Response
     {
         $emailForm = $this->createFormBuilder()->add('email', EmailType::class, [
             'constraints' => [
@@ -124,10 +127,17 @@ class SecurityController extends AbstractController
                     ->context([
                         'token' => $token
                     ]);
-                $mailer->send($email);
+                try {
+                    $info= $mailer->send($email);
+                    dump($info->getDebug());
+                } catch (TransportExceptionInterface $e) {
+                    dd($e);
+                    // some error prevented the email sending; display an
+                    // error message or try to resend the message
+                }
             }
             $this->addFlash('success', 'Un email vous a été envoyé pour réinitialiser votre mot de passe');
-            return $this->redirectToRoute('app.home.muscu');
+            //return $this->redirectToRoute('app.home.muscu');
         }
 
         return $this->render('security/reset-password-request.html.twig', [
