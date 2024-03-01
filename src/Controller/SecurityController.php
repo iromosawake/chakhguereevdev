@@ -14,7 +14,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Component\Mailer\Transport;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
@@ -92,7 +91,7 @@ class SecurityController extends AbstractController
     }
 
     #[Route(path: '/reset-password-request', name: 'reset.password.request')]
-    public function resetPasswordRequest(Transport\TransportInterface $mailer, Request $request, UserRepository $userRepository, ResetPasswordRepository $resetPasswordRepository, EntityManagerInterface $em):Response
+    public function resetPasswordRequest(MailerInterface $mailer, Request $request, UserRepository $userRepository, ResetPasswordRepository $resetPasswordRepository, EntityManagerInterface $em):Response
     {
         $emailForm = $this->createFormBuilder()->add('email', EmailType::class, [
             'constraints' => [
@@ -128,10 +127,8 @@ class SecurityController extends AbstractController
                         'token' => $token
                     ]);
                 try {
-                    $info= $mailer->send($email);
-                    dump($info->getDebug());
+                   $mailer->send($email);
                 } catch (TransportExceptionInterface $e) {
-                    dd($e);
                     // some error prevented the email sending; display an
                     // error message or try to resend the message
                 }
