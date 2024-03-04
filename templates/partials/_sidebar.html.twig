@@ -1,5 +1,5 @@
 <div class="sidebar">
-    <ul class="sidebar-nav py-20">
+    <ul class="sidebar-nav">
         {# {{ dump(app.request.pathinfo) }}
   {{ dump(path('home')) }} #}
         {#  <a href="{{ path('home') }}" {% if app.request.pathinfo == '/' %} class="active" {% endif %}> #}
@@ -34,7 +34,7 @@
              <a href="{{ path('user.update') }}" {% if (app.request.pathinfo) == path('user.update') %} class="active nav-link" {% else%} class="nav-link" {% endif %}>
                 <i class="fa-solid fa-user"></i> Profile
             </a>
-            {%- if is_granted('ROLE_ADMIN') -%}
+            {%- if is_granted('ROLE_USER') -%}
                 <br>
                 <hr>
                 <br>

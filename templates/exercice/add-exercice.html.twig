@@ -4,33 +4,8 @@
     Création exercice
 {% endblock %}
 
-
-{% block content %}
-    <h4>Création Exercice</h4>
-    {{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
-            {{ form_row(form.patternMuscle) }}
-            {{ form_row(form.image) }}
-    {% if  form.vars.value.image is defined and  form.vars.value.image!='' %}
-    <img src="{{ asset('uploads/images/')~ form.vars.value.image}}" alt="exercice">
-    {% endif %}
-    {{ form_row(form.video) }}
-    {% if  form.vars.value.video is defined and  form.vars.value.video!='' %}
-             <iframe src="{{ form.vars.value.video }}" class="responsive-iframe" allowfullscreen></iframe>
-    {% endif %}
-{#    {{ form_widget(form.principal) }}#}
-{#    Exercice principal#}
-{#    {{ form_label(form.principal, ' ', {'label_attr': {'class': 'check-box'}}) }}#}
-
-    {{ form_rest(form) }}
-        <button type="submit" class="btn btn-primary">Enregistrer</button>
-    {{ form_end(form) }}
-    <br>
-    <hr>
-            <h5>Création nouveau pattern muscles</h5>
-            {{ form(patternMuscleForm) }}
-            {{ form_rest(patternMuscleForm) }}
-            <button type="submit" class="btn btn-primary">Créer pattern</button>
-            {{ form_end(patternMuscleForm) }}
+{% block stylesheets %}
+    {{ parent() }}
 
 {% endblock %}
 
@@ -41,4 +16,40 @@
             $('.select2').select2();
         });
     </script>
+{% endblock %}
+
+{% block content %}
+    <h4>Création Exercice</h4>
+    <div class="form_inputt">
+        {{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
+        {{ form_row(form.patternMuscle) }}
+        {{ form_row(form.nom) }}
+        {{ form_row(form.consigne) }}
+        {{ form_row(form.image) }}
+        {% if  form.vars.value.image is defined and  form.vars.value.image!='' %}
+            <img src="{{ asset('uploads/images/')~ form.vars.value.image }}" alt="exercice">
+        {% endif %}
+
+        {{ form_row(form.video,{'attr': {'placeholder': 'url'}}) }}
+        {% if  form.vars.value.video is defined and  form.vars.value.video!='' %}
+            <iframe src="{{ form.vars.value.video }}" class="responsive-iframe" allowfullscreen></iframe>
+        {% endif %}
+
+        <div class="grid-check ">
+                {{ form_label(form.principal) }}
+                {{ form_widget(form.principal) }}
+        </div>
+
+        {{ form_rest(form) }}
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+        {{ form_end(form) }}
+
+        <br>
+        <hr>
+        <h5>Création nouveau pattern muscles</h5>
+        {{ form_start(patternMuscleForm) }}
+        {{ form_rest(patternMuscleForm) }}
+        <button type="submit" class="btn btn-primary">Créer pattern</button>
+        {{ form_end(patternMuscleForm) }}
+    </div>
 {% endblock %}

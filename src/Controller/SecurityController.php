@@ -16,6 +16,7 @@ use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\RateLimiter\RateLimiterFactory;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Validator\Constraints\Length;
@@ -48,7 +49,7 @@ class SecurityController extends AbstractController
     #[Route(path: '/reset-password/{token}', name: 'reset.password')]
     public function resetPassword(UserPasswordHasherInterface $userPasswordHasher, Request $request, EntityManagerInterface $em, string $token, ResetPasswordRepository $resetPasswordRepository)
     {
-        $resetPassword = $resetPasswordRepository->findOneBy(['token' => $token]);
+        $resetPassword = $resetPasswordRepository->findOneBy(['token' => sha1($token)]);
         if (!$resetPassword || $resetPassword->getExpiredAt() < new \DateTime('now')) {
             if ($resetPassword) {
                 $em->remove($resetPassword);
@@ -90,8 +91,11 @@ class SecurityController extends AbstractController
         ]);
     }
 
+
+
+
     #[Route(path: '/reset-password-request', name: 'reset.password.request')]
-    public function resetPasswordRequest(MailerInterface $mailer, Request $request, UserRepository $userRepository, ResetPasswordRepository $resetPasswordRepository, EntityManagerInterface $em):Response
+    public function resetPasswordRequest(RateLimiterFactory $passwordRecoveryLimiter, MailerInterface $mailer, Request $request, UserRepository $userRepository, ResetPasswordRepository $resetPasswordRepository, EntityManagerInterface $em):Response
     {
         $emailForm = $this->createFormBuilder()->add('email', EmailType::class, [
             'constraints' => [
@@ -102,6 +106,13 @@ class SecurityController extends AbstractController
         ])->getForm();
         $emailForm->handleRequest($request);
         if ($emailForm->isSubmitted() && $emailForm->isValid()) {
+            //rate_limiteur basé sur l'adresse ip client
+            $limiter = $passwordRecoveryLimiter->create($request->getClientIp());
+            if(false === $limiter->consume(1)->isAccepted()){
+                $this->addFlash('error','Le nombre de tentaives est dépassé, veuillez réessayer plus tard !');
+                $this->redirectToRoute('app.login');
+            }
+
             $emailValue = $emailForm->get('email')->getData();
             $user = $userRepository->findOneBy(['email' => $emailValue]);
             if ($user) {
@@ -115,7 +126,7 @@ class SecurityController extends AbstractController
                 $resetPassword->setUser($user);
                 $resetPassword->setExpiredAt(new \DateTimeImmutable('+1 hours'));
                 $token = substr(str_replace(['+', '/', '='], '', base64_encode(random_bytes(30))), 0, 20);
-                $resetPassword->setToken($token);
+                $resetPassword->setToken(sha1($token));
                 $em->persist($resetPassword);
                 $em->flush();
                 $email = new TemplatedEmail();

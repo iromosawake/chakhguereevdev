@@ -47,7 +47,7 @@ class ExerciceController extends AbstractController
             // so the image file must be processed only when a file is uploaded
             if ($image) {
                 $directoryFolder = $this->getParameter('upload_directory');
-                $exercice->setImage($uploaderService->uploadImage($image, $directoryFolder));
+                $exercice->setImage($uploaderService->uploadImage($image, $directoryFolder,$exercice->getImage()));
             }
             $em->persist($exercice);
             $em->flush();

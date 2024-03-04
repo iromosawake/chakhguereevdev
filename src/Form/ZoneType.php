@@ -14,7 +14,6 @@ class ZoneType extends AbstractType
     {
         $builder
             ->add('nom')
-            ->add('Creer', SubmitType::class);
         ;
     }
 

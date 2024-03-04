@@ -1,6 +1,6 @@
 {% extends 'hommeultime.html.twig' %}
 
-{% block title %}CHAKHGUEREEV
+{% block title %}Dashboard
 {% endblock %}
 
 {% block javascripts %}
@@ -13,17 +13,17 @@
 
 {% block content %}
     {#    {% if app.user.challenge %} #}
-    <h4>Bienvenue {{ app.user.prenom }}</h4>
+    <h2>Bienvenue {{ app.user.prenom }}</h2>
     <div class="profile-home">
-
-
         <img class="photo-profile" src="{{ asset('uploads/images/') ~ app.user.photo }}"
-             height=150px alt="Photo profile">
+                     height=150px alt="Photo profile">
+
+
         <ul>
             <li>Age : {{ app.user.age }} Ans</li>
             <li>Poids : {{ app.user.poids }} Kg</li>
             <li>Inscrit depuis :</li>
-            <li>Nombre d'entrainements réalisées : </li>
+            <li>Nombre d'entrainements réalisées :</li>
         </ul>
         <ul>
 

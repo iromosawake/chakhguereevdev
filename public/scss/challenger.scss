@@ -263,7 +263,7 @@ header {
     top: 50%; /* Positionne la modale à 50% du haut de la fenêtre */
     left: 50%; /* Positionne la modale à 50% du côté gauche de la fenêtre */
     transform: translate(-50%, -50%); /* Déplace la modale de 50% vers le haut et la gauche pour la centrer précisément */
-    min-width: 50vh; /* Définit la largeur de la modale à 25% de la hauteur de la fenêtre du navigateur */
+    min-width: 100vh; /* Définit la largeur de la modale à 25% de la hauteur de la fenêtre du navigateur */
     min-height: 101vh;
    background-color:rgb( #212529, $alpha: 0.80);
   backdrop-filter: blur(7px);
@@ -365,6 +365,7 @@ form[name="savers"] {
     justify-content: space-between;
     margin-bottom: 1rem;
     padding: 1rem 0;
+
   }
 
   .form-row label {
@@ -421,4 +422,20 @@ form[name="savers"] {
   padding: 1rem;
   display: flex;
   flex-flow: column;
+  form{
+    display: flex;
+    flex-flow: column;
+  }
+}
+
+
+.grid-check{
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1rem 1rem 1rem;
+  input{
+    margin-left: 2rem;
+  }
 }

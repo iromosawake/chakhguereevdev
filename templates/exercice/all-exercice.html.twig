@@ -12,6 +12,7 @@
 {% endblock %}
 
 {% block content %}
+    <h4>Exercices</h4>
     {% for  exercice in exercices %}
         <div class="exercices {{ exercice.principal?"bg-main":"bg-seconds" }}">
             <b>{{ exercice.nom }} </b>{{ exercice.patternMuscle }}

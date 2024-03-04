@@ -5,6 +5,15 @@
 {% block stylesheets %}
     {{ parent() }}
     <style>
+        .password-container {
+            position: relative;
+        }
+        .toggle-password {
+            cursor: pointer;
+            position: absolute;
+            right: 12px;
+            top: 33px;
+        }
         .sidebar {
             display: none;
         }
@@ -12,7 +21,17 @@
 {% endblock %}
 
 {% block javascripts %}
-    {{ parent() }}
+
+    <script>
+        function togglePasswordVisibility() {
+            var passwordInput = document.getElementById("registration_form_plainPassword_first");
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+            } else {
+                passwordInput.type = "password";
+            }
+        }
+    </script>
 {% endblock %}
 
 {% block content %}
@@ -22,8 +41,10 @@
 
     {{ form_start(registrationForm) }}
     {{ form_row(registrationForm.email) }}
+    <div class="password-container">
     {{ form_row(registrationForm.plainPassword) }}
-
+        <i class="toggle-password bi bi-eye" onclick="togglePasswordVisibility()"></i>
+    </div>
     {{ form_rest(registrationForm) }}
     <button type="submit" class="btn btn-primary">Créer mon compte</button>
     {{ form_end(registrationForm) }}

@@ -37,8 +37,7 @@ class ProgrammeType extends AbstractType
                 'class' => Seance::class,
                     'attr' => [
                         'class' => 'select2'
-                    ]])
-            ->add('Creer', SubmitType::class);
+                    ]]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

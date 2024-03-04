@@ -28,7 +28,6 @@ class ExerciceType extends AbstractType
                 'label' => 'Pattern Muscles',
                 'attr' => array(
                     'class' => 'select2'),
-//                'choice_name'=>'Muscles'
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('h')
                         ->orderBy('h.nom', 'ASC');
@@ -50,6 +49,7 @@ class ExerciceType extends AbstractType
                             'image/jpeg',
                             'image/jpg',
                             'image/gif',
+                            'image/webp',
                         ],
                         'mimeTypesMessage' => "Le fichier n'est pas valide",
                     ])

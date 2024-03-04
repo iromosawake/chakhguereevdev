@@ -76,12 +76,11 @@
             </div>
         </div>
     </div>
-
     <div class="seances">
 
         {% for  seance in seances %}
             {% if loop.first %}
-                <h2>Seances semaine</h2>
+                <h4>Seances semaine</h4>
             {% endif %}
 
             <div class="seance" id="{{ seance.id }}">🔽  Jour : {{ seance.numJour }} - {{ seance.zone }}</div>

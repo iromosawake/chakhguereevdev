@@ -4,6 +4,7 @@ namespace App\Controller;
 
 
 use App\Form\UserType;
+use App\Service\UploaderService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -17,13 +18,12 @@ class UserController extends AbstractController
 {
     #[Route('/user', name: 'user.update')]
     #[IsGranted('IS_AUTHENTICATED_FULLY')]
-    public function currentUserUpdate(Request $request, EntityManagerInterface $em,UserPasswordHasherInterface $passwordHasher): Response
+    public function currentUserUpdate(Request $request, EntityManagerInterface $em,UserPasswordHasherInterface $passwordHasher,UploaderService $uploaderService): Response
     {
         $user = $this->getUser();
         $userForm = $this->createForm(UserType::class, $user);
         $userForm->remove('password');
         $userForm->remove('sexe');
-        $userForm->remove('photo');
         $userForm->remove('avant');
         $userForm->remove('apres');
         $userForm->remove('email');
@@ -35,6 +35,12 @@ class UserController extends AbstractController
             if ($newPassword && !empty($newPassword)) {
                 $hash = $passwordHasher->hashPassword($user,$newPassword);
                 $user->setPassword($hash);
+            }
+            $photo = $userForm->get('photo')->getData();
+            if ($photo) {
+                $directoryFolder = $this->getParameter('upload_directory');
+                $user->setPhoto($uploaderService->uploadImage($photo, $directoryFolder,$user->getPhoto()));
+
             }
             $em->flush();
             $this->addFlash('success','Modification sauvegardée !');

@@ -17,10 +17,13 @@
 
 {% block content %}
 
-    <h5>Création programme</h5>
-    {{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
-    {{ form_end(form) }}
-
+    <h4>Création programme</h4>
+    <div class="form_inputt">
+        {{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
+        {{ form_rest(form) }}
+        <button type="submit" class="btn btn-primary">Créer pattern</button>
+        {{ form_end(form) }}
+    </div>
 {% endblock %}
 
 

@@ -13,10 +13,11 @@ framework:
                     max_retries: 3
                     multiplier: 2
             failed: 'doctrine://default?queue_name=failed'
+            #PROD MAIL SYNC
             sync: 'sync://'
 
         routing:
-
+            #PROD MAIL SYNC
             Symfony\Component\Mailer\Messenger\SendEmailMessage: sync
             Symfony\Component\Notifier\Message\ChatMessage: async
             Symfony\Component\Notifier\Message\SmsMessage: async

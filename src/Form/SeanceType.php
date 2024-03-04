@@ -15,7 +15,6 @@ class SeanceType extends AbstractType
         $builder
             ->add('zone')
             ->add('programmes')
-            ->add('Creer', SubmitType::class)
         ;
     }
 
