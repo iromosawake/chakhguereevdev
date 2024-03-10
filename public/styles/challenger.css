@@ -261,6 +261,8 @@ body {
 }
 @media (max-width: 480px) {
   .exercice-view {
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
     padding: 0;
     padding-bottom: 2rem;
   }
@@ -373,7 +375,7 @@ header .bars-menu {
   top: 50%; /* Positionne la modale à 50% du haut de la fenêtre */
   left: 50%; /* Positionne la modale à 50% du côté gauche de la fenêtre */
   transform: translate(-50%, -50%); /* Déplace la modale de 50% vers le haut et la gauche pour la centrer précisément */
-  min-width: 100vh; /* Définit la largeur de la modale à 25% de la hauteur de la fenêtre du navigateur */
+  min-width: 101%;
   min-height: 101vh;
   background-color: rgba(33, 37, 41, 0.8);
   backdrop-filter: blur(7px);
