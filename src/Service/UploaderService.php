@@ -62,8 +62,11 @@ class UploaderService
         } else {
             $height = $width / $ratio;
         }
-
+        try {
         $photo = $this->imagine->open($filename);
+        } catch (Imagine\Exception\Exception $e) {
+            dd('Imagin ne peut ouvrir le fichier');
+        }
         $photo->resize(new Box($width, $height))->save($filename);
     }
 

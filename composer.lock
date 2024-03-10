@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4667f62b5a2ad536d4eb1d1c372c0e2b",
+    "content-hash": "244914c42c6119bcbcd7befe17e6216d",
     "packages": [
         {
             "name": "doctrine/cache",
@@ -1624,26 +1624,26 @@
         },
         {
             "name": "imagine/imagine",
-            "version": "1.2.0",
+            "version": "1.3.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-imagine/Imagine.git",
-                "reference": "6a84addad63baeda0a25079580a2e369a36ceb29"
+                "reference": "7151d553edec4dc2bbac60419f7a74ff34700e7f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-imagine/Imagine/zipball/6a84addad63baeda0a25079580a2e369a36ceb29",
-                "reference": "6a84addad63baeda0a25079580a2e369a36ceb29",
+                "url": "https://api.github.com/repos/php-imagine/Imagine/zipball/7151d553edec4dc2bbac60419f7a74ff34700e7f",
+                "reference": "7151d553edec4dc2bbac60419f7a74ff34700e7f",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.2"
+                "php": ">=5.5"
             },
             "require-dev": {
-                "friendsofphp/php-cs-fixer": "2.2.*",
-                "phpunit/phpunit": "^4.8 || ^5.7 || ^6.5 || ^7.4"
+                "phpunit/phpunit": "^4.8 || ^5.7 || ^6.5 || ^7.5 || ^8.4 || ^9.3"
             },
             "suggest": {
+                "ext-exif": "to read EXIF metadata",
                 "ext-gd": "to use the GD implementation",
                 "ext-gmagick": "to use the Gmagick implementation",
                 "ext-imagick": "to use the Imagick implementation"
@@ -1651,7 +1651,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-develop": "0.7-dev"
+                    "dev-develop": "1.x-dev"
                 }
             },
             "autoload": {
@@ -1680,9 +1680,9 @@
             ],
             "support": {
                 "issues": "https://github.com/php-imagine/Imagine/issues",
-                "source": "https://github.com/php-imagine/Imagine/tree/1.2.0"
+                "source": "https://github.com/php-imagine/Imagine/tree/1.3.5"
             },
-            "time": "2018-12-07T16:51:20+00:00"
+            "time": "2023-06-07T14:49:52+00:00"
         },
         {
             "name": "masterminds/html5",
