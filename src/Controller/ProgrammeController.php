@@ -33,7 +33,6 @@ class ProgrammeController extends AbstractController
             return $this->redirectToRoute('programme.edit');
         } else {
             return $this->render('programme/index.html.twig', [
-                'controller_name' => 'ProgrammeController',
                 'form' => $form->createView()
             ]);
         }
@@ -52,7 +51,6 @@ class ProgrammeController extends AbstractController
         $programmes = $repository->findBy([], [], $nombre, ($page - 1) * $nombre);
 
         return $this->render('programme/show.html.twig', [
-            'controller_name' => 'ProgrammeController',
             'programmes' => $programmes,
             'isPaginated' => $isPaginated,
             'nbPages' => $nbPAges,
@@ -67,7 +65,6 @@ class ProgrammeController extends AbstractController
         $repository = $doctrine->getRepository(Programme::class);
         $programme = $repository->findOneBy(array('id' => $id));
         return $this->render('programme/action.html.twig', [
-            'controller_name' => 'ProgrammeController',
             'programme' => $programme,
         ]);
     }

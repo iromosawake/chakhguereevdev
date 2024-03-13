@@ -1,32 +1,49 @@
 {% if programme %}
-    <script src="{{ asset('js/programmes.js') }}" type="text/javascript"></script>
-    
-    <div class="modal-inner-view {{ (programme.exercice.principal)? "bg-action-main" : "bg-action-second" }}">
-                <h4> #{{ programme.ordre }} {{ programme.exercice.nom }} - {{ programme.exercice.patternMuscle }}</h4>
-                <iframe src="{{ programme.exercice.video }}"
-                        class="youtube-video img-thumbnail"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen></iframe>
-           
-           <div class="exercice-info">
-                <div id="ordonance">
-                <h5>👊   {{ programme.series }} x {{ programme.reps }}</h5>
-                        <h5>🏋️   {{ programme.charge }} Kg</h5>
-                        <h5>💪 {{ programme.rpe }} rpe</h5>
-                        <h5 id="rest">⏱️   {{ programme.repos }}sec</h5>
-                        <h5 class='timer' data-seconds-left={{ programme.repos }}></h5>
-                </div>
-           
-                <div id="exercice">
-                    <img  src="{{ asset('uploads/images/') ~ programme.exercice.image }}"  alt="{{ programme.exercice.nom }}">
-                </div>
-           </div>
-                    <h6>ℹ️ Consigne :</h6>
-                    <p>{{ programme.exercice.consigne }}</p>
 
+    <div class="modal-inner-view {{ (programme.exercice.principal)? "bg-action-main" : "bg-action-second" }}">
+        <h4> #{{ programme.ordre }} {{ programme.exercice.nom }}</h4>
+        <div class="d-flex demo">
+            <img id="demo_image" src="{{ asset('uploads/images/') ~ programme.exercice.image }}" alt="{{ programme.exercice.nom }}">
+            <iframe src="{{ programme.exercice.video }}"
+                    class="youtube-video img-thumbnail"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+            </iframe>
+        </div>
+        <div class="consigne">
+            <h4>{{ programme.exercice.patternMuscle }}</h4>
+{#            <h5>Consigne</h5>#}
+            <h5>{{ programme.exercice.consigne }}</h5>
+        </div>
+
+
+        <div class="exercice-info">
+            <div id="ordonance">
+                <h4>👊  {{ programme.series }} x {{ programme.reps }}</h4>
+                <h4>🏋️  {{ programme.charge }} Kg</h4>
+                <h4>💪 {{ programme.rpe }} rpe</h4>
+                <h4 id="recup">⏱️  {{ programme.repos }}sec</h4>
+                <h4 class='timer' data-seconds-left={{ programme.repos }}></h4>
+            </div>
+
+            <div id="exercice">
+
+            </div>
+
+        </div>
+        <div class="commandes">
+            {% if(programme.id >1) %}
+            <button id="precedent" class="btn btn-primary"><i class="bi bi-caret-left-square-fill"></i></button>
+            {% endif %}
+            <button id="rest" data-rest="{{ programme.repos }}" class="btn btn-primary">⏱️  Récupération</button>
+            <div id="fin">
+                <button id="suivant" class="btn btn-primary"><i class="bi bi-caret-right-square-fill"></i></button>
+            </div>
+
+        </div>
     </div>
 
 
 {% else %}
-Aucun resultat
+    Aucun resultat
 {% endif %}

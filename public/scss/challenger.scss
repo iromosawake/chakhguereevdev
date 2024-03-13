@@ -155,8 +155,9 @@ body {
 
   img {
     border-radius: 8px;
-
+    box-shadow: var(--shadowbox);
     @include xs {
+      width: 100%;
       border-bottom-right-radius: 0;
       border-bottom-left-radius: 0;
     }
@@ -216,9 +217,10 @@ header {
         margin-right: 1rem;
       }
 
-      .navbar-brand{
+      .navbar-brand {
         display: flex;
       }
+
       @include xs {
         display: none;
       }
@@ -261,22 +263,22 @@ header {
 
 .modal {
   display: none;
-    position: fixed;
-    top: 50%; /* Positionne la modale à 50% du haut de la fenêtre */
-    left: 50%; /* Positionne la modale à 50% du côté gauche de la fenêtre */
-    transform: translate(-50%, -50%); /* Déplace la modale de 50% vers le haut et la gauche pour la centrer précisément */
-    min-width: 101%;
-    min-height: 101vh;
-   background-color:rgb( #212529, $alpha: 0.80);
+  position: fixed;
+  top: 50%; /* Positionne la modale à 50% du haut de la fenêtre */
+  left: 50%; /* Positionne la modale à 50% du côté gauche de la fenêtre */
+  transform: translate(-50%, -50%); /* Déplace la modale de 50% vers le haut et la gauche pour la centrer précisément */
+  min-width: 101%;
+  min-height: 101vh;
+  background-color: rgb(#212529, $alpha: 0.80);
   backdrop-filter: blur(7px);
   -webkit-backdrop-filter: blur(7px);
   transition: all 0.5s ease;
-    border: 1px solid #ccc;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre portée pour un effet de profondeur */
-    z-index: 1000; /* S'assure que la modale apparaît au-dessus des autres éléments */
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre portée pour un effet de profondeur */
+  z-index: 1000; /* S'assure que la modale apparaît au-dessus des autres éléments */
   flex-direction: column;
-    justify-content: center; /* Centre horizontalement le contenu dans la modale */
-    align-items: center; /* Centre verticalement le contenu dans la modale */
+  justify-content: center; /* Centre horizontalement le contenu dans la modale */
+  align-items: center; /* Centre verticalement le contenu dans la modale */
 
 
   .modal-content {
@@ -284,9 +286,9 @@ header {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    //align-items: center;
     @include xs {
-      width: 90%;
+      width: 100%;
     }
 
 
@@ -296,7 +298,42 @@ header {
       border-radius: 1rem;
       color: white;
       font-weight: 700;
+      display: flex;
+      flex-flow: column;
+      align-items: stretch;
 
+.demo{
+  img {
+    width: 100%;
+    flex: 1;
+    border-radius: 1rem;
+    box-shadow: var(--shadowbox);
+    @include xs {
+      display: block;
+    }
+  }
+  iframe{
+    @include xs {
+      display: none;
+    }
+  }
+
+
+}
+
+      .consigne{
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        height: 100px;
+        max-width: 500px;
+      }
+
+      .commandes {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-evenly;
+      }
 
       p {
         font-size: 1rem;
@@ -314,6 +351,7 @@ header {
 
         #ordonance {
           flex: 1;
+          padding: 1rem 0;
         }
 
         #exercice {
@@ -398,7 +436,7 @@ form[name="savers"] {
 
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-between;
+  justify-content: space-evenly;
 
   .photo-profile {
     border-radius: 1rem;
@@ -408,37 +446,48 @@ form[name="savers"] {
 }
 
 //MA seance
-.seances{
-  .seance{
+.seances {
+  .seance {
     background-color: var(--white-cng);
     box-shadow: var(--shadowbox);
   }
-  .exercice-view{
+
+  .exercice-view {
     background-color: var(--white-cng);
 
   }
 }
 
-.form_inputt{
+.form_inputt {
   box-shadow: var(--shadowbox);
   background-color: var(--white-cng);
   padding: 1rem;
   display: flex;
   flex-flow: column;
-  form{
+
+  form {
     display: flex;
     flex-flow: column;
   }
 }
 
 
-.grid-check{
+.grid-check {
   display: flex;
   flex-flow: row;
   align-items: center;
   justify-content: center;
   padding: 0 1rem 1rem 1rem;
-  input{
+
+  input {
     margin-left: 2rem;
+  }
+}
+
+.avant-apres{
+padding: 0.2rem;
+  justify-content: space-around;
+  img{
+    margin: 0.2rem;
   }
 }

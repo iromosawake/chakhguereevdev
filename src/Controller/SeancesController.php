@@ -2,12 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\EntrainementRealise;
 use App\Entity\Seance;
 use App\Entity\Zone;
 use App\Form\SeanceType;
 use App\Form\ZoneType;
 use App\Service\PdfService;
-use Doctrine\DBAL\Schema\View;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,7 +28,6 @@ class SeancesController extends AbstractController
             $seances = $repository->findBySemaine($num);
         }
         return $this->render('seances/index.html.twig', [
-            'controller_name' => 'SeancesController',
             'seances' => $seances
         ]);
     }
@@ -37,17 +37,15 @@ class SeancesController extends AbstractController
     {
         $repository = $doctrine->getRepository(Seance::class);
         if ($num == 0) {
-            $seances = $repository->findAll();
+            $seances = $repository->getSeancesWithAutors();
         } else {
             $seances = $repository->findBySemaine($num);
         }
         return $this->render('seances/index.html.twig', [
-            'controller_name' => 'SeancesController',
             'seances' => $seances
         ]);
     }
 
-    //TODO Update creater_user
     #[Route('/edit/{id?0}', name: 'seances.edit')]
     public function editSeance(ManagerRegistry $doctrine, Request $request, Seance $seance = null): Response
     {
@@ -63,6 +61,7 @@ class SeancesController extends AbstractController
 
         $em = $doctrine->getManager();
         if ($form->isSubmitted()) {
+            $seance->setCreatedby($this->getUser());
             $em->persist($seance);
             $em->flush();
             $this->addFlash('success', 'Seance a été edité avec succès !');
@@ -76,7 +75,6 @@ class SeancesController extends AbstractController
         }
 
         return $this->render('seances/edit.html.twig', [
-            'controller_name' => 'SeancesController',
             'form' => $form->createView(),
             'zoneForm' => $formZone->createView(),
         ]);
@@ -92,6 +90,19 @@ class SeancesController extends AbstractController
             'numSemaine' => $num
         ]);
         return $pdfService->pdf($html);
+    }
 
+
+    #[Route('/semaine/seance/add/{id?=0}', name: 'seances.termine')]
+    public function seanceToEntrainementRealise(EntityManagerInterface $em,Seance $id): Response
+    {
+        $entrainement = new EntrainementRealise();
+        $entrainement->setDate(new \DateTime());
+        $entrainement->setUser($this->getUser());
+        $entrainement->setSeanceRealise($id);
+        $em->persist($entrainement);
+        $em->flush();
+        $this->addFlash('success',"Bravo ! Vous avez terminé votre entrainement!");
+        return $this->redirectToRoute('app.home.muscu');
     }
 }

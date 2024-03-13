@@ -6,12 +6,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class MaquetteHtmlController extends AbstractController
+class DevPrcticesController extends AbstractController
 {
-    #[Route('/maquette/html', name: 'maquette_html')]
+    #[Route('/dev/prctices', name: 'app_dev_prctices')]
     public function index(): Response
     {
-        return $this->render('maquette_html/index.html.twig', [
+        return $this->render('dev_prctices/index.html.twig', [
+
         ]);
     }
 }

@@ -20,7 +20,6 @@ class ExerciceController extends AbstractController
     #[Route('/edit/{id?0}', name: 'exercice.edit')]
     public function addExercice(ManagerRegistry $doctrine, Request $request, UploaderService $uploaderService, Exercice $exercice = null): Response
     {
-        //si exercice n'existe pas
         if (!$exercice) {
             $exercice = new Exercice();
         }
@@ -43,8 +42,6 @@ class ExerciceController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $image = $form->get('image')->getData();
-            // this condition is needed because the 'photo' field is not required
-            // so the image file must be processed only when a file is uploaded
             if ($image) {
                 $directoryFolder = $this->getParameter('upload_directory');
                 $exercice->setImage($uploaderService->uploadImage($image, $directoryFolder,$exercice->getImage()));
@@ -56,21 +53,19 @@ class ExerciceController extends AbstractController
 
         }
         return $this->render('exercice/add-exercice.html.twig', [
-            'controller_name' => 'ExerciceController',
             'form' => $form->createView(),
             'patternMuscleForm' => $formPatternMuscle->createView()
         ]);
 
     }
 
-    #[Route('/all/', name: 'exercice.all')]
+    #[Route('/all', name: 'exercice.all')]
     public function allExercices(ManagerRegistry $doctrine): Response
     {
         $repository = $doctrine->getRepository(Exercice::class);
         $exercices = $repository->findAll();
 
         return $this->render('exercice/all-exercice.html.twig', [
-            'controller_name' => 'ExerciceController',
             'exercices' => $exercices
         ]);
     }

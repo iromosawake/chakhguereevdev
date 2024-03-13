@@ -59,8 +59,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $apres = null;
 
-    #[ORM\OneToMany(mappedBy: 'createdby', targetEntity: Seance::class)]
-    private Collection $seances;
 
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
@@ -69,9 +67,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(nullable: true)]
     private ?int $poids = null;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: EntrainementRealise::class, orphanRemoval: true)]
+    private Collection $entrainementRealises;
+
     public function __construct()
     {
-        $this->seances = new ArrayCollection();
+        $this->entrainementRealises = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -240,35 +241,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, Seance>
-     */
-    public function getSeances(): Collection
-    {
-        return $this->seances;
-    }
-
-    public function addSeance(Seance $seance): static
-    {
-        if (!$this->seances->contains($seance)) {
-            $this->seances->add($seance);
-            $seance->setCreatedby($this);
-        }
-
-        return $this;
-    }
-
-    public function removeSeance(Seance $seance): static
-    {
-        if ($this->seances->removeElement($seance)) {
-            // set the owning side to null (unless already changed)
-            if ($seance->getCreatedby() === $this) {
-                $seance->setCreatedby(null);
-            }
-        }
-
-        return $this;
-    }
 
     public function isVerified(): bool
     {
@@ -295,6 +267,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPoids(?int $poids): static
     {
         $this->poids = $poids;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, EntrainementRealise>
+     */
+    public function getEntrainementRealises(): Collection
+    {
+        return $this->entrainementRealises;
+    }
+
+    public function addEntrainementRealise(EntrainementRealise $entrainementRealise): static
+    {
+        if (!$this->entrainementRealises->contains($entrainementRealise)) {
+            $this->entrainementRealises->add($entrainementRealise);
+            $entrainementRealise->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEntrainementRealise(EntrainementRealise $entrainementRealise): static
+    {
+        if ($this->entrainementRealises->removeElement($entrainementRealise)) {
+            // set the owning side to null (unless already changed)
+            if ($entrainementRealise->getUser() === $this) {
+                $entrainementRealise->setUser(null);
+            }
+        }
 
         return $this;
     }

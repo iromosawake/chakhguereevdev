@@ -74,4 +74,23 @@ class SeanceRepository extends ServiceEntityRepository
             ->getResult()
             ;
     }
+
+    /* requete optimiséee */
+    public function getSeancesWithAutors()
+    {
+        return $this->createQueryBuilder('s')
+            ->leftJoin('s.createdby', 'u')
+            ->addSelect('u')
+            ->leftJoin('s.programmes', 'p')
+            ->addSelect('p')
+            ->leftJoin('p.exercice', 'e')
+            ->addSelect('e')
+            ->leftJoin('s.zone', 'z')
+            ->addSelect('z')
+            ->leftJoin('e.patternMuscle', 'ptr')
+            ->addSelect('ptr')
+            ->getQuery()
+            ->getResult();
+    }
+
 }

@@ -1,0 +1,184 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PratiquesDevController!
+{% endblock %}
+
+{% block body %}
+    <style>
+        body {
+            background: bisque;
+        }
+
+        .example-wrapper {
+            margin: 1em auto;
+            max-width: 800px;
+            width: 95%;
+            font: 18px / 1.5 sans-serif;
+        }
+
+        .example-wrapper code {
+
+            padding: 2px 6px;
+        }
+
+        h4 {
+            padding: 0.2rem;
+            margin: 0.2rem 0;
+            background: #2c3e50;
+            color: #00ff99;
+        }
+
+        p {
+            padding: 0;
+            margin: 0;
+        }
+
+        i {
+            color: white;
+        }
+    </style>
+
+    <div class="example-wrapper">
+        <h1>Git</h1>
+
+        <div class="code">
+
+            <h3>Des branches le plus tôt possible, et des branches souvent</h3>
+            <p>Une branche est un moyen d'exprimer "Je veux inclure le contenu de ce commit et de tous les commits
+                parents."
+            </p>
+            <h3>Voir l'historique d'un fichier</h3>
+            <ul>
+                <li>Untracked</li>
+                <li>Added</li>
+                <li>Modified</li>
+            </ul>
+            <h4>git log <i>voir la liste des commit</i></h4>
+
+            <h4>git shortlog</h4>
+
+            <h4>git diff <i>voir la différence enntre repertoire index et sauvegarde </i>></h4>
+
+            <h4>git diff --staged <i>compare la zone de transit</i></h4>
+
+            <h4>git blame index.html.twig -b -f -e >log.txt</h4>
+
+
+
+            <h4>git commit -am "titre_commit" <i>ajouite tous les fichiers non indexées modifiés</i></h4>
+
+
+            <h3>Défaire les changements :</h3>
+            <ul>
+                <li> Working directory : l'etat des fichiers dans l'éditeur de code</li>
+                <li>Staging area : Fichiers dans l'index</li>
+                <li>Repository : fichiers dans le dépot git</li>
+            </ul>
+
+            <h4>git checkout B index.php <i>commande de navigation du HEAD // restaurer un fichier à l'état du commit B
+                    <br>
+                    Dans cet état nous sommes détachés, impossible de sauvegarder les modifications</i>
+            </h4>
+
+            <h4>git clean <i>supprime les fichiers untracked</i></h4>
+            <h4>git revert B hashDuCommit <i>Défait tous les commits /utilisablke uniquemement sur un commit pour
+                    annuler un commit</i></h4>
+
+
+            <h4>git reset <i>retourne sur l'état tel qu'il est sur HEAD, écrase la zone de staging --soft ou --hard par
+                    défaut : mixed</i></h4>
+
+            <h3>Les BRANCHES GIT</h3>
+            <p>Permettent d'ajouter des features(fonctionnalitées),faire des fix,branche de developpement...</p>
+            <h4>git branch  <i>Lister les branches</i></h4> <br>
+            <h4>git branch -d<i> Supprime une branche</i></h4> <br>
+            <h4>git branch -maFeature <i>Crée une nouvelle branche</i></h4> <br>
+            <h4>git branch -m maFeature maFeatureXXL <i>Modifie le nom de la branche</i></h4><br>
+            <h4>git chechout maFeature <i>Se positionner(HEAD) charger la branche</i></h4> <br>
+            <h3>Fusionner deux branches </h3>
+            <h4>git checkout master    <i>Se positionner sur main</i></h4>
+            <h4>git merge feaure    <i>Encorporer feature dans main</i></h4><br>
+            <ul>
+                <li>FastForward</li>
+                <li>Merge Three-way</li>
+            </ul>
+            <h4>    <i></i></h4><br>
+            <h4>    <i></i></h4><br>
+
+
+            Git Resoudre un conflit git merge --abort
+            Annuler un commit de fusion quand il y a un conflit
+            Après avoir résolut un conflit, il faut indexer le fichier concerné pour signaler à git que c'est résolu !
+            Remiser les changements
+            git stash
+            Crée une sauvegarde  (cachette)
+            -u ajouter les fichiers non suivis
+            -a + .gitignore
+            git stash branch
+            cree une branche à partir d'un stash et supprime le stash
+
+            Récuperer
+            git stash list
+            voir les stashes
+            git stash show -p //équivalent de git diff
+            git stash apply
+            git stash pop
+            réappliquer la modification et effacer le stash
+            git stash clear
+            nettoie,vide la stash
+
+            Observer les branches GIT
+            git log --graph
+            visualise la branche
+            ou via git graph
+------------------------------------------------------------
+            Modification d'un commit
+            git -am "modification commit"
+            remplace le commit avec le nouveau changement ou compléter le dernier commit en cours
+
+            git rebase masterBranch Permet un historique sipmlifié
+            rebase va réappliquer chacun des commits de la branche feature à la branche master (fausse l'historique)
+
+            Pour rebase
+            git checkout feature
+            git rebase master
+            Une fusion de rebasage est de type avance rapide -> fast-forward merge
+
+            git rebase -i branch
+            On peut intervenir sur les commits avant de les rebase, on peut aussi déplacer un commit entre deux commits
+            On peut réinstaller une version avec
+            git reset a290df5cbd6bb...Commit
+
+            Regrouper des commits dans un merge
+            git merge --squash
+            git branch -d feature
+            -D pourt forcer
+
+            --------GIT-----
+
+            git reflog
+            voir toutes les réferences des commits pour retrouver des commits perdus
+            git rester --hard hashCommit
+
+            Repertoire distant gitLab
+            git clone nomRepertoire
+            Mise à jour des pointeurs distants avec
+            git fetch
+            Issue est une tache/objectif
+            git checkout -b 'feature-topbar'
+            git add .
+            git commit -m "feature done #1" où #1 est le numéro de l'issue, on peut aussi créer un label
+            git push -u origin feature_topbar
+            Milestone est un ensemble des issues avec une deadline
+            Ex 1 milestone/semaine
+
+            Demande de fusion(merge request)
+            Creer une branche pour chaque Issue
+            Workflow GitFlow
+            master et developpe permanentes
+            hotfix ,feature, realease
+
+
+        </div>
+    </div>
+{% endblock %}

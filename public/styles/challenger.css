@@ -269,9 +269,11 @@ body {
 }
 .exercice-view img {
   border-radius: 8px;
+  box-shadow: var(--shadowbox);
 }
 @media (max-width: 480px) {
   .exercice-view img {
+    width: 100%;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
   }
@@ -393,11 +395,10 @@ header .bars-menu {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
 }
 @media (max-width: 480px) {
   .modal .modal-content {
-    width: 90%;
+    width: 100%;
   }
 }
 .modal .modal-content .modal-inner-view {
@@ -406,6 +407,37 @@ header .bars-menu {
   border-radius: 1rem;
   color: white;
   font-weight: 700;
+  display: flex;
+  flex-flow: column;
+  align-items: stretch;
+}
+.modal .modal-content .modal-inner-view .demo img {
+  width: 100%;
+  flex: 1;
+  border-radius: 1rem;
+  box-shadow: var(--shadowbox);
+}
+@media (max-width: 480px) {
+  .modal .modal-content .modal-inner-view .demo img {
+    display: block;
+  }
+}
+@media (max-width: 480px) {
+  .modal .modal-content .modal-inner-view .demo iframe {
+    display: none;
+  }
+}
+.modal .modal-content .modal-inner-view .consigne {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  height: 100px;
+  max-width: 500px;
+}
+.modal .modal-content .modal-inner-view .commandes {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
 }
 .modal .modal-content .modal-inner-view p {
   font-size: 1rem;
@@ -421,6 +453,7 @@ header .bars-menu {
 }
 .modal .modal-content .modal-inner-view .exercice-info #ordonance {
   flex: 1;
+  padding: 1rem 0;
 }
 .modal .modal-content .modal-inner-view .exercice-info #exercice {
   flex: 1;
@@ -487,7 +520,7 @@ form[name=savers] .help-text {
   border-radius: 1rem;
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 .profile-home .photo-profile {
   border-radius: 1rem;
@@ -523,6 +556,14 @@ form[name=savers] .help-text {
 }
 .grid-check input {
   margin-left: 2rem;
+}
+
+.avant-apres {
+  padding: 0.2rem;
+  justify-content: space-around;
+}
+.avant-apres img {
+  margin: 0.2rem;
 }
 
 /*# sourceMappingURL=challenger.css.map */

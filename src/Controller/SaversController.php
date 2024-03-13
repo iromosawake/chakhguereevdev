@@ -37,7 +37,6 @@ class SaversController extends AbstractController
 
 
         return $this->render('savers/index.html.twig', [
-            'controller_name' => 'SaversController',
             'form' => $form->createView(),
             'saverses' => $saverses
         ]);

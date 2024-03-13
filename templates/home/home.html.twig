@@ -13,36 +13,47 @@
 
 {% block content %}
     {#    {% if app.user.challenge %} #}
-    <h2>Bienvenue {{ app.user.prenom }}</h2>
     <div class="profile-home">
         <img class="photo-profile" src="{{ asset('uploads/images/') ~ app.user.photo }}"
-                     height=150px alt="Photo profile">
+             height=150px alt="Photo profile">
 
 
         <ul>
+            <li>{{ app.user.prenom }}</li>
             <li>Age : {{ app.user.age }} Ans</li>
             <li>Poids : {{ app.user.poids }} Kg</li>
-            <li>Inscrit depuis :</li>
-            <li>Nombre d'entrainements réalisées :</li>
         </ul>
-        <ul>
 
-            <li><img class="photo-profile" src="{{ asset('uploads/photos-avant-apres/j1.webp') ~ app.user.avant }}"
-                     height=250px alt=""></li>
+        <div class="avant-apres d-flex">
+            <div class="d-flex">
+                <img class="photo-profile" src="{{ asset('uploads/photos-avant-apres/j1.webp') ~ app.user.avant }}"
+                     height=250px alt="">
+            </div>
+            <div class="d-flex">
+                <img class="photo-profile" src="{{ asset('uploads/photos-avant-apres/j2.webp') ~ app.user.apres }}"
+                     height=250px alt="">
+            </div>
+        </div>
 
-        </ul>
-        <ul>
 
-            <li><img class="photo-profile" src="{{ asset('uploads/photos-avant-apres/j2.webp') ~ app.user.apres }}"
-                     height=250px alt=""></li>
-        </ul>
+
     </div>
-    <h5>Mon tableau de bord</h5>
-    Entrainements réalisées
+
+    <h5>Mon tableau de bord semaine #1 !!!!<-----</h5>
+    <li>Nombre total d'entrainements réalisées :</li>
+
+    {% if entrainements is empty %}
+        Aucun entrainement réalisé cette semaine pour l'instant
+    {% else %}
+
+        {% for entrainement in entrainements %}
+            {% set jour = (entrainement.date | format_datetime('full', 'none', locale='fr')) | split(' ')  %}
 
 
+            <p>{{  jour[0]}} {{ entrainement.date | date('H:i') }} - {{ entrainement.seanceRealise.zone }}  </p>
+        {% endfor %}
 
-
+    {% endif %}
 
 
 

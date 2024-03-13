@@ -2,12 +2,9 @@
 
 namespace App\Controller;
 
-use App\Entity\Challenge;
-use App\Entity\User;
-use App\Form\ChallengeType;
+use App\Entity\EntrainementRealise;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
@@ -18,62 +15,19 @@ class HomeController extends AbstractController
     public function index(): Response
     {
         return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
         ]);
     }
 
     #[Route('/home', name: 'app.home.muscu')]
     #[IsGranted('ROLE_USER')]
-    public function home(ManagerRegistry $doctrine, Request $request): Response
+    public function home(ManagerRegistry $d): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        $user = $this->getUser();
-//        if (!$user->getChallenge()) {
-//            $challenge = new Challenge();
-//            $date =new \DateTime();
-//            $date->format("d/m/Y");
-//            $challenge->setDateDebut($date);
-//            $challenge->setNbSemaine(8);
-//
-//            $form = $this->createForm(ChallengeType::class, $challenge);
-//            $form->handleRequest($request);
-//
-//            $em = $doctrine->getManager();
-//
-//            if ($form->isSubmitted() && $form->isValid()) {
-//
-//                switch ($challenge->getId()) {
-//                    case 1://eche
-//                        echo "i égal 0";
-//                        break;
-//                    case 2://force
-//                        echo "i égal 1";
-//                        break;
-//                    case 3://masse
-//                        //Création de programmes pour l'utilisateur pour chaque séance
-//
-//                        foreach ($arr as &$value) {
-//                            $value = $value * 2;
-//                        }
-//                        break;
-//                }
-//
-//                $em->persist($challenge);
-//                $user->setChallenge($challenge);
-//                $em->persist($user);
-//
-//                $em->flush();
-//                $this->addFlash('success', 'Votre challenge a été créé avec succès !');
+            $repo = $d->getRepository(EntrainementRealise::class);
+            $entrainements = $repo->findUserEntrainementsRealises($this->getUser());
 
-//                return $this->redirectToRoute('app.home.muscu');
-//            }
-//            return $this->render('home/home.html.twig', [
-//                'controller_name' => 'HomeController',
-//                'form' => $form,
-//            ]);
-//        }else{
             return $this->render('home/home.html.twig', [
-                'controller_name' => 'HomeController',
+                'entrainements' => $entrainements
             ]);
         }
 

@@ -1,6 +1,6 @@
 {% extends 'hommeultime.html.twig' %}
 
-{% block title %}Séances{% endblock %}
+{% block title %}Séances semaine{% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
@@ -9,19 +9,23 @@
 {% block javascripts %}
     {{ parent() }}
     <script>
-        const openInNewTab = (url) => {
-            window.open(url, "_blank");
-        }
+        let Interval;
+        const programme_url = '{{ path('programme.action') }}';
+        const entrainementTermineUrl = '{{ path('seances.termine') }}';
 
         function pdf(s) {
             var path = '{{ url('seances.pdf') }}';
             openInNewTab(path + "/" + s);
         }
 
+        const openInNewTab = (url) => {
+            window.open(url, "_blank");
+        }
+
         $(document).ready(function () {
             //deplier
-            var items = $('.seance_semaine');
-            for (var i = 0; i <= items.length; i++) {
+            let items = $('.seance_semaine');
+            for (let i = 0; i <= items.length; i++) {
                 $('#seance_' + i).slideToggle();
             }
             $(".seance").click(function (event) {
@@ -29,41 +33,111 @@
             });
 
 
-            // Récupère l'élément de la modale par son ID et ferme la modale
-            const modal = document.getElementById('details_programme');
-            let modalBody = modal.querySelector('.modal-body');
-            document.addEventListener('click', function (e) {
-                if (!modalBody.contains(e.target) && modalBody.style.display !== 'none') {
-                    modal.style.display = 'none';
-                }
-            });
-
-            const detailProg = document.querySelectorAll('.details_programme');
-
-            // Parcourt tous les boutons et attache un écouteur d'événement de clic à chacun
-            detailProg.forEach(function (bouton) {
-                bouton.addEventListener('click', function () {
-                    const url = '{{ path('programme.action') }}';
+            // // Récupère l'élément de la modale par son ID et ferme la modale
+            // const modal = document.getElementById('details_programme');
+            // let modalBody = modal.querySelector('.modal-body');
+            // //lorsqu'on click en dehrs de la modale
+            // document.addEventListener('click', function (e) {
+            //     if (!modalBody.contains(e.target) && modalBody.style.display !== 'none') {
+            //         modal.style.display = 'none';
+            //     }
+            // });
 
 
-                    fetch(url + '/' + bouton.dataset.programmeid)
-                        .then(response => {
-                            if (!response.ok) {
-                                throw new Error('La requête a échoué');
+            //const detailProg = document.querySelectorAll('.details_programme');
+            const start_seance = document.querySelectorAll('.start_seance');
+            start_seance.forEach(function (btn) {
+                btn.onclick = () => {
+                    const seanceId= btn.dataset.seanceid;
+                    const nb_exercice = btn.dataset.nbseances;
+                    const programmeId =btn.dataset.programmeid;
+                    getAjaxExercice(programmeId, nb_exercice, 0, seanceId);
+                };
+            })
+
+
+            function getAjaxExercice(programmeId, max, count,seanceId) {
+                fetch(programme_url + '/' + programmeId)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('La requête a échoué');
+                        }
+                        return response.text();
+                    })
+                    .then(data => {
+                        let modal = document.getElementById('details_programme');
+                        let modalBody = modal.querySelector('.modal-body');
+                        modalBody.innerHTML = data;
+                        modal.style.display = 'flex';
+
+                        let next = modalBody.querySelector('#suivant');
+                        next.onclick = () => {
+                            if (count >= max-1) {
+                                let fin = modal.querySelector('#fin');
+                                let linkFin = document.createElement("a");
+                                linkFin.innerHTML= "J\'ai terminé ! ✔️";
+                                linkFin.href=entrainementTermineUrl+'/'+seanceId;
+                                fin.replaceChild(linkFin, next);
+
+                            } else {
+                                getAjaxExercice(++programmeId, max, ++count,seanceId);
                             }
-                            return response.text();
-                        })
-                        .then(data => {
-                            let modal = document.getElementById('details_programme');
-                            let modalBody = modal.querySelector('.modal-body');
-                            modalBody.innerHTML = data;
-                            modal.style.display = 'flex';
-                        })
-                        .catch(error => {
-                            console.error('Erreur lors de la requête:', error);
-                        });
-                })
-            });
+                        };
+
+                        let previous = modalBody.querySelector('#precedent');
+                        if (programmeId > 1) {
+                            previous.onclick = () => {
+                                getAjaxExercice(--programmeId, max, --count,seanceId);
+                            };
+                        }
+
+
+                        const btn_reste = document.querySelector('#rest');
+
+                        btn_reste.onclick = () => {
+                            console.log(Interval);
+                            clearInterval(Interval);
+                            let temp_recup = document.querySelector('#recup');
+                            let time_total = btn_reste.dataset.rest;
+
+                            Interval = setInterval(() => {
+                                    time_total--;
+                                    temp_recup.innerHTML = time_total;
+                                    if (time_total <= 1) {
+                                        temp_recup.innerHTML = btn_reste.dataset.rest;
+                                        clearInterval(Interval);
+                                    }
+                                },
+                                1000);
+                        }
+
+
+
+
+
+
+                        img = document.querySelector('#demo_image');
+                        vid = document.querySelector('iframe');
+
+                        img.onclick = () => {
+                            img.style.display = 'none';
+                            vid.style.display = 'block';
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Erreur lors de la requête:', error);
+                    });
+             }
+            //
+            //
+            // async function envoyerRequete(slug,url) {
+            //     try {
+            //         const reponse = await fetch();
+            //         const json = await reponse;
+            //     } catch (err) {
+            //         console.error(err);
+            //     }
+            // }
         });
     </script>
 {% endblock %}
@@ -83,29 +157,32 @@
                 <h4>Seances semaine</h4>
             {% endif %}
 
+
             <div class="seance" id="{{ seance.id }}">🔽  Jour : {{ seance.numJour }} - {{ seance.zone }}</div>
             <div class="seance_semaine" id="seance_{{ seance.id }}">
                 <button type="button" class="btn btn-primary" onclick="pdf({{ seance.id }})"><i
                             class="fa-solid fa-file-pdf"></i></button>
-
+                <button data-nbseances="{{ seance.programmes.count }}" data-seanceid="{{ seance.id }}" data-programmeid="{{ seance.programmes[0].id }}"
+                        class="btn-done btn btn-primary start_seance">
+                    Commencer séance
+                </button>
 
                 {% for  programme in seance.programmes %}
                     <div class="exercice-view">
-                        <img src="{{ asset('uploads/images/') ~ programme.exercice.image }}" height="330px"
+                        <img src="{{ asset('uploads/images/') ~ programme.exercice.image }}" height="260px"
+                             width="260px"
                              alt="Exercice"/>
                         <h5>{{ programme.exercice.nom }}</h5>
                         <h6>{{ programme.exercice.patternMuscle }}</h6>
-                        <button type="button" class="btn btn-action details_programme"
-                                data-programmeid="{{ programme.id }}">
-                            Commencer  💯 
-                        </button>
                     </div>
                 {% endfor %}
 
-                <button type="submit" class="btn-done btn btn-primary">J'ai terminé ma séance <i
-                            class="fa-solid fa-check"></i>
-                </button>
+
+                {#                <button class="btn-done btn btn-primary">Terminé<i #}
+                {#                            class="fa-solid fa-check"></i> #}
+                {#                </button> #}
             </div>
+
         {% endfor %}
     </div>
 {% endblock %}

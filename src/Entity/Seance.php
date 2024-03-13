@@ -37,7 +37,8 @@ class Seance
     #[ORM\JoinColumn(nullable: false)]
     private ?Zone $zone = null;
 
-    #[ORM\ManyToOne(inversedBy: 'seances')]
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: true)]
     private ?User $createdby = null;
 
     public function __construct()

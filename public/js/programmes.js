@@ -11,6 +11,8 @@ jQuery(document).ready(function ($) {
             let reinit = rest.textContent;
             let time = parseInt(rest.innerText.split(' ', 2)[1]);
             chrono = true;
+
+
             const timerId = setInterval(() => {
                 rest.innerHTML = time--;
                     if (time <= -1) {
