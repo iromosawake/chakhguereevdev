@@ -180,7 +180,7 @@ header nav {
   justify-content: center;
   align-items: center;
 }
-@media (max-width: 480px) {
+@media (max-width: 767px) {
   header nav {
     flex-flow: column wrap;
     align-items: start;
@@ -190,7 +190,7 @@ header nav {
 header nav a {
   color: var(--text-footer);
 }
-@media (max-width: 480px) {
+@media (max-width: 767px) {
   header nav i {
     font-size: 1.4rem;
   }
@@ -218,7 +218,7 @@ header nav ul {
   flex-flow: row nowrap;
   font-weight: 700;
 }
-@media (max-width: 480px) {
+@media (max-width: 767px) {
   header nav ul {
     flex-flow: column nowrap;
     font-weight: 400;
@@ -243,7 +243,7 @@ section {
   justify-content: center;
   align-items: center;
 }
-@media (max-width: 480px) {
+@media (max-width: 767px) {
   section {
     padding: 2rem;
   }
@@ -280,7 +280,7 @@ section {
   flex-flow: row nowrap;
   justify-content: space-evenly;
 }
-@media (max-width: 480px) {
+@media (max-width: 767px) {
   #portfolio {
     flex-flow: row wrap;
   }

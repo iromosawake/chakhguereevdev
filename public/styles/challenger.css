@@ -180,7 +180,7 @@ body {
   padding: 2rem;
   margin-right: 5rem;
 }
-@media (max-width: 480px) {
+@media (max-width: 767px) {
   .sidebar {
     position: fixed;
     top: 66px;
@@ -259,7 +259,7 @@ body {
   justify-content: center;
   align-items: center;
 }
-@media (max-width: 480px) {
+@media (max-width: 767px) {
   .exercice-view {
     border-top-right-radius: 8px;
     border-top-left-radius: 8px;
@@ -271,7 +271,7 @@ body {
   border-radius: 8px;
   box-shadow: var(--shadowbox);
 }
-@media (max-width: 480px) {
+@media (max-width: 767px) {
   .exercice-view img {
     width: 100%;
     border-bottom-right-radius: 0;
@@ -298,7 +298,7 @@ header {
   align-items: center;
   justify-content: center;
 }
-@media (max-width: 480px) {
+@media (max-width: 767px) {
   header {
     position: fixed;
     top: 0;
@@ -315,7 +315,7 @@ header .navbar {
   align-items: center;
   justify-content: space-between;
 }
-@media (max-width: 480px) {
+@media (max-width: 767px) {
   header .navbar .header-search {
     display: none;
   }
@@ -332,7 +332,7 @@ header .navbar .header-connect img {
 header .navbar .header-connect .navbar-brand {
   display: flex;
 }
-@media (max-width: 480px) {
+@media (max-width: 767px) {
   header .navbar .header-connect {
     display: none;
   }
@@ -345,7 +345,7 @@ header .navbar .header-connect .navbar-brand {
 header .bars-menu {
   display: none;
 }
-@media (max-width: 480px) {
+@media (max-width: 767px) {
   header .bars-menu {
     display: flex;
     font-size: 2.6rem;
@@ -359,13 +359,13 @@ header .bars-menu {
 #logout {
   display: none;
 }
-@media (max-width: 480px) {
+@media (max-width: 767px) {
   #logout {
     display: inline;
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 767px) {
   .app-content {
     margin-top: 60px;
   }
@@ -396,7 +396,7 @@ header .bars-menu {
   flex-direction: column;
   justify-content: center;
 }
-@media (max-width: 480px) {
+@media (max-width: 767px) {
   .modal .modal-content {
     width: 100%;
   }
@@ -417,12 +417,12 @@ header .bars-menu {
   border-radius: 1rem;
   box-shadow: var(--shadowbox);
 }
-@media (max-width: 480px) {
+@media (max-width: 767px) {
   .modal .modal-content .modal-inner-view .demo img {
     display: block;
   }
 }
-@media (max-width: 480px) {
+@media (max-width: 767px) {
   .modal .modal-content .modal-inner-view .demo iframe {
     display: none;
   }
@@ -507,7 +507,7 @@ form[name=savers] .help-text {
 .profile-acces {
   display: none !important;
 }
-@media (max-width: 480px) {
+@media (max-width: 767px) {
   .profile-acces {
     display: block !important;
   }
