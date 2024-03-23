@@ -5,7 +5,7 @@
         <div class="d-flex demo">
             <img id="demo_image" src="{{ asset('uploads/images/') ~ programme.exercice.image }}" alt="{{ programme.exercice.nom }}">
             <iframe src="{{ programme.exercice.video }}"
-                    class="youtube-video img-thumbnail"
+                    class="youtube-video img-thumbnail d-none"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen>
             </iframe>
@@ -19,7 +19,7 @@
 
         <div class="exercice-info">
             <div id="ordonance">
-                <h4>👊  {{ programme.series }} x {{ programme.reps }}</h4>
+                <h4>👊  {{ programme.series }} x {{ programme.reps }} reps</h4>
                 <h4>🏋️  {{ programme.charge }} Kg</h4>
                 <h4>💪 {{ programme.rpe }} rpe</h4>
                 <h4 id="recup">⏱️  {{ programme.repos }}sec</h4>
@@ -32,9 +32,10 @@
 
         </div>
         <div class="commandes">
-            {% if(programme.id >1) %}
-            <button id="precedent" class="btn btn-primary"><i class="bi bi-caret-left-square-fill"></i></button>
-            {% endif %}
+{#            TODO si programme id = 6, le bouton retour apparaitrera toujours #}
+{#            {% if(programme.id > ) %}#}
+{#            <button id="precedent" class="btn btn-primary"><i class="bi bi-caret-left-square-fill"></i></button>#}
+{#            {% endif %}#}
             <button id="rest" data-rest="{{ programme.repos }}" class="btn btn-primary">⏱️  Récupération</button>
             <div id="fin">
                 <button id="suivant" class="btn btn-primary"><i class="bi bi-caret-right-square-fill"></i></button>

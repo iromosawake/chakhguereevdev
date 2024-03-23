@@ -16,24 +16,24 @@
             <a href="{{ path('seances.day') }} " {% if (app.request.pathinfo) == path('seances.day') %} class="active nav-link" {% else%} class="nav-link" {% endif %}>
                 <i class="fas fa-tachometer-alt mr-5"></i>Ma séance
             </a>
-            <a href="{{ path('programme.show') }}" {% if (app.request.pathinfo) == path('programme.show') %} class="active nav-link" {% else%} class="nav-link" {% endif %}>
-                <i class="fas fa-table mr-5"></i>Programmes
-            </a>
-            <a href="{{ path('exercice.all') }}" {% if (app.request.pathinfo) == path('exercice.all') %} class="active nav-link" {% else%} class="nav-link" {% endif %}>
-                <i class="fa-solid fa-hand-fist mr-5"></i>Exercices
-            </a>
+{#            <a href="{{ path('programme.show') }}" {% if (app.request.pathinfo) == path('programme.show') %} class="active nav-link" {% else%} class="nav-link" {% endif %}>#}
+{#                <i class="fas fa-table mr-5"></i>Programmes#}
+{#            </a>#}
+{#            <a href="{{ path('exercice.all') }}" {% if (app.request.pathinfo) == path('exercice.all') %} class="active nav-link" {% else%} class="nav-link" {% endif %}>#}
+{#                <i class="fa-solid fa-hand-fist mr-5"></i>Exercices#}
+{#            </a>#}
 
              <a href="{{ path('user.update') }}" {% if (app.request.pathinfo) == path('user.update') %} class="active nav-link" {% else%} class="nav-link" {% endif %}>
                 <i class="fa-solid fa-user"></i> Profile
             </a>
-            {%- if is_granted('ROLE_USER') -%}
-                <br>
-                <hr>
-                <br>
-                <h5>Admin</h5>
-                <a href="{{ path('exercice.edit') }}" {% if (app.request.pathinfo) == path('exercice.edit') %} class="active nav-link" {% else%} class="nav-link" {% endif %}">Création exercice </a>
-                <a class="nav-link" href="{{ path('programme.edit') }}" {% if (app.request.pathinfo) == path('programme.edit') %} class="active nav-link" {% else%} class="nav-link" {% endif %}>Création programme </a>
-                <a class="nav-link" href="{{ path('seances.edit') }}" {% if (app.request.pathinfo) == path('seances.edit') %} class="active nav-link" {% else%} class="nav-link" {% endif %}>Création seance</a>
+            {%- if is_granted('ROLE_ADMIN') -%}
+{#                <br>#}
+{#                <hr>#}
+{#                <br>#}
+{#                <h5>Admin</h5>#}
+{#                <a href="{{ path('exercice.edit') }}" {% if (app.request.pathinfo) == path('exercice.edit') %} class="active nav-link" {% else%} class="nav-link" {% endif %}">Création exercice </a>#}
+{#                <a class="nav-link" href="{{ path('programme.edit') }}" {% if (app.request.pathinfo) == path('programme.edit') %} class="active nav-link" {% else%} class="nav-link" {% endif %}>Création programme </a>#}
+{#                <a class="nav-link" href="{{ path('seances.edit') }}" {% if (app.request.pathinfo) == path('seances.edit') %} class="active nav-link" {% else%} class="nav-link" {% endif %}>Création seance</a>#}
             {% endif %}
 
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
