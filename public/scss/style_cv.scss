@@ -107,6 +107,7 @@ header {
       flex-flow: row nowrap;
       font-weight: 700;
       @include xs {
+        display: none;
         flex-flow: column nowrap;
         font-weight: 400;
         margin-left: 0rem;
@@ -167,7 +168,7 @@ section {
   .desc {
     display: flex;
     flex-flow: column nowrap;
-    align-items: center;
+    padding: 0 4rem;
   }
 
 }
@@ -257,11 +258,11 @@ section {
 }
 
 .git {
-  width: 74%;
+  width: 100%;
 }
 
 .php {
-  width: 70%;
+  width: 100%;
 }
 
 
@@ -282,11 +283,11 @@ section {
 }
 
 .react {
-  width: 5%;
+  width: 10%;
 }
 
 .docker {
-  width: 10%;
+  width: 55%;
 }
 
 /* -----------------------------------------EXPERIENCE----------------------------------------------------------- */

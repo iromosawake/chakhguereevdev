@@ -220,6 +220,7 @@ header nav ul {
 }
 @media (max-width: 480px) {
   header nav ul {
+    display: none;
     flex-flow: column nowrap;
     font-weight: 400;
     margin-left: 0rem;
@@ -271,7 +272,7 @@ section {
 #about .desc {
   display: flex;
   flex-flow: column nowrap;
-  align-items: center;
+  padding: 0 4rem;
 }
 
 /* -------------------------PORTFOLIO---------------------------- */
@@ -351,11 +352,11 @@ section {
 }
 
 .git {
-  width: 74%;
+  width: 100%;
 }
 
 .php {
-  width: 70%;
+  width: 100%;
 }
 
 .net {
@@ -375,11 +376,11 @@ section {
 }
 
 .react {
-  width: 5%;
+  width: 10%;
 }
 
 .docker {
-  width: 10%;
+  width: 55%;
 }
 
 /* -----------------------------------------EXPERIENCE----------------------------------------------------------- */
